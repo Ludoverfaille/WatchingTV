@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class ConnexionComponent implements OnInit {
 
   ngOnInit() {
   }
+
 
 
 

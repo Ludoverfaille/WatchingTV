@@ -11,7 +11,7 @@ const routes:Routes =[
     path: "", component : AccueilComponent,pathMatch:"full"
   },
   {
-    path: "watchingTv/connexion", component:ConnexionComponent
+    path: "connexion", component:ConnexionComponent
   }
 
 ]
