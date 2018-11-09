@@ -2,19 +2,30 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { AccueilComponentComponent } from './accueil-component/accueil-component.component';
-import { ConnexionComponentComponent } from './connexion-component/connexion-component.component';
+import { AccueilComponent } from './accueil/accueil.component';
+import { ConnexionComponent } from './connexion/connexion.component';
+import {RouterModule, Routes} from '@angular/router';
 
+const routes:Routes =[
+  {
+    path: "", component : AccueilComponent,pathMatch:"full"
+  },
+  {
+    path: "watchingTv/connexion", component:ConnexionComponent
+  }
+
+]
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AccueilComponentComponent,
-    ConnexionComponentComponent,
+    AccueilComponent,
+    ConnexionComponent,
   ],
   imports: [
     BrowserModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
