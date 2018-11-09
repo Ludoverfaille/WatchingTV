@@ -126,11 +126,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\FilmController.cs" />
     <Compile Include="Controllers\UtilisateurController.cs" />
+    <Compile Include="DAO\FilmDAO.cs" />
     <Compile Include="DAO\UtilisateurDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Film.cs" />
     <Compile Include="Models\DataBase.cs" />
     <Compile Include="Models\Utilisateur.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

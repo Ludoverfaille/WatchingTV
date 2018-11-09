@@ -15,6 +15,7 @@ namespace WatchingTV.Models
         public bool IsAdmin { get; set; }
         [JsonProperty(PropertyName = "password")]
         public string Password { get; set; }
+        
 
 
         public Utilisateur(SqlDataReader reader)
