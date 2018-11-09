@@ -5,13 +5,18 @@ import { AppComponent } from './app.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import {RouterModule, Routes} from '@angular/router';
+import { InscriptionComponent } from './inscription/inscription.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 const routes:Routes =[
   {
-    path: "", component : AccueilComponent,pathMatch:"full"
+    path: "accueil", component : AccueilComponent,pathMatch:"full"
   },
   {
     path: "connexion", component:ConnexionComponent
+  },
+  {
+    path: "inscription", component:InscriptionComponent
   }
 
 ]
@@ -22,6 +27,8 @@ const routes:Routes =[
     AppComponent,
     AccueilComponent,
     ConnexionComponent,
+    InscriptionComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,
