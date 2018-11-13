@@ -92,6 +92,7 @@ namespace WatchingTV.DAO
                 command.Parameters.AddWithValue("@releaseDate", film.ReleaseDate);
                 command.Parameters.AddWithValue("@voteAverage", film.VoteAverage);
                 command.Parameters.AddWithValue("@posterLink", film.PosterLink);
+                command.Parameters.AddWithValue("@id", film.Id);
 
                 hasBeenChanged = command.ExecuteNonQuery() != 0;
             }
