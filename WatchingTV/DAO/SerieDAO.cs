@@ -34,7 +34,7 @@ namespace WatchingTV.DAO
 
         public static List<Serie> Query()
         {
-            List<Serie> films = new List<Serie>();
+            List<Serie> series = new List<Serie>();
 
             using (SqlConnection connection = DataBase.GetConnection())
             {
@@ -43,10 +43,10 @@ namespace WatchingTV.DAO
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    films.Add(new Serie(reader));
+                    series.Add(new Serie(reader));
                 }
             }
-            return films;
+            return series;
         }
 
 
