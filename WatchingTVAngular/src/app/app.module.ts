@@ -7,6 +7,8 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import {RouterModule, Routes} from '@angular/router';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { FilmComponent } from './film/film.component';
+import { SerieComponent } from './serie/serie.component';
 
 const routes:Routes =[
   {
@@ -17,6 +19,12 @@ const routes:Routes =[
   },
   {
     path: "inscription", component:InscriptionComponent
+  },
+  {
+    path: "film", component:FilmComponent
+  },
+  {
+    path: "série", component:SerieComponent
   }
 
 ]
@@ -29,6 +37,8 @@ const routes:Routes =[
     ConnexionComponent,
     InscriptionComponent,
     NavBarComponent,
+    FilmComponent,
+    SerieComponent,
   ],
   imports: [
     BrowserModule,
