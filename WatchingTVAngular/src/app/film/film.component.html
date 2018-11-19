@@ -1,1 +1,16 @@
-
+<div class="row">
+<div  class="col-sm-4" *ngFor="let film of filmPopulaire; let i = index">
+  <div *ngIf="i < 18">
+    <div class="card mt-3 mb-3">
+      <div class="card-header text-center">
+        {{ film.release_date | date:'mediumDate' }}
+      </div>
+      <div class="card-body">
+        <img class="card-img-top img-fluid" src="https://image.tmdb.org/t/p/w500/{{ film.poster_path }}" alt="{{ film.original_title }}" style="height: 460px">
+        <p class="text-center">{{ film.original_title }}</p>
+        <a routerLink="/movie/{{ film.id }}" href="#" class="btn btn-block btn-info">Movie Details</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
