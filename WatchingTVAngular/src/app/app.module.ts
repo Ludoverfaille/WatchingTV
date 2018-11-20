@@ -12,6 +12,7 @@ import { SerieComponent } from './serie/serie.component';
 import {FilmService} from './film/film.service';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {SerieService} from './serie/serie.service';
 
 
 
@@ -52,7 +53,7 @@ const routes:Routes =[
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [FilmService],
+  providers: [FilmService,SerieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
