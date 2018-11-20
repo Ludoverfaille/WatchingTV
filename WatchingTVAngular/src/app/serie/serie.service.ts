@@ -15,14 +15,14 @@ export class SerieService {
 
   rechercherSerie(serie:string){
     this._serie_string = serie;
-    return this._http.get(this._serie_url + 'search/movie?query=' + this._serie_string + '&api_key=' + this._api_key+ '&language=fr');
+    return this._http.get(this._serie_url + 'search/tv?query=' + this._serie_string + '&api_key=' + this._api_key+ '&language=fr');
   }
 
   getSerie(id:number){
-    return this._http.get(this._serie_url + "serie/" + id + "?api_key=" + this._api_key + "&language=fr");
+    return this._http.get(this._serie_url + "tv/" + id + "?api_key=" + this._api_key + "&language=fr");
   }
 
   getSeriePopulaire(){
-    return this._http.get(this._serie_url + 'discover/movie?sort_by=popularity.desc' + '&api_key=' + this._api_key+ '&language=fr');
+    return this._http.get(this._serie_url + 'discover/tv?sort_by=popularity.desc' + '&api_key=' + this._api_key+ '&language=fr');
   }
 }
