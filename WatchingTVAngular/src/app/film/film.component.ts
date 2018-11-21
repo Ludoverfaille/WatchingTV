@@ -9,7 +9,6 @@ import {FilmService} from './film.service';
   styleUrls: ['./film.component.css']
 })
 export class FilmComponent implements OnInit {
-  film:any;
   filmPopulaire:any;
 
   constructor(private router: ActivatedRoute, private filmService: FilmService){
@@ -20,14 +19,10 @@ export class FilmComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.router.params.subscribe((params)=>{
-        const id = params['filmID'];
-        this.filmService.getFilm(id).subscribe(data=>{
-          this.film=data;
-        })
-      })
 
   }
+
+
 
 
 }

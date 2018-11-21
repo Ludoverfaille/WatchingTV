@@ -34,6 +34,9 @@ const routes:Routes =[
   },
   {
     path: "série", component:SerieComponent
+  },
+  {
+    path: "détail-film/:filmID", component:DetailFilmComponent
   }
 
 ]
