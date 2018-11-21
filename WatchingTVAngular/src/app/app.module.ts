@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AccueilComponent } from './accueil/accueil.component';
-import { ConnexionComponent } from './connexion/connexion.component';
+import { ConnexionComponent } from './utilisateur/connexion/connexion.component';
 import {RouterModule, Routes} from '@angular/router';
-import { InscriptionComponent } from './inscription/inscription.component';
+import { InscriptionComponent } from './utilisateur/inscription/inscription.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FilmComponent } from './film/film.component';
 import { SerieComponent } from './serie/serie.component';

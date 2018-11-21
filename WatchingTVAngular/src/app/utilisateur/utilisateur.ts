@@ -4,7 +4,7 @@ export class Utilisateur {
   private _isAdmin:boolean;
   private _password:string;
 
-  constructor(username: string ="", isAdmin: boolean = false, password: string){
+  constructor(username: string ="", isAdmin: boolean = false, password: string = ""){
     this._username = username;
     this._isAdmin = isAdmin;
     this._password = password;
