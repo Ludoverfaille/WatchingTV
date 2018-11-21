@@ -13,6 +13,8 @@ import {FilmService} from './film/film.service';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {SerieService} from './serie/serie.service';
+import { DetailFilmComponent } from './detail-film/detail-film.component';
+import { DetailSerieComponent } from './detail-serie/detail-serie.component';
 
 
 
@@ -46,6 +48,8 @@ const routes:Routes =[
     NavBarComponent,
     FilmComponent,
     SerieComponent,
+    DetailFilmComponent,
+    DetailSerieComponent,
   ],
   imports: [
     BrowserModule,
