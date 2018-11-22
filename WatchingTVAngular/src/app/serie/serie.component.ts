@@ -8,7 +8,6 @@ import {SerieService} from './serie.service';
   styleUrls: ['./serie.component.css']
 })
 export class SerieComponent implements OnInit {
-  serie:any;
   seriePopulaire:any;
 
   constructor(private router: ActivatedRoute, private serieService: SerieService) {
@@ -16,11 +15,5 @@ export class SerieComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.params.subscribe((params) => {
-      const id = params['serieID'];
-      this.serieService.getSerie(id).subscribe(data => {
-        this.serie = data;
-      })
-    })
   }
 }
