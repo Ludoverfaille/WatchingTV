@@ -36,7 +36,7 @@ const routes:Routes =[
     path: "série", component:SerieComponent
   },
   {
-    path: "détail-film/:filmID", component:DetailFilmComponent
+    path: "detail-film/:filmID", component:DetailFilmComponent
   }
 
 ]
