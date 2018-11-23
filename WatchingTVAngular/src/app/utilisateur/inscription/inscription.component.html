@@ -11,13 +11,13 @@
         <div class="modal-body">
           <div class="form-group">
             <label>Nom d'utilisateur</label>
-            <input type="text" class="form-control" required="" name="username" value="">
+            <input type="text" class="form-control" required="" name="username" value="" [(ngModel)]="utilisateurTmp.username">
           </div>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <label>Mot de passe</label>
-                <input type="password" class="form-control" required="" name="password" value="">
+                <input type="password" class="form-control" required="" name="password" value="" [(ngModel)]="utilisateurTmp.password">
               </div>
             </div>
             <div class="col-md-6">
@@ -32,7 +32,7 @@
 
         <div class="modal-footer">
           <input type="hidden" name="isEmpty" value="">
-          <button type="input" name="submit" value="newAccount" class="btn btn-success btn-icon"><i class="fa fa-check"></i>Créer le compte</button>
+          <button type="input" name="submit" value="newAccount" class="btn btn-success btn-icon" [disabled]="!formUtilisateur.form.valid"><i class="fa fa-check"></i>Créer le compte</button>
         </div>
       </form>
 
