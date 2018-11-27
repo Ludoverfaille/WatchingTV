@@ -11,9 +11,10 @@ export class SerieComponent implements OnInit {
   seriePopulaire:any;
 
   constructor(private router: ActivatedRoute, private serieService: SerieService) {
-    this.serieService.getSeriePopulaire().subscribe(data=>{this.seriePopulaire = data['results'];})
+
   }
 
   ngOnInit() {
+    this.serieService.getSeriePopulaire().subscribe(data=>{this.seriePopulaire = data['results'];})
   }
 }

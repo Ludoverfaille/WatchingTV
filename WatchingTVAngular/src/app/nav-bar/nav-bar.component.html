@@ -1,13 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: chocolate">
-  <a class="navbar-brand">WatchingTv</a>
+  <a class="navbar-brand" routerLink="accueil">WatchingTv</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a routerLink="accueil" class="nav-link">Accueil</a>
-      </li>
       <li class="nav-item">
         <a routerLink="film"  class="nav-link">Film</a>
       </li>
@@ -21,12 +18,30 @@
         <a routerLink="inscription" class="nav-link">S'inscrire</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Rechercher">
-      <button class="btn btn-success my-2 my-sm-0" type="submit"(click)="rechercherFilm()">Rechercher</button>
+    <form class="form-inline my-2 my-lg-0" name="research">
+      <input class="form-control mr-sm-2" type="text" name="recherches" [(ngModel)]="resultat" placeholder="Rechercher">
+      <button class="btn btn-success my-2 my-sm-0" name="button" type="submit"(click)="rechercher()">Rechercher</button>
     </form>
   </div>
 </nav>
+
+<div class="row">
+  <div  class="col-sm-4" *ngFor="let resultat of recherches_result; let i = index">
+    <div *ngIf="i < 9">
+      <div class="card mt-3 mb-3">
+        <div class="card-header text-center">
+          {{ resultat.release_date | date:'mediumDate':'yyyy' }}
+        </div>
+        <div class="card-body">
+          <img class="card-img-top img-fluid" src="https://image.tmdb.org/t/p/w500/{{ resultat.poster_path }}" alt="{{ resultat.original_title }}" style="height: 460px">
+          <p class="text-center">{{ resultat.original_title }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 
 

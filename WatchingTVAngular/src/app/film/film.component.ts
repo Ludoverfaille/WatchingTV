@@ -12,15 +12,16 @@ export class FilmComponent implements OnInit {
   filmPopulaire:any;
 
   constructor(private router: ActivatedRoute, private filmService: FilmService){
+  }
+
+  ngOnInit() {
     this.filmService.getFilmsPopulaire().subscribe(data =>{
       this.filmPopulaire = data['results'];
     })
 
   }
 
-  ngOnInit() {
 
-  }
 
 
 

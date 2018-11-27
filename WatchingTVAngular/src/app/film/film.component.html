@@ -6,7 +6,7 @@
         {{ film.release_date | date:'mediumDate' }}
       </div>
       <div class="card-body">
-        <img class="card-img-top img-fluid" src="https://image.tmdb.org/t/p/w500/{{ film.poster_path }}" alt="{{ film.original_title }}" style="height: 460px">
+        <img class="card-img-top img-fluid" src="https://image.tmdb.org/t/p/w500/{{ film.poster_path }}" alt="{{ film.original_title }}" style="height: 400px">
         <p class="text-center">{{ film.title }}</p>
         <a routerLink="/detail-film/{{film.id}}" class="btn btn-block btn-info">Details</a>
       </div>
@@ -14,3 +14,7 @@
   </div>
 </div>
 </div>
+<button (onclick)="nextPage()">Suivant</button>
+
+
+

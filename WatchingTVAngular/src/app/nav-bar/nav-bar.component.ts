@@ -9,22 +9,24 @@ import {FilmService} from '../film/film.service';
 export class NavBarComponent implements OnInit {
   filmPopulaire:any;
   film:any;
-  rechercheFilm:any;
+  recherches_result:any;
+  resultat:any;
 
   constructor(public filmService: FilmService) {
-    this.filmService.getFilmsPopulaire().subscribe(data =>{
-      this.filmPopulaire = data['results'];
-    })
   }
 
-  rechercherFilm() {
-    this.filmService.rechercherFilm(this.film).subscribe(data => {
-      this.rechercheFilm = data['results'];
+  rechercher() {
+    this.filmService.rechercher(this.resultat).subscribe(data => {
+      this.recherches_result = data['results'];
+      console.log(data)
 
     });
   }
 
   ngOnInit() {
+    this.filmService.getFilmsPopulaire().subscribe(data =>{
+      this.filmPopulaire = data['results'];
+    })
   }
 
 }

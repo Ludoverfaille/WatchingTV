@@ -8,16 +8,16 @@ import {HttpClient} from '@angular/common/http';
 export class FilmService {
   private film_url="https://api.themoviedb.org/3/"
   private api_key="bfb8d0b05e92cf528ef802c947b095b0";
-  private film_string: string;
-  private id:number;
+  private recherche_string: string;
+  private page_num:1;
 
   constructor(public _http: HttpClient) {
 
   }
 
-  rechercherFilm(film:string){
-    this.film_string = film;
-    return this._http.get(this.film_url + 'search/movie?query=' + this.film_string + '&api_key=' + this.api_key+ '&language=fr');
+  rechercher(recherches: string){
+    this.recherche_string = recherches;
+    return this._http.get(this.film_url + 'search/multi?api_key=' + this.api_key+ '&query=' + this.recherche_string + '&language=fr');
   }
 
   getFilm(id:number){
@@ -25,6 +25,6 @@ export class FilmService {
   }
 
   getFilmsPopulaire() {
-    return this._http.get(this.film_url + 'discover/movie?sort_by=popularity.desc' + '&api_key=' + this.api_key+ '&language=fr');
+    return this._http.get(this.film_url + 'discover/movie?sort_by=popularity.desc' + '&api_key=' + this.api_key+ '&language=fr&page='+this.page_num);
   }
 }

@@ -40,7 +40,8 @@ const routes:Routes =[
   },
   {
     path: "detail-serie/:serieID", component:DetailSerieComponent
-  }
+  },
+
 
 ]
 
@@ -56,6 +57,7 @@ const routes:Routes =[
     SerieComponent,
     DetailFilmComponent,
     DetailSerieComponent,
+
   ],
   imports: [
     BrowserModule,
