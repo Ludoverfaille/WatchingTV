@@ -15,11 +15,6 @@ export class FilmService {
 
   }
 
-  rechercher(recherches: string){
-    this.recherche_string = recherches;
-    return this._http.get(this.film_url + 'search/multi?api_key=' + this.api_key+ '&query=' + this.recherche_string + '&language=fr');
-  }
-
   getFilm(id:number){
     return this._http.get(this.film_url + 'movie/' + id + '?api_key=' + this.api_key+ '&language=fr');
   }

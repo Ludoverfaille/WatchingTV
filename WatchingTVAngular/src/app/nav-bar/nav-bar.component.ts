@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FilmService} from '../film/film.service';
+import {NavBarService} from './nav-bar.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,11 +12,11 @@ export class NavBarComponent implements OnInit {
   recherches_result:any;
   resultat:any;
 
-  constructor(public filmService: FilmService) {
+  constructor(public navBarService: NavBarService) {
   }
 
   rechercher() {
-    this.filmService.rechercher(this.resultat).subscribe(data => {
+    this.navBarService.rechercher(this.resultat).subscribe(data => {
       this.recherches_result = data['results'];
       console.log(data)
 
@@ -24,9 +24,7 @@ export class NavBarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.filmService.getFilmsPopulaire().subscribe(data =>{
-      this.filmPopulaire = data['results'];
-    })
+
   }
 
 }
