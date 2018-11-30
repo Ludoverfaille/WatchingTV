@@ -782,7 +782,7 @@ module.exports = "ody {\r\n  background: #eee !important;\r\n}\r\n\r\n.wrapper {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\r\n  <form class=\"form-signin\">\r\n    <h2 class=\"form-signin-heading\">Connexion</h2>\r\n    <input type=\"text\" class=\"form-control\" name=\"username\" placeholder=\"Nom d'utilisateur\" required=\"\" autofocus=\"\" />\r\n    <input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Mot de passe\" required=\"\"/>\r\n    <label class=\"checkbox\">\r\n      <input type=\"checkbox\" value=\"remember-me\" id=\"rememberMe\" name=\"rememberMe\"> Se souvenir de moi\r\n    </label>\r\n    <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Se connecter</button>\r\n  </form>\r\n</div>\r\n"
+module.exports = "<div class=\"wrapper\">\r\n  <form class=\"form-signin\">\r\n    <h2 class=\"form-signin-heading\">Connexion</h2>\r\n    <input type=\"text\" class=\"form-control\" name=\"username\" placeholder=\"Nom d'utilisateur\" required=\"\" autofocus=\"\" />\r\n    <input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Mot de passe\" required=\"\"/>\r\n    <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Se connecter</button>\r\n  </form>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -845,7 +845,7 @@ module.exports = ".modal-content {\r\n  position: relative;\r\n  background-colo
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"modal-content\">\r\n\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\"><i class=\"fa fa-times\"></i></button>\r\n        <h4 class=\"modal-title\">Création d'un compte</h4>\r\n      </div>\r\n\r\n      <form action=\"\" #formUtilisateur=\"ngForm\" (submit)=\"createUtilisateur()\">\r\n        <div class=\"modal-body\">\r\n          <div class=\"form-group\">\r\n            <label>Nom d'utilisateur</label>\r\n            <input type=\"text\" class=\"form-control\" required=\"\" name=\"username\" value=\"\" [(ngModel)]=\"utilisateurTmp.username\">\r\n          </div>\r\n          <div class=\"row\">\r\n            <div class=\"col-md-6\">\r\n              <div class=\"form-group\">\r\n                <label>Mot de passe</label>\r\n                <input type=\"password\" class=\"form-control\" required=\"\" name=\"password\" value=\"\" [(ngModel)]=\"utilisateurTmp.password\">\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-6\">\r\n              <div class=\"form-group\">\r\n                <label>Réecrire le Mot de passe</label>\r\n                <input type=\"password\" class=\"form-control\" required=\"\" name=\"passwordr\" value=\"\" [(ngModel)]=\"utilisateurTmp.password\">\r\n\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"modal-footer\">\r\n          <input type=\"hidden\" name=\"isEmpty\" value=\"\">\r\n          <button type=\"input\" name=\"submit\" value=\"newAccount\" class=\"btn btn-success btn-icon\" [disabled]=\"!formUtilisateur.form.valid\"><i class=\"fa fa-check\"></i>Créer le compte</button>\r\n        </div>\r\n      </form>\r\n\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"modal-content\">\r\n\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\"><i class=\"fa fa-times\"></i></button>\r\n        <h4 class=\"modal-title\">Création d'un compte</h4>\r\n      </div>\r\n\r\n      <form action=\"\" #formUtilisateur=\"ngForm\" (submit)=\"createUtilisateur()\">\r\n        <div class=\"modal-body\">\r\n          <div class=\"form-group\">\r\n            <label>Nom d'utilisateur</label>\r\n            <input type=\"text\" class=\"form-control\" required=\"\" name=\"username\" value=\"\" [(ngModel)]=\"utilisateurTmp.username\">\r\n          </div>\r\n          <div class=\"row\">\r\n            <div class=\"col-md-6\">\r\n              <div class=\"form-group\">\r\n                <label>Mot de passe</label>\r\n                <input type=\"password\" class=\"form-control\" required=\"\" name=\"password\" value=\"\" [(ngModel)]=\"utilisateurTmp.password\">\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-6\">\r\n              <div class=\"form-group\">\r\n                <label>Réecrire le Mot de passe</label>\r\n                <input type=\"password\" class=\"form-control\" required=\"\" name=\"passwordr\" value=\"\" [(ngModel)]=\"utilisateurTmp.confirmPassword\">\r\n\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"modal-footer\">\r\n          <input type=\"hidden\" name=\"isEmpty\" value=\"\">\r\n          <button type=\"input\" name=\"submit\" value=\"newAccount\" class=\"btn btn-success btn-icon\" [disabled]=\"!formUtilisateur.form.valid\"><i class=\"fa fa-check\"></i>Créer le compte</button>\r\n        </div>\r\n      </form>\r\n\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1083,13 +1083,15 @@ var UtilisateurService = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Utilisateur", function() { return Utilisateur; });
 var Utilisateur = /** @class */ (function () {
-    function Utilisateur(username, isAdmin, password) {
+    function Utilisateur(username, isAdmin, password, confirmPassword) {
         if (username === void 0) { username = ""; }
         if (isAdmin === void 0) { isAdmin = false; }
         if (password === void 0) { password = ""; }
+        if (confirmPassword === void 0) { confirmPassword = ""; }
         this._username = username;
         this._isAdmin = isAdmin;
         this._password = password;
+        this._confirmPassword = confirmPassword;
     }
     Object.defineProperty(Utilisateur.prototype, "id", {
         get: function () {
@@ -1131,17 +1133,29 @@ var Utilisateur = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(Utilisateur.prototype, "confirmPassword", {
+        get: function () {
+            return this._confirmPassword;
+        },
+        set: function (value) {
+            this._confirmPassword = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Utilisateur.prototype.fromJson = function (Json) {
         Object.assign(this, Json);
         return this;
     };
     Utilisateur.prototype.toJson = function () {
-        return {
-            "id": this._id,
-            "username": this._username,
-            "isAdmin": this._isAdmin,
-            "password": this._password
-        };
+        if (this._password == this._confirmPassword) {
+            return {
+                "id": this._id,
+                "username": this._username,
+                "isAdmin": this._isAdmin,
+                "password": this._password
+            };
+        }
     };
     return Utilisateur;
 }());
