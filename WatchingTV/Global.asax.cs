@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Routing;
-
+using System.Web.Mvc;
 namespace WatchingTV
 {
     public class WebApiApplication : System.Web.HttpApplication
@@ -12,6 +12,11 @@ namespace WatchingTV
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            RegisterRoutes(RouteTable.Routes);
+        }
+        public static void RegisterRoutes(RouteCollection routes)
+        {
+            routes.MapRoute("index", "{*url}", new { controller = "Index",action="Index" });
         }
     }
 }
