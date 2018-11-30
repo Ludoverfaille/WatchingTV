@@ -3,11 +3,13 @@ export class Utilisateur {
   private _username:string;
   private _isAdmin:boolean;
   private _password:string;
+  private _confirmPassword:string;
 
-  constructor(username: string ="", isAdmin: boolean = false, password: string = ""){
+  constructor(username: string ="", isAdmin: boolean = false, password: string = "", confirmPassword:string = ""){
     this._username = username;
     this._isAdmin = isAdmin;
     this._password = password;
+    this._confirmPassword = confirmPassword;
   }
 
 
@@ -43,17 +45,27 @@ export class Utilisateur {
     this._password = value;
   }
 
+  get confirmPassword(): string {
+    return this._confirmPassword;
+  }
+
+  set confirmPassword(value: string) {
+    this._confirmPassword = value;
+  }
+
   public fromJson(Json:any):Utilisateur{
     Object.assign(this,Json);
     return this;
   }
 
   public toJson():any{
-    return{
-      "id": this._id,
-      "username": this._username,
-      "isAdmin": this._isAdmin,
-      "password": this._password
+    if(this._password == this._confirmPassword){
+      return{
+        "id": this._id,
+        "username": this._username,
+        "isAdmin": this._isAdmin,
+        "password": this._password
+      }
     }
   }
 }
