@@ -7,7 +7,7 @@
         <h4 class="modal-title">Création d'un compte</h4>
       </div>
 
-      <form action="" method="post">
+      <form action="" #formUtilisateur="ngForm" (submit)="createUtilisateur()">
         <div class="modal-body">
           <div class="form-group">
             <label>Nom d'utilisateur</label>
@@ -23,7 +23,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label>Réecrire le Mot de passe</label>
-                <input type="password" class="form-control" required="" name="passwordr" value="">
+                <input type="password" class="form-control" required="" name="passwordr" value="" [(ngModel)]="utilisateurTmp.password">
 
               </div>
             </div>

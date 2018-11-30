@@ -33,7 +33,4 @@ export class InscriptionComponent implements OnInit {
   get utilisateurCreated(): EventEmitter<Utilisateur>{
     return this._utilisateurCreated;
   }
-
-
-
 }

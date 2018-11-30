@@ -15,6 +15,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {SerieService} from './serie/serie.service';
 import { DetailFilmComponent } from './detail-film/detail-film.component';
 import { DetailSerieComponent } from './detail-serie/detail-serie.component';
+import { SmartManagerUtilisateurComponent } from './utilisateur/smart-manager-utilisateur/smart-manager-utilisateur.component';
 
 
 
@@ -27,7 +28,7 @@ const routes:Routes =[
     path: "connexion", component:ConnexionComponent
   },
   {
-    path: "inscription", component:InscriptionComponent
+    path: "inscription", component:SmartManagerUtilisateurComponent
   },
   {
     path: "film", component:FilmComponent
@@ -57,6 +58,7 @@ const routes:Routes =[
     SerieComponent,
     DetailFilmComponent,
     DetailSerieComponent,
+    SmartManagerUtilisateurComponent,
 
   ],
   imports: [
