@@ -20,26 +20,12 @@
     </ul>
     <form class="form-inline my-2 my-lg-0" name="research">
       <input class="form-control mr-sm-2" type="text" name="recherches" [(ngModel)]="resultat" placeholder="Rechercher">
-      <button class="btn btn-success my-2 my-sm-0" name="button" type="submit"(click)="rechercher()">Rechercher</button>
+      <button routerLink="recherche-resultat/{{resultat}}" class="btn btn-success my-2 my-sm-0" name="button" type="submit"(click)="rechercher()">Rechercher</button>
     </form>
   </div>
 </nav>
 
-<div class="row">
-  <div  class="col-sm-4" *ngFor="let resultat of recherches_result; let i = index">
-    <div *ngIf="i < 9">
-      <div class="card mt-3 mb-3">
-        <div class="card-header text-center">
-          {{ resultat.release_date | date:'mediumDate':'yyyy' }}
-        </div>
-        <div class="card-body">
-          <img class="card-img-top img-fluid" src="https://image.tmdb.org/t/p/w500/{{ resultat.poster_path }}" alt="{{ resultat.original_title }}" style="height: 460px">
-          <p class="text-center">{{ resultat.original_title }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 
 

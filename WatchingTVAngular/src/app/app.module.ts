@@ -16,6 +16,7 @@ import {SerieService} from './serie/serie.service';
 import { DetailFilmComponent } from './detail-film/detail-film.component';
 import { DetailSerieComponent } from './detail-serie/detail-serie.component';
 import { SmartManagerUtilisateurComponent } from './utilisateur/smart-manager-utilisateur/smart-manager-utilisateur.component';
+import { RechercheResultatComponent } from './recherche-resultat/recherche-resultat.component';
 
 
 
@@ -42,6 +43,9 @@ const routes:Routes =[
   {
     path: "detail-serie/:serieID", component:DetailSerieComponent
   },
+  {
+    path:"recherche-resultat/:result", component:RechercheResultatComponent
+  }
 
 
 ]
@@ -59,6 +63,7 @@ const routes:Routes =[
     DetailFilmComponent,
     DetailSerieComponent,
     SmartManagerUtilisateurComponent,
+    RechercheResultatComponent,
 
   ],
   imports: [

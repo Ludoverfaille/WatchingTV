@@ -7,7 +7,6 @@ import {NavBarService} from './nav-bar.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-  filmPopulaire:any;
   film:any;
   recherches_result:any;
   resultat:any;
