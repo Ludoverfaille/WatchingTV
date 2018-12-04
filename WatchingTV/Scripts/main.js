@@ -172,12 +172,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _detail_serie_detail_serie_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./detail-serie/detail-serie.component */ "./src/app/detail-serie/detail-serie.component.ts");
 /* harmony import */ var _utilisateur_smart_manager_utilisateur_smart_manager_utilisateur_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./utilisateur/smart-manager-utilisateur/smart-manager-utilisateur.component */ "./src/app/utilisateur/smart-manager-utilisateur/smart-manager-utilisateur.component.ts");
 /* harmony import */ var _recherche_resultat_recherche_resultat_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./recherche-resultat/recherche-resultat.component */ "./src/app/recherche-resultat/recherche-resultat.component.ts");
+/* harmony import */ var _utilisateur_utilisateur_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./utilisateur/utilisateur.service */ "./src/app/utilisateur/utilisateur.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -246,7 +248,7 @@ var AppModule = /** @class */ (function () {
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_12__["HttpClientModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forRoot(routes)
             ],
-            providers: [_film_film_service__WEBPACK_IMPORTED_MODULE_10__["FilmService"], _serie_serie_service__WEBPACK_IMPORTED_MODULE_13__["SerieService"]],
+            providers: [_film_film_service__WEBPACK_IMPORTED_MODULE_10__["FilmService"], _serie_serie_service__WEBPACK_IMPORTED_MODULE_13__["SerieService"], _utilisateur_utilisateur_service__WEBPACK_IMPORTED_MODULE_18__["UtilisateurService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
         })
     ], AppModule);
@@ -864,7 +866,7 @@ module.exports = "ody {\r\n  background: #eee !important;\r\n}\r\n\r\n.wrapper {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\r\n  <form class=\"form-signin\">\r\n    <h2 class=\"form-signin-heading\">Connexion</h2>\r\n    <input type=\"text\" class=\"form-control\" name=\"username\" placeholder=\"Nom d'utilisateur\" required=\"\" autofocus=\"\" />\r\n    <input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Mot de passe\" required=\"\"/>\r\n    <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Se connecter</button>\r\n  </form>\r\n</div>\r\n"
+module.exports = "<div class=\"wrapper\">\r\n  <form class=\"form-signin\" (submit)=\"login()\">\r\n    <h2 class=\"form-signin-heading\">Connexion</h2>\r\n    <input type=\"text\" class=\"form-control\" name=\"username\" placeholder=\"Nom d'utilisateur\" required=\"\" autofocus=\"\" [(ngModel)]=\"utilisateurTmp.username\"/>\r\n    <input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Mot de passe\" required=\"\"/>\r\n    <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Se connecter</button>\r\n  </form>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -879,6 +881,8 @@ module.exports = "<div class=\"wrapper\">\r\n  <form class=\"form-signin\">\r\n 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConnexionComponent", function() { return ConnexionComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _utilisateur__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utilisateur */ "./src/app/utilisateur/utilisateur.ts");
+/* harmony import */ var _utilisateur_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utilisateur.service */ "./src/app/utilisateur/utilisateur.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -889,18 +893,53 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var ConnexionComponent = /** @class */ (function () {
-    function ConnexionComponent() {
+    function ConnexionComponent(utilisateurService) {
+        this.utilisateurService = utilisateurService;
+        this._utilisateurs = [];
     }
     ConnexionComponent.prototype.ngOnInit = function () {
     };
+    ConnexionComponent.prototype.login = function () {
+        this.getUtilisateurs();
+        for (var _i = 0, _a = this._utilisateurs; _i < _a.length; _i++) {
+            var u = _a[_i];
+            if (u.username == this._utilisateurTmp.username) {
+                if (u.password == this._utilisateurTmp.password) {
+                    //initialiser session utilisateur
+                    console.log("je peux être connecté");
+                    this.utilisateurService.setLoggedIn();
+                }
+            }
+        }
+    };
+    ConnexionComponent.prototype.getUtilisateurs = function () {
+        var _this = this;
+        this._subQueryUtilisateur = this.utilisateurService
+            .query()
+            .subscribe(function (utilisateurs) {
+            return _this._utilisateurs = utilisateurs.map(function (utilisateur) { return new _utilisateur__WEBPACK_IMPORTED_MODULE_1__["Utilisateur"]().fromJson(utilisateur); });
+        });
+    };
+    Object.defineProperty(ConnexionComponent.prototype, "utilisateurTmp", {
+        get: function () {
+            return this._utilisateurTmp;
+        },
+        set: function (value) {
+            this._utilisateurTmp = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     ConnexionComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-connexion',
             template: __webpack_require__(/*! ./connexion.component.html */ "./src/app/utilisateur/connexion/connexion.component.html"),
             styles: [__webpack_require__(/*! ./connexion.component.css */ "./src/app/utilisateur/connexion/connexion.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_utilisateur_service__WEBPACK_IMPORTED_MODULE_2__["UtilisateurService"]])
     ], ConnexionComponent);
     return ConnexionComponent;
 }());
@@ -927,7 +966,7 @@ module.exports = ".modal-content {\r\n  position: relative;\r\n  background-colo
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"modal-content\">\r\n\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\"><i class=\"fa fa-times\"></i></button>\r\n        <h4 class=\"modal-title\">Création d'un compte</h4>\r\n      </div>\r\n\r\n      <form action=\"\" #formUtilisateur=\"ngForm\" (submit)=\"createUtilisateur()\">\r\n        <div class=\"modal-body\">\r\n          <div class=\"form-group\">\r\n            <label>Nom d'utilisateur</label>\r\n            <input type=\"text\" class=\"form-control\" required=\"\" name=\"username\" value=\"\" [(ngModel)]=\"utilisateurTmp.username\">\r\n          </div>\r\n          <div class=\"row\">\r\n            <div class=\"col-md-6\">\r\n              <div class=\"form-group\">\r\n                <label>Mot de passe</label>\r\n                <input type=\"password\" class=\"form-control\" required=\"\" name=\"password\" value=\"\" [(ngModel)]=\"utilisateurTmp.password\">\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-6\">\r\n              <div class=\"form-group\">\r\n                <label>Réecrire le Mot de passe</label>\r\n                <input type=\"password\" class=\"form-control\" required=\"\" name=\"passwordr\" value=\"\" [(ngModel)]=\"utilisateurTmp.confirmPassword\">\r\n\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"modal-footer\">\r\n          <input type=\"hidden\" name=\"isEmpty\" value=\"\">\r\n          <button type=\"input\" name=\"submit\" value=\"newAccount\" class=\"btn btn-success btn-icon\" [disabled]=\"!formUtilisateur.form.valid\"><i class=\"fa fa-check\"></i>Créer le compte</button>\r\n        </div>\r\n      </form>\r\n\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"modal-content\">\r\n\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\"><i class=\"fa fa-times\"></i></button>\r\n        <h4 class=\"modal-title\">Création d'un compte</h4>\r\n      </div>\r\n\r\n      <form action=\"\" #formUtilisateur=\"ngForm\" (submit)=\"createUtilisateur()\">\r\n        <div class=\"modal-body\">\r\n          <div class=\"form-group\">\r\n            <label>Nom d'utilisateur</label>\r\n            <input type=\"text\" class=\"form-control\" required=\"\" name=\"username\" value=\"\" [(ngModel)]=\"utilisateurTmp.username\">\r\n          </div>\r\n          <div class=\"row\">\r\n            <div class=\"col-md-6\">\r\n              <div class=\"form-group\">\r\n                <label>Mot de passe</label>\r\n                <input type=\"password\" class=\"form-control\" required=\"\" name=\"password\" value=\"\" [(ngModel)]=\"utilisateurTmp.password\">\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-6\">\r\n              <div class=\"form-group\">\r\n                <label>Réecrire le Mot de passe</label>\r\n                <input type=\"password\" class=\"form-control\" required=\"\" name=\"passwordr\" value=\"\" [(ngModel)]=\"utilisateurTmp.confirmPassword\">\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"modal-footer\">\r\n          <input type=\"hidden\" name=\"isEmpty\" value=\"\">\r\n          <button type=\"input\" name=\"submit\" value=\"newAccount\" class=\"btn btn-success btn-icon\" [disabled]=\"!formUtilisateur.form.valid\"><i class=\"fa fa-check\"></i>Créer le compte</button>\r\n        </div>\r\n      </form>\r\n\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1138,6 +1177,12 @@ var UtilisateurService = /** @class */ (function () {
     };
     UtilisateurService.prototype.delete = function (utilisateur) {
         return this.http.delete(UtilisateurService_1.URL_API_UTILISATEUR + "/" + utilisateur.id);
+    };
+    UtilisateurService.prototype.getLoggedIn = function () {
+        return this._isLoggedIn;
+    };
+    UtilisateurService.prototype.setLoggedIn = function () {
+        this._isLoggedIn = true;
     };
     var UtilisateurService_1;
     UtilisateurService.URL_API_UTILISATEUR = "/api/utilisateur";
