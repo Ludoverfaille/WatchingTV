@@ -17,6 +17,7 @@ import { DetailFilmComponent } from './detail-film/detail-film.component';
 import { DetailSerieComponent } from './detail-serie/detail-serie.component';
 import { SmartManagerUtilisateurComponent } from './utilisateur/smart-manager-utilisateur/smart-manager-utilisateur.component';
 import { RechercheResultatComponent } from './recherche-resultat/recherche-resultat.component';
+import {UtilisateurService} from './utilisateur/utilisateur.service';
 
 
 
@@ -72,7 +73,7 @@ const routes:Routes =[
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [FilmService,SerieService],
+  providers: [FilmService,SerieService,UtilisateurService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

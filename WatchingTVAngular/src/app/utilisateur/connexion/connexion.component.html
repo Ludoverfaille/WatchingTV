@@ -1,7 +1,7 @@
 <div class="wrapper">
-  <form class="form-signin">
+  <form class="form-signin" (submit)="login()">
     <h2 class="form-signin-heading">Connexion</h2>
-    <input type="text" class="form-control" name="username" placeholder="Nom d'utilisateur" required="" autofocus="" />
+    <input type="text" class="form-control" name="username" placeholder="Nom d'utilisateur" required="" autofocus="" [(ngModel)]="utilisateurTmp.username"/>
     <input type="password" class="form-control" name="password" placeholder="Mot de passe" required=""/>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
   </form>
