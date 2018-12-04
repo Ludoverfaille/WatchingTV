@@ -18,34 +18,44 @@ import { DetailSerieComponent } from './detail-serie/detail-serie.component';
 import { SmartManagerUtilisateurComponent } from './utilisateur/smart-manager-utilisateur/smart-manager-utilisateur.component';
 import { RechercheResultatComponent } from './recherche-resultat/recherche-resultat.component';
 import {UtilisateurService} from './utilisateur/utilisateur.service';
+import {AuthguardGuard} from './authguard.guard';
 
 
 
 
 const routes:Routes =[
   {
-    path: "accueil", component : AccueilComponent,pathMatch:"full"
+    path: "accueil", component : AccueilComponent,
+    canActivate: [AuthguardGuard],
+    pathMatch:"full"
   },
   {
-    path: "connexion", component:ConnexionComponent
+    path: "connexion",
+    component:ConnexionComponent
   },
   {
-    path: "inscription", component:SmartManagerUtilisateurComponent
+    path: "inscription",
+    component:SmartManagerUtilisateurComponent
   },
   {
-    path: "film", component:FilmComponent
+    path: "film",
+    component:FilmComponent
   },
   {
-    path: "série", component:SerieComponent
+    path: "série",
+    component:SerieComponent
   },
   {
-    path: "detail-film/:filmID", component:DetailFilmComponent
+    path: "detail-film/:filmID",
+    component:DetailFilmComponent
   },
   {
-    path: "detail-serie/:serieID", component:DetailSerieComponent
+    path: "detail-serie/:serieID",
+    component:DetailSerieComponent
   },
   {
-    path:"recherche-resultat/:result", component:RechercheResultatComponent
+    path:"recherche-resultat/:result",
+    component:RechercheResultatComponent
   }
 
 
@@ -73,7 +83,7 @@ const routes:Routes =[
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [FilmService,SerieService,UtilisateurService],
+  providers: [FilmService,SerieService,UtilisateurService, AuthguardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

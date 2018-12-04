@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Utilisateur} from '../utilisateur';
 import {UtilisateurService} from '../utilisateur.service';
 import {Subscription} from 'rxjs';
@@ -16,7 +16,7 @@ export class ConnexionComponent implements OnInit {
   private _utilisateurTmp: Utilisateur;
 
 
-  constructor(public utilisateurService:UtilisateurService) {
+  constructor(public utilisateurService:UtilisateurService, private router:Router) {
 
   }
 
@@ -31,6 +31,7 @@ export class ConnexionComponent implements OnInit {
           //initialiser session utilisateur
           console.log("je peux être connecté");
           this.utilisateurService.setLoggedIn();
+          this.router.navigate(['accueil']);
         }
       }
 
