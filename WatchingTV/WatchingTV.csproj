@@ -111,13 +111,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Scripts\WatchingTV\3rdpartylicenses.txt" />
-    <Content Include="Scripts\WatchingTV\favicon.ico" />
-    <Content Include="Scripts\WatchingTV\main.js" />
-    <Content Include="Scripts\WatchingTV\polyfills.js" />
-    <Content Include="Scripts\WatchingTV\runtime.js" />
-    <Content Include="Scripts\WatchingTV\styles.js" />
-    <Content Include="Scripts\WatchingTV\vendor.js" />
+    <Content Include="Scripts\3rdpartylicenses.txt" />
+    <Content Include="Scripts\favicon.ico" />
+    <Content Include="Scripts\index.html" />
+    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\polyfills.js" />
+    <Content Include="Scripts\runtime.js" />
+    <Content Include="Scripts\styles.js" />
+    <Content Include="Scripts\vendor.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -146,12 +147,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\WatchingTV\main.js.map" />
-    <Content Include="Scripts\WatchingTV\polyfills.js.map" />
-    <Content Include="Scripts\WatchingTV\runtime.js.map" />
-    <Content Include="Scripts\WatchingTV\styles.js.map" />
-    <Content Include="Scripts\WatchingTV\vendor.js.map" />
     <Content Include="Views\Index\Index.cshtml" />
+    <Content Include="Scripts\main.js.map" />
+    <Content Include="Scripts\polyfills.js.map" />
+    <Content Include="Scripts\runtime.js.map" />
+    <Content Include="Scripts\styles.js.map" />
+    <Content Include="Scripts\vendor.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
