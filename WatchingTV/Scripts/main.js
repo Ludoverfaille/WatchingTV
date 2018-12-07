@@ -125,7 +125,6 @@ module.exports = "<app-nav-bar></app-nav-bar>\r\n<router-outlet></router-outlet>
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _broadcast_favori_create_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./broadcast-favori-create.service */ "./src/app/broadcast-favori-create.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -136,15 +135,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-
 var AppComponent = /** @class */ (function () {
-    function AppComponent(broadcastFavoriCreate) {
-        this.broadcastFavoriCreate = broadcastFavoriCreate;
+    function AppComponent() {
         this.title = 'WatchingTV';
     }
     AppComponent.prototype.ngOnInit = function () {
-    };
-    AppComponent.prototype.listenFavoriCreated = function () {
     };
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -152,7 +147,7 @@ var AppComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
             styles: [__webpack_require__(/*! ./app.component.css */ "./src/app/app.component.css")]
         }),
-        __metadata("design:paramtypes", [_broadcast_favori_create_service__WEBPACK_IMPORTED_MODULE_1__["BroadcastFavoriCreateService"]])
+        __metadata("design:paramtypes", [])
     ], AppComponent);
     return AppComponent;
 }());
@@ -195,12 +190,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _favori_smart_manager_favori_smart_manager_favori_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./favori/smart-manager-favori/smart-manager-favori.component */ "./src/app/favori/smart-manager-favori/smart-manager-favori.component.ts");
 /* harmony import */ var _film_smart_manager_film_smart_manager_film_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./film/smart-manager-film/smart-manager-film.component */ "./src/app/film/smart-manager-film/smart-manager-film.component.ts");
 /* harmony import */ var _serie_smart_manager_serie_smart_manager_serie_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./serie/smart-manager-serie/smart-manager-serie.component */ "./src/app/serie/smart-manager-serie/smart-manager-serie.component.ts");
+/* harmony import */ var _favori_favori_service__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./favori/favori.service */ "./src/app/favori/favori.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -259,6 +256,10 @@ var routes = [
     {
         path: "recherche-resultat/:result",
         component: _recherche_resultat_recherche_resultat_component__WEBPACK_IMPORTED_MODULE_17__["RechercheResultatComponent"]
+    },
+    {
+        path: "favoris",
+        component: _favori_gestion_favori_gestion_favori_component__WEBPACK_IMPORTED_MODULE_20__["GestionFavoriComponent"]
     }
 ];
 var AppModule = /** @class */ (function () {
@@ -289,7 +290,7 @@ var AppModule = /** @class */ (function () {
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_12__["HttpClientModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forRoot(routes)
             ],
-            providers: [_film_film_service__WEBPACK_IMPORTED_MODULE_10__["FilmService"], _serie_serie_service__WEBPACK_IMPORTED_MODULE_13__["SerieService"], _utilisateur_utilisateur_service__WEBPACK_IMPORTED_MODULE_18__["UtilisateurService"], _authguard_guard__WEBPACK_IMPORTED_MODULE_19__["AuthguardGuard"]],
+            providers: [_film_film_service__WEBPACK_IMPORTED_MODULE_10__["FilmService"], _serie_serie_service__WEBPACK_IMPORTED_MODULE_13__["SerieService"], _utilisateur_utilisateur_service__WEBPACK_IMPORTED_MODULE_18__["UtilisateurService"], _favori_favori_service__WEBPACK_IMPORTED_MODULE_24__["FavoriService"], _authguard_guard__WEBPACK_IMPORTED_MODULE_19__["AuthguardGuard"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
         })
     ], AppModule);
@@ -453,6 +454,7 @@ var DetailFilmComponent = /** @class */ (function () {
         this.broadcastFavoriCreated = broadcastFavoriCreated;
         this._filmTmp = new _film_film__WEBPACK_IMPORTED_MODULE_5__["Film"];
         this._filmCreated = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this._films = [];
         this._favoriTmp = new _favori_favori__WEBPACK_IMPORTED_MODULE_4__["Favori"];
         this._favoriCreated = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
@@ -481,19 +483,36 @@ var DetailFilmComponent = /** @class */ (function () {
     });
     DetailFilmComponent.prototype.createFavori = function () {
         var _this = this;
-        this.filmTmp.title = this.film.title;
-        this.filmTmp.overwiew = this.film.overview;
-        this.filmTmp.releaseDate = this.film.release_date;
-        this.filmTmp.voteAverage = this.film.vote_average;
-        this.filmTmp.posterLink = "https://image.tmdb.org/t/p/w500/" + this.film.poster_path;
-        this.filmService.post(this.filmTmp).subscribe(function (newFilm) {
-            _this.favoriTmp.element = newFilm.id;
-            _this.favoriTmp.elementType = "film";
-            _this.favoriTmp.utilisateur = +localStorage.getItem("utilisateur");
-            _this.favoriService.post(_this.favoriTmp).subscribe();
-        });
+        this._filmTmp = this.filmIsPresent();
+        if (this.filmTmp.title == "") {
+            this.filmTmp.title = this.film.title;
+            this.filmTmp.overwiew = this.film.overview;
+            this.filmTmp.releaseDate = this.film.release_date;
+            this.filmTmp.voteAverage = this.film.vote_average;
+            this.filmTmp.posterLink = "https://image.tmdb.org/t/p/w500/" + this.film.poster_path;
+            this.filmService.post(this.filmTmp).subscribe(function (newFilm) {
+                _this.favoriTmp.element = newFilm.id;
+                _this.favoriTmp.elementType = "film";
+                _this.favoriTmp.utilisateur = +localStorage.getItem("utilisateur");
+                _this.favoriService.post(_this.favoriTmp).subscribe();
+            });
+        }
+        else {
+            this.favoriTmp.element = this._filmTmp.id;
+            this.favoriTmp.elementType = "film";
+            this.favoriTmp.utilisateur = +localStorage.getItem("utilisateur");
+            this.favoriService.post(this.favoriTmp).subscribe();
+        }
         this.broadcastFavoriCreated.sendFavori(this._favoriTmp);
         this.reset();
+    };
+    DetailFilmComponent.prototype.getFilms = function () {
+        var _this = this;
+        this._subQueryFilm = this.filmService
+            .query()
+            .subscribe(function (films) {
+            return _this._films = films.map(function (film) { return new _film_film__WEBPACK_IMPORTED_MODULE_5__["Film"]().fromJson(film); });
+        });
     };
     DetailFilmComponent.prototype.reset = function () {
         this._filmTmp = new _film_film__WEBPACK_IMPORTED_MODULE_5__["Film"];
@@ -513,6 +532,17 @@ var DetailFilmComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    DetailFilmComponent.prototype.filmIsPresent = function () {
+        this.getFilms();
+        for (var _i = 0, _a = this._films; _i < _a.length; _i++) {
+            var f = _a[_i];
+            if (f.title == this.film.title) {
+                console.log("La série est déja présente");
+                return f;
+            }
+        }
+        return new _film_film__WEBPACK_IMPORTED_MODULE_5__["Film"];
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
         __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]),
@@ -604,6 +634,7 @@ var DetailSerieComponent = /** @class */ (function () {
         this.broadcastFavoriCreated = broadcastFavoriCreated;
         this._serieTmp = new _serie_serie__WEBPACK_IMPORTED_MODULE_4__["Serie"];
         this._serieCreated = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this._series = [];
         this._favoriTmp = new _favori_favori__WEBPACK_IMPORTED_MODULE_5__["Favori"];
         this._favoriCreated = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
@@ -632,23 +663,39 @@ var DetailSerieComponent = /** @class */ (function () {
     });
     DetailSerieComponent.prototype.createFavori = function () {
         var _this = this;
-        if (!this.serieIsPresent())
-            this.serieTmp.title = this.serie.title;
-        this.serieTmp.overwiew = this.serie.overview;
-        this.serieTmp.season = this.serie.number_of_seasons;
-        this.serieTmp.season = this.serie.number_of_episodes;
-        this.serieTmp.status = this.serie.status;
-        this.serieTmp.releaseDate = this.serie.first_air_date;
-        this.serieTmp.voteAverage = this.serie.vote_average;
-        this.serieTmp.posterLink = "https://image.tmdb.org/t/p/w500/" + this.serie.poster_path;
-        this.serieService.post(this.serieTmp).subscribe(function (newSerie) {
-            _this.favoriTmp.element = newSerie.id;
-            _this.favoriTmp.elementType = "serie";
-            _this.favoriTmp.utilisateur = +localStorage.getItem("utilisateur");
-            _this.favoriService.post(_this.favoriTmp).subscribe();
-        });
+        this._serieTmp = this.serieIsPresent();
+        if (this._serieTmp.title == "") {
+            this.serieTmp.title = this.serie.name;
+            this.serieTmp.overwiew = this.serie.overview;
+            this.serieTmp.season = this.serie.number_of_seasons;
+            this.serieTmp.episode = this.serie.number_of_episodes;
+            this.serieTmp.status = this.serie.status;
+            this.serieTmp.releaseDate = this.serie.first_air_date;
+            this.serieTmp.voteAverage = this.serie.vote_average;
+            this.serieTmp.posterLink = "https://image.tmdb.org/t/p/w500/" + this.serie.poster_path;
+            this.serieService.post(this.serieTmp).subscribe(function (newSerie) {
+                _this.favoriTmp.element = newSerie.id;
+                _this.favoriTmp.elementType = "serie";
+                _this.favoriTmp.utilisateur = +localStorage.getItem("utilisateur");
+                _this.favoriService.post(_this.favoriTmp).subscribe();
+            });
+        }
+        else {
+            this.favoriTmp.element = this._serieTmp.id;
+            this.favoriTmp.elementType = "serie";
+            this.favoriTmp.utilisateur = +localStorage.getItem("utilisateur");
+            this.favoriService.post(this.favoriTmp).subscribe();
+        }
         this.broadcastFavoriCreated.sendFavori(this._favoriTmp);
         this.reset();
+    };
+    DetailSerieComponent.prototype.getSeries = function () {
+        var _this = this;
+        this._subQuerySerie = this.serieService
+            .query()
+            .subscribe(function (series) {
+            return _this._series = series.map(function (serie) { return new _serie_serie__WEBPACK_IMPORTED_MODULE_4__["Serie"]().fromJson(serie); });
+        });
     };
     DetailSerieComponent.prototype.reset = function () {
         this._serieTmp = new _serie_serie__WEBPACK_IMPORTED_MODULE_4__["Serie"];
@@ -669,7 +716,15 @@ var DetailSerieComponent = /** @class */ (function () {
         configurable: true
     });
     DetailSerieComponent.prototype.serieIsPresent = function () {
-        return true;
+        this.getSeries();
+        for (var _i = 0, _a = this._series; _i < _a.length; _i++) {
+            var s = _a[_i];
+            if (s.title == this.serie.name) {
+                console.log("La série est déja présente");
+                return s;
+            }
+        }
+        return new _serie_serie__WEBPACK_IMPORTED_MODULE_4__["Serie"];
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
@@ -847,7 +902,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  gestion-favori works!\n</p>\n"
+module.exports = "<div class=\"row\">\r\n  <div  class=\"col-sm-4\" *ngFor=\"let film of favFilms; let i = index\">\r\n    <a>hello</a>\r\n    <div *ngIf=\"i < 18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{ film.releaseDate}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"{{ film.posterLink }}\" style=\"height: 400px\">\r\n          <p class=\"text-center\">{{film.title}}</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<!--\r\n<div class=\"row\">\r\n  <div class=\"col-sm-4\" *ngFor=\"let serie of favSeries; let i = index\">\r\n    <div *ngIf=\"i<18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{serie.releaseDate | date:\"mediumDate\"}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{serie.posterLink}}\" style=\"height: 460px\">\r\n          <p class=\"text-center\">{{ serie.title }}</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>-->\r\n\r\n"
 
 /***/ }),
 
@@ -862,6 +917,13 @@ module.exports = "<p>\n  gestion-favori works!\n</p>\n"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GestionFavoriComponent", function() { return GestionFavoriComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _favori__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../favori */ "./src/app/favori/favori.ts");
+/* harmony import */ var _favori_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../favori.service */ "./src/app/favori/favori.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _serie_serie__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../serie/serie */ "./src/app/serie/serie.ts");
+/* harmony import */ var _film_film__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../film/film */ "./src/app/film/film.ts");
+/* harmony import */ var _film_film_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../film/film.service */ "./src/app/film/film.service.ts");
+/* harmony import */ var _serie_serie_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../serie/serie.service */ "./src/app/serie/serie.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -872,18 +934,114 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+
+
+
+
 var GestionFavoriComponent = /** @class */ (function () {
-    function GestionFavoriComponent() {
+    function GestionFavoriComponent(favoriService, filmService, serieService, router) {
+        this.favoriService = favoriService;
+        this.filmService = filmService;
+        this.serieService = serieService;
+        this.router = router;
+        this._favoris = [];
+        this._favoriTmp = new _favori__WEBPACK_IMPORTED_MODULE_1__["Favori"]();
+        this._films = [];
+        this._favFilms = [];
+        this._series = [];
+        this._favSeries = [];
     }
     GestionFavoriComponent.prototype.ngOnInit = function () {
+        this.getFavFilms();
+        this.getFavSeries();
     };
+    GestionFavoriComponent.prototype.getFavFilms = function () {
+        this.getFavoris();
+        this.getFilms;
+        for (var _i = 0, _a = this._favoris; _i < _a.length; _i++) {
+            var fav = _a[_i];
+            if (fav.utilisateur == +localStorage.getItem("utilisateur")) {
+                for (var _b = 0, _c = this._films; _b < _c.length; _b++) {
+                    var film = _c[_b];
+                    if (fav.element == film.id && fav.elementType == "film") {
+                        console.log("Film favori ajouté");
+                        this._favFilms.push(film);
+                    }
+                }
+            }
+        }
+    };
+    GestionFavoriComponent.prototype.getFavSeries = function () {
+        this.getFavoris();
+        this.getSeries();
+        for (var _i = 0, _a = this._favoris; _i < _a.length; _i++) {
+            var fav = _a[_i];
+            if (fav.utilisateur == +localStorage.getItem("utilisateur")) {
+                for (var _b = 0, _c = this._series; _b < _c.length; _b++) {
+                    var serie = _c[_b];
+                    if (fav.element == serie.id && fav.elementType == "serie") {
+                        console.log("Serie favori ajouté");
+                        this._favSeries.push(serie);
+                    }
+                }
+            }
+        }
+    };
+    GestionFavoriComponent.prototype.getFavoris = function () {
+        var _this = this;
+        this._subQueryFavori = this.favoriService
+            .query()
+            .subscribe(function (favoris) {
+            return _this._favoris = favoris.map(function (favoris) { return new _favori__WEBPACK_IMPORTED_MODULE_1__["Favori"]().fromJson(favoris); });
+        });
+    };
+    GestionFavoriComponent.prototype.getFilms = function () {
+        var _this = this;
+        this._subQueryFilm = this.filmService
+            .query()
+            .subscribe(function (films) {
+            return _this._films = films.map(function (film) { return new _film_film__WEBPACK_IMPORTED_MODULE_5__["Film"]().fromJson(film); });
+        });
+    };
+    GestionFavoriComponent.prototype.getSeries = function () {
+        var _this = this;
+        this._subQuerySerie = this.serieService
+            .query()
+            .subscribe(function (series) {
+            return _this._series = series.map(function (serie) { return new _serie_serie__WEBPACK_IMPORTED_MODULE_4__["Serie"]().fromJson(serie); });
+        });
+    };
+    Object.defineProperty(GestionFavoriComponent.prototype, "favoriTmp", {
+        get: function () {
+            return this._favoriTmp;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(GestionFavoriComponent.prototype, "favFilms", {
+        get: function () {
+            return this._favFilms;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(GestionFavoriComponent.prototype, "favSeries", {
+        get: function () {
+            return this._favSeries;
+        },
+        enumerable: true,
+        configurable: true
+    });
     GestionFavoriComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-gestion-favori',
             template: __webpack_require__(/*! ./gestion-favori.component.html */ "./src/app/favori/gestion-favori/gestion-favori.component.html"),
             styles: [__webpack_require__(/*! ./gestion-favori.component.css */ "./src/app/favori/gestion-favori/gestion-favori.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_favori_service__WEBPACK_IMPORTED_MODULE_2__["FavoriService"], _film_film_service__WEBPACK_IMPORTED_MODULE_6__["FilmService"], _serie_serie_service__WEBPACK_IMPORTED_MODULE_7__["SerieService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]])
     ], GestionFavoriComponent);
     return GestionFavoriComponent;
 }());
@@ -1100,12 +1258,6 @@ var FilmService = /** @class */ (function () {
     };
     FilmService.prototype.post = function (film) {
         return this.http.post(FilmService_1.URL_API_FILM, film.toJson());
-    };
-    FilmService.prototype.update = function (film) {
-        return this.http.put(FilmService_1.URL_API_FILM, film.toJson());
-    };
-    FilmService.prototype.delete = function (film) {
-        return this.http.delete(FilmService_1.URL_API_FILM + "/" + film.id);
     };
     FilmService.prototype.getFilm = function (id) {
         return this.http.get(this.film_url + 'movie/' + id + '?api_key=' + this.api_key + '&language=fr');
@@ -1348,7 +1500,7 @@ module.exports = ".form-control-borderless {\r\n  border: none;\r\n}\r\n\r\n.for
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light\" style=\"background-color: chocolate\">\r\n  <a class=\"navbar-brand\" routerLink=\"accueil\">WatchingTv</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarText\">\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item\">\r\n        <a routerLink=\"film\"  class=\"nav-link\">Film</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a routerLink=\"série\" class=\"nav-link\">Serie</a>\r\n      </li>\r\n      <li *ngIf=\"authGuard.canActivate() == false\" class=\"nav-item\">\r\n        <a routerLink=\"connexion\" class=\"nav-link\">Se connecter</a>\r\n      </li>\r\n      <li *ngIf=\"authGuard.canActivate() == false\" class=\"nav-item\">\r\n        <a routerLink=\"inscription\" class=\"nav-link\">S'inscrire</a>\r\n      </li>\r\n    </ul>\r\n    <form class=\"form-inline my-2 my-lg-0\" name=\"research\">\r\n      <input class=\"form-control mr-sm-2\" type=\"text\" name=\"recherches\" [(ngModel)]=\"resultat\" placeholder=\"Rechercher\">\r\n      <button routerLink=\"recherche-resultat/{{resultat}}\" class=\"btn btn-success my-2 my-sm-0\" name=\"button\" type=\"submit\"(click)=\"rechercher()\">Rechercher</button>\r\n    </form>\r\n  </div>\r\n</nav>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light\" style=\"background-color: chocolate\">\r\n  <a class=\"navbar-brand\" routerLink=\"accueil\">WatchingTv</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarText\">\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item\">\r\n        <a routerLink=\"film\"  class=\"nav-link\">Film</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a routerLink=\"série\" class=\"nav-link\">Serie</a>\r\n      </li>\r\n      <li *ngIf=\"!authGuard.canActivate()\" class=\"nav-item\">\r\n        <a routerLink=\"connexion\" class=\"nav-link\">Se connecter</a>\r\n      </li>\r\n      <li *ngIf=\"!authGuard.canActivate()\" class=\"nav-item\">\r\n        <a routerLink=\"inscription\" class=\"nav-link\">S'inscrire</a>\r\n      </li>\r\n    </ul>\r\n    <form class=\"form-inline my-2 my-lg-0\" name=\"research\">\r\n      <input class=\"form-control mr-sm-2\" type=\"text\" name=\"recherches\" [(ngModel)]=\"resultat\" placeholder=\"Rechercher\">\r\n      <button routerLink=\"recherche-resultat/{{resultat}}\" class=\"btn btn-success my-2 my-sm-0\" name=\"button\" type=\"submit\"(click)=\"rechercher()\">Rechercher</button>\r\n    </form>\r\n  </div>\r\n</nav>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
 
 /***/ }),
 

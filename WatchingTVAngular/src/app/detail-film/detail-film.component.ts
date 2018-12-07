@@ -6,6 +6,8 @@ import {Favori} from '../favori/favori';
 import {Film} from '../film/film';
 import {BroadcastFavoriCreateService} from '../broadcast-favori-create.service';
 import {FavoriService} from '../favori/favori.service';
+import {Serie} from '../serie/serie';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-detail-film',
@@ -17,6 +19,8 @@ export class DetailFilmComponent implements OnInit {
 
   private _filmTmp: Film = new Film;
   private _filmCreated:EventEmitter<Film> = new EventEmitter();
+  private _films:Film[] = [];
+  private _subQueryFilm: Subscription;
 
   private _favoriTmp: Favori = new Favori;
   private _favoriCreated:EventEmitter<Favori> = new EventEmitter();
@@ -41,22 +45,39 @@ export class DetailFilmComponent implements OnInit {
   }
 
   createFavori(){
-    this.filmTmp.title=this.film.title;
-    this.filmTmp.overwiew=this.film.overview;
-    this.filmTmp.releaseDate=this.film.release_date;
-    this.filmTmp.voteAverage=this.film.vote_average;
-    this.filmTmp.posterLink="https://image.tmdb.org/t/p/w500/"+this.film.poster_path;
+    this._filmTmp = this.filmIsPresent();
+    if(this.filmTmp.title == ""){
+      this.filmTmp.title = this.film.title;
+      this.filmTmp.overwiew=this.film.overview;
+      this.filmTmp.releaseDate=this.film.release_date;
+      this.filmTmp.voteAverage=this.film.vote_average;
+      this.filmTmp.posterLink="https://image.tmdb.org/t/p/w500/"+this.film.poster_path;
 
-    this.filmService.post(this.filmTmp).subscribe(newFilm => {
-      this.favoriTmp.element=newFilm.id;
+      this.filmService.post(this.filmTmp).subscribe(newFilm => {
+        this.favoriTmp.element=newFilm.id;
+        this.favoriTmp.elementType="film";
+        this.favoriTmp.utilisateur=+localStorage.getItem("utilisateur");
+        this.favoriService.post(this.favoriTmp).subscribe();
+      });
+    }
+    else{
+      this.favoriTmp.element=this._filmTmp.id;
       this.favoriTmp.elementType="film";
       this.favoriTmp.utilisateur=+localStorage.getItem("utilisateur");
       this.favoriService.post(this.favoriTmp).subscribe();
-    });
+    }
 
     this.broadcastFavoriCreated.sendFavori(this._favoriTmp);
 
     this.reset();
+  }
+
+  getFilms(){
+    this._subQueryFilm = this.filmService
+      .query()
+      .subscribe(films=>
+        this._films = films.map(film=>new Film().fromJson(film))
+      );
   }
 
   reset(){
@@ -72,5 +93,16 @@ export class DetailFilmComponent implements OnInit {
   @Output()
   get filmCreated(): EventEmitter<Film>{
     return this._filmCreated;
+  }
+
+  filmIsPresent(){
+    this.getFilms();
+    for(let f of this._films){
+      if(f.title == this.film.title){
+        console.log("La série est déja présente");
+        return f;
+      }
+    }
+    return new Film;
   }
 }

@@ -1,3 +1,33 @@
-<p>
-  gestion-favori works!
-</p>
+<div class="row">
+  <div  class="col-sm-4" *ngFor="let film of favFilms; let i = index">
+    <a>hello</a>
+    <div *ngIf="i < 18">
+      <div class="card mt-3 mb-3">
+        <div class="card-header text-center">
+          {{ film.releaseDate}}
+        </div>
+        <div class="card-body">
+          <img class="card-img-top img-fluid" src="{{ film.posterLink }}" style="height: 400px">
+          <p class="text-center">{{film.title}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+<div class="row">
+  <div class="col-sm-4" *ngFor="let serie of favSeries; let i = index">
+    <div *ngIf="i<18">
+      <div class="card mt-3 mb-3">
+        <div class="card-header text-center">
+          {{serie.releaseDate | date:"mediumDate"}}
+        </div>
+        <div class="card-body">
+          <img class="card-img-top img-fluid" src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{serie.posterLink}}" style="height: 460px">
+          <p class="text-center">{{ serie.title }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->
+

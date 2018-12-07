@@ -19,7 +19,7 @@ export class SmartManagerFilmComponent implements OnInit, OnDestroy {
   constructor(public filmService:FilmService) { }
 
   ngOnInit() {
-    this.getFilms()
+    this.getFilms();
   }
 
   ngOnDestroy(): void{

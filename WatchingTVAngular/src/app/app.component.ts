@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {BroadcastFavoriCreateService} from './broadcast-favori-create.service';
 
 
 @Component({
@@ -10,14 +9,11 @@ import {BroadcastFavoriCreateService} from './broadcast-favori-create.service';
 export class AppComponent implements OnInit{
   title = 'WatchingTV';
 
-  constructor(public broadcastFavoriCreate:BroadcastFavoriCreateService){}
+  constructor(){}
 
   ngOnInit(){
 
   }
 
-  listenFavoriCreated(){
-
-  }
 
 }

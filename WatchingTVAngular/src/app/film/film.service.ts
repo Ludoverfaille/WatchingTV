@@ -26,14 +26,6 @@ export class FilmService {
     return this.http.post<Film>(FilmService.URL_API_FILM, film.toJson());
   }
 
-  public update(film:Film): Observable<any>{
-    return this.http.put(FilmService.URL_API_FILM, film.toJson());
-  }
-
-  public delete(film:Film): Observable<any>{
-    return this.http.delete<any>(FilmService.URL_API_FILM + "/" + film.id);
-  }
-
   getFilm(id:number){
     return this.http.get(this.film_url + 'movie/' + id + '?api_key=' + this.api_key+ '&language=fr');
   }

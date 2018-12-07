@@ -23,6 +23,7 @@ import { GestionFavoriComponent } from './favori/gestion-favori/gestion-favori.c
 import { SmartManagerFavoriComponent } from './favori/smart-manager-favori/smart-manager-favori.component';
 import { SmartManagerFilmComponent } from './film/smart-manager-film/smart-manager-film.component';
 import { SmartManagerSerieComponent } from './serie/smart-manager-serie/smart-manager-serie.component';
+import {FavoriService} from './favori/favori.service';
 
 const routes:Routes =[
   {
@@ -58,6 +59,10 @@ const routes:Routes =[
   {
     path:"recherche-resultat/:result",
     component:RechercheResultatComponent
+  },
+  {
+    path:"favoris",
+    component:GestionFavoriComponent
   }
 
 
@@ -89,7 +94,7 @@ const routes:Routes =[
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [FilmService,SerieService,UtilisateurService, AuthguardGuard],
+  providers: [FilmService,SerieService,UtilisateurService,FavoriService, AuthguardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
