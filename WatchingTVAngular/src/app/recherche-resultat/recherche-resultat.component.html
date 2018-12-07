@@ -1,29 +1,31 @@
 <div class="row">
-<div  class="col-sm-4" *ngFor="let recherche of recherche_result; let i = index">
-  <div *ngIf="i < 20">
-    <div *ngIf="recherche.media_type=='tv'">
-      <div class="card mt-3 mb-3">
-        <div class="card-header text-center">
-          {{ recherche.first_air_date | date:'mediumDate' }}
-        </div>
-        <div class="card-body">
-          <img class="card-img-top img-fluid" src="https://image.tmdb.org/t/p/w500/{{ recherche.poster_path }}" alt="{{ recherche.original_title }}" style="height: 400px">
-          <p class="text-center">{{ recherche.name }}</p>
-          <a routerLink="/detail-serie/{{recherche.id}}" class="btn btn-block btn-info">Details</a>
+  <div  class="col-sm-4" *ngFor="let recherche of recherche_result; let i = index">
+    <div *ngIf="i < 20">
+      <div *ngIf="recherche.media_type=='tv'">
+        <div class="card mt-3 mb-3">
+          <div class="card-header text-center">
+            {{ recherche.first_air_date | date:'mediumDate' }}
+          </div>
+          <div class="card-body">
+            <img class="card-img-top img-fluid" src="https://image.tmdb.org/t/p/w500/{{ recherche.poster_path }}" alt="{{ recherche.original_title }}" style="height: 400px">
+            <p class="text-center">{{ recherche.name }}</p>
+            <a routerLink="/detail-serie/{{recherche.id}}" class="btn btn-block btn-info">Details</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div *ngIf="recherche.media_type=='movie'">
-      <div class="card mt-3 mb-3">
-        <div class="card-header text-center">
-          {{ recherche.release_date | date:'mediumDate' }}
-        </div>
-        <div class="card-body">
-          <img class="card-img-top img-fluid" src="https://image.tmdb.org/t/p/w500/{{ recherche.poster_path }}" alt="{{ recherche.original_title }}" style="height: 400px">
-          <p class="text-center">{{ recherche.title }}</p>
-          <a routerLink="/detail-film/{{recherche.id}}" class="btn btn-block btn-info">Details</a>
+      <div *ngIf="recherche.media_type=='movie'">
+        <div class="card mt-3 mb-3">
+          <div class="card-header text-center">
+            {{ recherche.release_date | date:'mediumDate' }}
+          </div>
+          <div class="card-body">
+            <img class="card-img-top img-fluid" src="https://image.tmdb.org/t/p/w500/{{ recherche.poster_path }}" alt="{{ recherche.original_title }}" style="height: 400px">
+            <p class="text-center">{{ recherche.title }}</p>
+            <a routerLink="/detail-film/{{recherche.id}}" class="btn btn-block btn-info">Details</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
