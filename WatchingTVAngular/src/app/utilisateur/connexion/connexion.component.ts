@@ -13,7 +13,7 @@ export class ConnexionComponent implements OnInit {
 
   private _utilisateurs:Utilisateur[] = [];
   private _subQueryUtilisateur: Subscription;
-  private _utilisateurTmp: Utilisateur;
+  private _utilisateurTmp: Utilisateur = new Utilisateur();
 
 
   constructor(public utilisateurService:UtilisateurService, private router:Router) {
@@ -34,7 +34,6 @@ export class ConnexionComponent implements OnInit {
           this.router.navigate(['accueil']);
         }
       }
-
     }
   }
 

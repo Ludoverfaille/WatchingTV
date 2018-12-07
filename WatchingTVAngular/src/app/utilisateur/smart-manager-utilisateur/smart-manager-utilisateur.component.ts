@@ -13,8 +13,6 @@ export class SmartManagerUtilisateurComponent implements OnInit,OnDestroy {
   private _utilisateurs:Utilisateur[] = [];
   private _subQueryUtilisateur: Subscription;
   private _subPostUtilisateur: Subscription;
-  private _subUpdateUtilisateur: Subscription;
-  private _subDeleteUtilisateur: Subscription;
 
   constructor(public utilisateurService:UtilisateurService) { }
 
