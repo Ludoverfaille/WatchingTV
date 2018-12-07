@@ -12,8 +12,7 @@ export class UtilisateurService {
 
   constructor(public http:HttpClient) { }
 
-  private _isLoggedIn;
-
+  private _isLoggedIn:boolean = false;
 
   public query():Observable<Utilisateur[]>{
     return this.http.get<Utilisateur[]>(UtilisateurService.URL_API_UTILISATEUR);
@@ -31,12 +30,11 @@ export class UtilisateurService {
     return this.http.delete<any>(UtilisateurService.URL_API_UTILISATEUR + "/" + utilisateur.id);
   }
 
-
   getLoggedIn() {
     return this._isLoggedIn;
   }
 
-  setLoggedIn() {
-    this._isLoggedIn = true;
+  setLoggedIn(utilisateur: Utilisateur) {
+    this._isLoggedIn = !this._isLoggedIn;
   }
 }

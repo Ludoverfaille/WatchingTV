@@ -608,7 +608,7 @@ module.exports = ".form-control-borderless {\r\n  border: none;\r\n}\r\n\r\n.for
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light\" style=\"background-color: chocolate\">\r\n  <a class=\"navbar-brand\" routerLink=\"accueil\">WatchingTv</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarText\">\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item\">\r\n        <a routerLink=\"film\"  class=\"nav-link\">Film</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a routerLink=\"série\" class=\"nav-link\">Serie</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a routerLink=\"connexion\" class=\"nav-link\">Se connecter</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a routerLink=\"inscription\" class=\"nav-link\">S'inscrire</a>\r\n      </li>\r\n    </ul>\r\n    <form class=\"form-inline my-2 my-lg-0\" name=\"research\">\r\n      <input class=\"form-control mr-sm-2\" type=\"text\" name=\"recherches\" [(ngModel)]=\"resultat\" placeholder=\"Rechercher\">\r\n      <button routerLink=\"recherche-resultat/{{resultat}}\" class=\"btn btn-success my-2 my-sm-0\" name=\"button\" type=\"submit\"(click)=\"rechercher()\">Rechercher</button>\r\n    </form>\r\n  </div>\r\n</nav>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light\" style=\"background-color: chocolate\">\r\n  <a class=\"navbar-brand\" routerLink=\"accueil\">WatchingTv</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarText\">\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item\">\r\n        <a routerLink=\"film\"  class=\"nav-link\">Film</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a routerLink=\"série\" class=\"nav-link\">Serie</a>\r\n      </li>\r\n      <li *ngIf=\"authGuard.canActivate() == false\" class=\"nav-item\">\r\n        <a routerLink=\"connexion\" class=\"nav-link\">Se connecter</a>\r\n      </li>\r\n      <li *ngIf=\"authGuard.canActivate() == false\" class=\"nav-item\">\r\n        <a routerLink=\"inscription\" class=\"nav-link\">S'inscrire</a>\r\n      </li>\r\n    </ul>\r\n    <form class=\"form-inline my-2 my-lg-0\" name=\"research\">\r\n      <input class=\"form-control mr-sm-2\" type=\"text\" name=\"recherches\" [(ngModel)]=\"resultat\" placeholder=\"Rechercher\">\r\n      <button routerLink=\"recherche-resultat/{{resultat}}\" class=\"btn btn-success my-2 my-sm-0\" name=\"button\" type=\"submit\"(click)=\"rechercher()\">Rechercher</button>\r\n    </form>\r\n  </div>\r\n</nav>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -624,6 +624,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavBarComponent", function() { return NavBarComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _nav_bar_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./nav-bar.service */ "./src/app/nav-bar/nav-bar.service.ts");
+/* harmony import */ var _authguard_guard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../authguard.guard */ "./src/app/authguard.guard.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -635,9 +636,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var NavBarComponent = /** @class */ (function () {
-    function NavBarComponent(navBarService) {
+    function NavBarComponent(navBarService, authGuard) {
         this.navBarService = navBarService;
+        this.authGuard = authGuard;
     }
     NavBarComponent.prototype.rechercher = function () {
         var _this = this;
@@ -654,7 +657,7 @@ var NavBarComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./nav-bar.component.html */ "./src/app/nav-bar/nav-bar.component.html"),
             styles: [__webpack_require__(/*! ./nav-bar.component.css */ "./src/app/nav-bar/nav-bar.component.css")]
         }),
-        __metadata("design:paramtypes", [_nav_bar_service__WEBPACK_IMPORTED_MODULE_1__["NavBarService"]])
+        __metadata("design:paramtypes", [_nav_bar_service__WEBPACK_IMPORTED_MODULE_1__["NavBarService"], _authguard_guard__WEBPACK_IMPORTED_MODULE_2__["AuthguardGuard"]])
     ], NavBarComponent);
     return NavBarComponent;
 }());
@@ -727,7 +730,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div  class=\"col-sm-4\" *ngFor=\"let film of recherche_result; let i = index\">\r\n    <div *ngIf=\"i < 18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{ film.release_date | date:'mediumDate' }}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"https://image.tmdb.org/t/p/w500/{{ film.poster_path }}\" alt=\"{{ film.original_title }}\" style=\"height: 400px\">\r\n          <p class=\"text-center\">{{ film.title }}</p>\r\n          <a routerLink=\"/detail-film/{{film.id}}\" class=\"btn btn-block btn-info\">Details</a>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\r\n  <div  class=\"col-sm-4\" *ngFor=\"let recherche of recherche_result; let i = index\">\r\n    <div *ngIf=\"i < 20\">\r\n      <div *ngIf=\"recherche.media_type=='tv'\">\r\n        <div class=\"card mt-3 mb-3\">\r\n          <div class=\"card-header text-center\">\r\n            {{ recherche.first_air_date | date:'mediumDate' }}\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <img class=\"card-img-top img-fluid\" src=\"https://image.tmdb.org/t/p/w500/{{ recherche.poster_path }}\" alt=\"{{ recherche.original_title }}\" style=\"height: 400px\">\r\n            <p class=\"text-center\">{{ recherche.name }}</p>\r\n            <a routerLink=\"/detail-serie/{{recherche.id}}\" class=\"btn btn-block btn-info\">Details</a>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div *ngIf=\"recherche.media_type=='movie'\">\r\n        <div class=\"card mt-3 mb-3\">\r\n          <div class=\"card-header text-center\">\r\n            {{ recherche.release_date | date:'mediumDate' }}\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <img class=\"card-img-top img-fluid\" src=\"https://image.tmdb.org/t/p/w500/{{ recherche.poster_path }}\" alt=\"{{ recherche.original_title }}\" style=\"height: 400px\">\r\n            <p class=\"text-center\">{{ recherche.title }}</p>\r\n            <a routerLink=\"/detail-film/{{recherche.id}}\" class=\"btn btn-block btn-info\">Details</a>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -969,10 +972,9 @@ var ConnexionComponent = /** @class */ (function () {
             var u = _a[_i];
             if (u.username == this._utilisateurTmp.username) {
                 if (u.password == this._utilisateurTmp.password) {
-                    //initialiser session utilisateur
-                    console.log("je peux être connecté");
-                    this.utilisateurService.setLoggedIn();
+                    this.utilisateurService.setLoggedIn(u);
                     this.router.navigate(['accueil']);
+                    localStorage.setItem('utilisateur', String(u.id));
                 }
             }
         }
@@ -1226,6 +1228,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var UtilisateurService = /** @class */ (function () {
     function UtilisateurService(http) {
         this.http = http;
+        this._isLoggedIn = false;
     }
     UtilisateurService_1 = UtilisateurService;
     UtilisateurService.prototype.query = function () {
@@ -1243,8 +1246,8 @@ var UtilisateurService = /** @class */ (function () {
     UtilisateurService.prototype.getLoggedIn = function () {
         return this._isLoggedIn;
     };
-    UtilisateurService.prototype.setLoggedIn = function () {
-        this._isLoggedIn = true;
+    UtilisateurService.prototype.setLoggedIn = function (utilisateur) {
+        this._isLoggedIn = !this._isLoggedIn;
     };
     var UtilisateurService_1;
     UtilisateurService.URL_API_UTILISATEUR = "/api/utilisateur";

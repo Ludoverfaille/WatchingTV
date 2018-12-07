@@ -28,10 +28,9 @@ export class ConnexionComponent implements OnInit {
     for(let u of this._utilisateurs){
       if(u.username == this._utilisateurTmp.username){
         if(u.password == this._utilisateurTmp.password){
-          //initialiser session utilisateur
-          console.log("je peux être connecté");
-          this.utilisateurService.setLoggedIn();
+          this.utilisateurService.setLoggedIn(u);
           this.router.navigate(['accueil']);
+          localStorage.setItem('utilisateur', String(u.id))
         }
       }
     }

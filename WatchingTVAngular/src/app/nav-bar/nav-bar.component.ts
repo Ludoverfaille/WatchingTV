@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NavBarService} from './nav-bar.service';
+import {AuthguardGuard} from '../authguard.guard';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,7 +12,7 @@ export class NavBarComponent implements OnInit {
   recherches_result:any;
   resultat:any;
 
-  constructor(public navBarService: NavBarService) {
+  constructor(public navBarService: NavBarService, public authGuard: AuthguardGuard) {
   }
 
   rechercher() {

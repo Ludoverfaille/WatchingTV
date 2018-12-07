@@ -15,4 +15,3 @@ export class AuthguardGuard implements CanActivate {
     return this.utilisateur.getLoggedIn();
   }
 }
-
