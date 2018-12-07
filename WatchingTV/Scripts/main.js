@@ -125,23 +125,34 @@ module.exports = "<app-nav-bar></app-nav-bar>\r\n<router-outlet></router-outlet>
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _broadcast_favori_create_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./broadcast-favori-create.service */ "./src/app/broadcast-favori-create.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent() {
+    function AppComponent(broadcastFavoriCreate) {
+        this.broadcastFavoriCreate = broadcastFavoriCreate;
         this.title = 'WatchingTV';
     }
+    AppComponent.prototype.ngOnInit = function () {
+    };
+    AppComponent.prototype.listenFavoriCreated = function () {
+    };
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-root',
             template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
             styles: [__webpack_require__(/*! ./app.component.css */ "./src/app/app.component.css")]
-        })
+        }),
+        __metadata("design:paramtypes", [_broadcast_favori_create_service__WEBPACK_IMPORTED_MODULE_1__["BroadcastFavoriCreateService"]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -335,6 +346,50 @@ var AuthguardGuard = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/broadcast-favori-create.service.ts":
+/*!****************************************************!*\
+  !*** ./src/app/broadcast-favori-create.service.ts ***!
+  \****************************************************/
+/*! exports provided: BroadcastFavoriCreateService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BroadcastFavoriCreateService", function() { return BroadcastFavoriCreateService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var BroadcastFavoriCreateService = /** @class */ (function () {
+    //public favoriCreated$: Observable<Favori> = this.favoriCreatedSubject.asObservable().pipe(filter(favori=>!!favori));
+    function BroadcastFavoriCreateService() {
+        this.favoriCreatedSubject = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](null);
+    }
+    BroadcastFavoriCreateService.prototype.sendFavori = function (favori) {
+        this.favoriCreatedSubject.next(favori);
+    };
+    BroadcastFavoriCreateService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [])
+    ], BroadcastFavoriCreateService);
+    return BroadcastFavoriCreateService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/detail-film/detail-film.component.css":
 /*!*******************************************************!*\
   !*** ./src/app/detail-film/detail-film.component.css ***!
@@ -353,7 +408,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n\r\n  <div *ngIf=\"film\">\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-12\">\r\n        <div class=\"card mt-5 mb-5\">\r\n          <div class=\"card-header\">\r\n            {{ film.title }}\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-5\">\r\n                <img src=\"https://image.tmdb.org/t/p/w500/{{ film.poster_path }}\" class=\"img-fluid\" alt=\"{{ film.title }}\">\r\n              </div>\r\n              <div class=\"col-sm-7\">\r\n                <ul class=\"list-group\">\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Date de sortie: </strong> {{ film.release_date | date:'dd-MM-yyyy' }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Résumé: </strong> {{ film.overview }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Durée: </strong> {{ film.runtime }} minutes\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Budget: </strong> {{ film.budget }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Genre: </strong>\r\n                    <span *ngFor=\"let genre of film.genres\" class=\"badge badge-primary mr-2\">\r\n                      {{ genre.name }}\r\n                    </span>\r\n                  </li>\r\n                  <button *ngIf=\"authguard.canActivate() == true\" (click)=\"createFavori()\" class=\"btn btn-block btn-info\" value=\"Ajouter à mes favoris\"  >Ajouter à mes favoris</button>\r\n                </ul>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div><!-- /.card -->\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n"
+module.exports = "<div class=\"container\">\r\n\r\n  <div *ngIf=\"film\">\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-12\">\r\n        <div class=\"card mt-5 mb-5\">\r\n          <div class=\"card-header\">\r\n            {{ film.title }}\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-5\">\r\n                <img src=\"https://image.tmdb.org/t/p/w500/{{ film.poster_path }}\" class=\"img-fluid\" alt=\"{{ film.title }}\">\r\n              </div>\r\n              <div class=\"col-sm-7\">\r\n                <ul class=\"list-group\">\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Date de sortie: </strong> {{ film.release_date | date:'dd-MM-yyyy' }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Résumé: </strong> {{ film.overview }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Durée: </strong> {{ film.runtime }} minutes\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Budget: </strong> {{ film.budget }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Genre: </strong>\r\n                    <span *ngFor=\"let genre of film.genres\" class=\"badge badge-primary mr-2\">\r\n                      {{ genre.name }}\r\n                    </span>\r\n                  </li>\r\n                  <button *ngIf=\"authguard.canActivate() == true\" (click)=\"createFavori()\" class=\"btn btn-block btn-info\" value=\"Ajouter à mes favoris\">Ajouter à mes favoris</button>\r\n                </ul>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div><!-- /.card -->\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -372,6 +427,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _film_film_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../film/film.service */ "./src/app/film/film.service.ts");
 /* harmony import */ var _authguard_guard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../authguard.guard */ "./src/app/authguard.guard.ts");
 /* harmony import */ var _favori_favori__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../favori/favori */ "./src/app/favori/favori.ts");
+/* harmony import */ var _film_film__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../film/film */ "./src/app/film/film.ts");
+/* harmony import */ var _broadcast_favori_create_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../broadcast-favori-create.service */ "./src/app/broadcast-favori-create.service.ts");
+/* harmony import */ var _favori_favori_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../favori/favori.service */ "./src/app/favori/favori.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -386,11 +444,18 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
+
 var DetailFilmComponent = /** @class */ (function () {
-    function DetailFilmComponent(router, filmService, authguard) {
+    function DetailFilmComponent(router, filmService, favoriService, authguard, broadcastFavoriCreated) {
         this.router = router;
         this.filmService = filmService;
+        this.favoriService = favoriService;
         this.authguard = authguard;
+        this.broadcastFavoriCreated = broadcastFavoriCreated;
+        this._filmTmp = new _film_film__WEBPACK_IMPORTED_MODULE_5__["Film"];
+        this._filmCreated = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this._favoriTmp = new _favori_favori__WEBPACK_IMPORTED_MODULE_4__["Favori"];
         this._favoriCreated = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
@@ -410,11 +475,32 @@ var DetailFilmComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    DetailFilmComponent.prototype.createFavori = function () {
-        this._favoriCreated.next(this.favoriTmp);
+    Object.defineProperty(DetailFilmComponent.prototype, "filmTmp", {
+        get: function () {
+            return this._filmTmp;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    DetailFilmComponent.prototype.createFavori = function (elementType) {
+        var _this = this;
+        this.filmTmp.id = this.film.id;
+        this.filmTmp.title = this.film.title;
+        this.filmTmp.overwiew = this.film.overview;
+        this.filmTmp.releaseDate = this.film.release_date;
+        this.filmTmp.voteAverage = this.film.vote_average;
+        this.filmTmp.posterLink = "https://image.tmdb.org/t/p/w500/" + this.film.poster_path;
+        this.filmService.post(this.filmTmp).subscribe(function (newFilm) {
+            _this.favoriTmp.element = newFilm.id;
+            _this.favoriTmp.elementType = "film";
+            _this.favoriTmp.utilisateur = +localStorage.getItem("utilisateur");
+            _this.favoriService.post(_this.favoriTmp).subscribe();
+        });
+        this.broadcastFavoriCreated.sendFavori(this._favoriTmp);
         this.reset();
     };
     DetailFilmComponent.prototype.reset = function () {
+        this._filmTmp = new _film_film__WEBPACK_IMPORTED_MODULE_5__["Film"];
         this._favoriTmp = new _favori_favori__WEBPACK_IMPORTED_MODULE_4__["Favori"];
     };
     Object.defineProperty(DetailFilmComponent.prototype, "favoriCreated", {
@@ -424,18 +510,30 @@ var DetailFilmComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(DetailFilmComponent.prototype, "filmCreated", {
+        get: function () {
+            return this._filmCreated;
+        },
+        enumerable: true,
+        configurable: true
+    });
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
         __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]),
         __metadata("design:paramtypes", [])
     ], DetailFilmComponent.prototype, "favoriCreated", null);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]),
+        __metadata("design:paramtypes", [])
+    ], DetailFilmComponent.prototype, "filmCreated", null);
     DetailFilmComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-detail-film',
             template: __webpack_require__(/*! ./detail-film.component.html */ "./src/app/detail-film/detail-film.component.html"),
             styles: [__webpack_require__(/*! ./detail-film.component.css */ "./src/app/detail-film/detail-film.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _film_film_service__WEBPACK_IMPORTED_MODULE_2__["FilmService"], _authguard_guard__WEBPACK_IMPORTED_MODULE_3__["AuthguardGuard"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _film_film_service__WEBPACK_IMPORTED_MODULE_2__["FilmService"], _favori_favori_service__WEBPACK_IMPORTED_MODULE_7__["FavoriService"], _authguard_guard__WEBPACK_IMPORTED_MODULE_3__["AuthguardGuard"], _broadcast_favori_create_service__WEBPACK_IMPORTED_MODULE_6__["BroadcastFavoriCreateService"]])
     ], DetailFilmComponent);
     return DetailFilmComponent;
 }());
@@ -480,6 +578,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _serie_serie_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../serie/serie.service */ "./src/app/serie/serie.service.ts");
 /* harmony import */ var _authguard_guard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../authguard.guard */ "./src/app/authguard.guard.ts");
+/* harmony import */ var _serie_serie__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../serie/serie */ "./src/app/serie/serie.ts");
+/* harmony import */ var _favori_favori__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../favori/favori */ "./src/app/favori/favori.ts");
+/* harmony import */ var _favori_favori_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../favori/favori.service */ "./src/app/favori/favori.service.ts");
+/* harmony import */ var _broadcast_favori_create_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../broadcast-favori-create.service */ "./src/app/broadcast-favori-create.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -493,11 +595,21 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
+
+
 var DetailSerieComponent = /** @class */ (function () {
-    function DetailSerieComponent(router, serieService, authguard) {
+    function DetailSerieComponent(router, serieService, favoriService, authguard, broadcastFavoriCreated) {
         this.router = router;
         this.serieService = serieService;
+        this.favoriService = favoriService;
         this.authguard = authguard;
+        this.broadcastFavoriCreated = broadcastFavoriCreated;
+        this._serieTmp = new _serie_serie__WEBPACK_IMPORTED_MODULE_4__["Serie"];
+        this._serieCreated = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this._favoriTmp = new _favori_favori__WEBPACK_IMPORTED_MODULE_5__["Favori"];
+        this._favoriCreated = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
     DetailSerieComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -508,13 +620,68 @@ var DetailSerieComponent = /** @class */ (function () {
             });
         });
     };
+    Object.defineProperty(DetailSerieComponent.prototype, "favoriTmp", {
+        get: function () {
+            return this._favoriTmp;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DetailSerieComponent.prototype, "serieTmp", {
+        get: function () {
+            return this._serieTmp;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    DetailSerieComponent.prototype.createFavori = function (elementType) {
+        /*
+        this.serieService.post(this.serieTmp).subscribe(newFilm => {
+          this.favoriTmp.element=newFilm.id;
+          this.favoriTmp.elementType="film";
+          this.favoriTmp.utilisateur=+localStorage.getItem("utilisateur");
+          this.favoriService.post(this.favoriTmp).subscribe();
+        });
+    
+        this.broadcastFavoriCreated.sendFavori(this._favoriTmp);
+    
+        this.reset();*/
+    };
+    DetailSerieComponent.prototype.reset = function () {
+        this._serieTmp = new _serie_serie__WEBPACK_IMPORTED_MODULE_4__["Serie"];
+        this._favoriTmp = new _favori_favori__WEBPACK_IMPORTED_MODULE_5__["Favori"];
+    };
+    Object.defineProperty(DetailSerieComponent.prototype, "favoriCreated", {
+        get: function () {
+            return this._favoriCreated;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DetailSerieComponent.prototype, "serieCreated", {
+        get: function () {
+            return this._serieCreated;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]),
+        __metadata("design:paramtypes", [])
+    ], DetailSerieComponent.prototype, "favoriCreated", null);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]),
+        __metadata("design:paramtypes", [])
+    ], DetailSerieComponent.prototype, "serieCreated", null);
     DetailSerieComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-detail-serie',
             template: __webpack_require__(/*! ./detail-serie.component.html */ "./src/app/detail-serie/detail-serie.component.html"),
             styles: [__webpack_require__(/*! ./detail-serie.component.css */ "./src/app/detail-serie/detail-serie.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _serie_serie_service__WEBPACK_IMPORTED_MODULE_2__["SerieService"], _authguard_guard__WEBPACK_IMPORTED_MODULE_3__["AuthguardGuard"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _serie_serie_service__WEBPACK_IMPORTED_MODULE_2__["SerieService"], _favori_favori_service__WEBPACK_IMPORTED_MODULE_6__["FavoriService"], _authguard_guard__WEBPACK_IMPORTED_MODULE_3__["AuthguardGuard"], _broadcast_favori_create_service__WEBPACK_IMPORTED_MODULE_7__["BroadcastFavoriCreateService"]])
     ], DetailSerieComponent);
     return DetailSerieComponent;
 }());
@@ -1114,7 +1281,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  smart-manager-film works!\n</p>\n"
+module.exports = "<app-detail-film (filmCreated)=\"postFilm($event)\"></app-detail-film>\n"
 
 /***/ }),
 
@@ -1544,6 +1711,149 @@ var SerieService = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], SerieService);
     return SerieService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/serie/serie.ts":
+/*!********************************!*\
+  !*** ./src/app/serie/serie.ts ***!
+  \********************************/
+/*! exports provided: Serie */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Serie", function() { return Serie; });
+var Serie = /** @class */ (function () {
+    function Serie(title, overwiew, season, episode, status, releaseDate, voteAverage, posterLink) {
+        if (title === void 0) { title = ""; }
+        if (overwiew === void 0) { overwiew = ""; }
+        if (season === void 0) { season = 0; }
+        if (episode === void 0) { episode = 0; }
+        if (status === void 0) { status = ""; }
+        if (releaseDate === void 0) { releaseDate = ""; }
+        if (voteAverage === void 0) { voteAverage = 0; }
+        if (posterLink === void 0) { posterLink = ""; }
+        this._title = title;
+        this._overwiew = overwiew;
+        this._season = season;
+        this._episode = episode;
+        this._status = status;
+        this._releaseDate = releaseDate;
+        this._voteAverage = voteAverage;
+        this._posterLink = posterLink;
+    }
+    Object.defineProperty(Serie.prototype, "id", {
+        get: function () {
+            return this._id;
+        },
+        set: function (value) {
+            this._id = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Serie.prototype, "title", {
+        get: function () {
+            return this._title;
+        },
+        set: function (value) {
+            this._title = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Serie.prototype, "overwiew", {
+        get: function () {
+            return this._overwiew;
+        },
+        set: function (value) {
+            this._overwiew = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Serie.prototype, "season", {
+        get: function () {
+            return this._season;
+        },
+        set: function (value) {
+            this._season = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Serie.prototype, "episode", {
+        get: function () {
+            return this._episode;
+        },
+        set: function (value) {
+            this._episode = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Serie.prototype, "status", {
+        get: function () {
+            return this._status;
+        },
+        set: function (value) {
+            this._status = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Serie.prototype, "releaseDate", {
+        get: function () {
+            return this._releaseDate;
+        },
+        set: function (value) {
+            this._releaseDate = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Serie.prototype, "voteAverage", {
+        get: function () {
+            return this._voteAverage;
+        },
+        set: function (value) {
+            this._voteAverage = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Serie.prototype, "posterLink", {
+        get: function () {
+            return this._posterLink;
+        },
+        set: function (value) {
+            this._posterLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Serie.prototype.fromJson = function (Json) {
+        Object.assign(this, Json);
+        return this;
+    };
+    Serie.prototype.toJson = function () {
+        return {
+            "id": this._id,
+            "title": this._title,
+            "overview": this._overwiew,
+            "season": this._season,
+            "episode": this._episode,
+            "status": this._status,
+            "releaseDate": this._releaseDate,
+            "voteAverage": this._voteAverage,
+            "posterLink": this._posterLink
+        };
+    };
+    return Serie;
 }());
 
 

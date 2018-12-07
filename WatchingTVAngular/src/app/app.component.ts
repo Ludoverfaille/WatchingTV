@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {BroadcastFavoriCreateService} from './broadcast-favori-create.service';
 
 
 @Component({
@@ -6,9 +7,17 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'WatchingTV';
 
+  constructor(public broadcastFavoriCreate:BroadcastFavoriCreateService){}
 
+  ngOnInit(){
+
+  }
+
+  listenFavoriCreated(){
+
+  }
 
 }
