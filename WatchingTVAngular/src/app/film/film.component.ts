@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {FilmService} from './film.service';
+import {Film} from './film';
 
 
 @Component({
@@ -18,12 +19,9 @@ export class FilmComponent implements OnInit {
     this.filmService.getFilmsPopulaire().subscribe(data =>{
       this.filmPopulaire = data['results'];
     })
-
   }
 
-
-
-
-
-
+  getFilmApiId(id: number){
+    localStorage.setItem("film",String(id))
+  }
 }

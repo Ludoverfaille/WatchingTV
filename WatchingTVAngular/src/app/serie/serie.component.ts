@@ -17,4 +17,8 @@ export class SerieComponent implements OnInit {
   ngOnInit() {
     this.serieService.getSeriePopulaire().subscribe(data=>{this.seriePopulaire = data['results'];})
   }
+
+  getSerieApiId(id: number){
+    localStorage.setItem("serie",String(id))
+  }
 }

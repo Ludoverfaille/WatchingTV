@@ -41,7 +41,7 @@ module.exports = ".form-control-borderless {\r\n  border: none;\r\n}\r\n\r\n.for
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  Connecté\r\n</p>\r\n"
+module.exports = "<p *ngIf=\"authGuard.canActivate() == true\">\r\n  Connecté\r\n</p>\r\n"
 
 /***/ }),
 
@@ -57,6 +57,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AccueilComponent", function() { return AccueilComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _utilisateur_utilisateur_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utilisateur/utilisateur.service */ "./src/app/utilisateur/utilisateur.service.ts");
+/* harmony import */ var _authguard_guard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../authguard.guard */ "./src/app/authguard.guard.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -68,9 +69,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var AccueilComponent = /** @class */ (function () {
-    function AccueilComponent(utilisateur) {
+    function AccueilComponent(utilisateur, authGuard) {
         this.utilisateur = utilisateur;
+        this.authGuard = authGuard;
     }
     AccueilComponent.prototype.ngOnInit = function () {
     };
@@ -80,7 +83,7 @@ var AccueilComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./accueil.component.html */ "./src/app/accueil/accueil.component.html"),
             styles: [__webpack_require__(/*! ./accueil.component.css */ "./src/app/accueil/accueil.component.css")]
         }),
-        __metadata("design:paramtypes", [_utilisateur_utilisateur_service__WEBPACK_IMPORTED_MODULE_1__["UtilisateurService"]])
+        __metadata("design:paramtypes", [_utilisateur_utilisateur_service__WEBPACK_IMPORTED_MODULE_1__["UtilisateurService"], _authguard_guard__WEBPACK_IMPORTED_MODULE_2__["AuthguardGuard"]])
     ], AccueilComponent);
     return AccueilComponent;
 }());
@@ -177,6 +180,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _recherche_resultat_recherche_resultat_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./recherche-resultat/recherche-resultat.component */ "./src/app/recherche-resultat/recherche-resultat.component.ts");
 /* harmony import */ var _utilisateur_utilisateur_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./utilisateur/utilisateur.service */ "./src/app/utilisateur/utilisateur.service.ts");
 /* harmony import */ var _authguard_guard__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./authguard.guard */ "./src/app/authguard.guard.ts");
+/* harmony import */ var _favori_gestion_favori_gestion_favori_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./favori/gestion-favori/gestion-favori.component */ "./src/app/favori/gestion-favori/gestion-favori.component.ts");
+/* harmony import */ var _favori_smart_manager_favori_smart_manager_favori_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./favori/smart-manager-favori/smart-manager-favori.component */ "./src/app/favori/smart-manager-favori/smart-manager-favori.component.ts");
+/* harmony import */ var _film_smart_manager_film_smart_manager_film_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./film/smart-manager-film/smart-manager-film.component */ "./src/app/film/smart-manager-film/smart-manager-film.component.ts");
+/* harmony import */ var _film_guard__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./film.guard */ "./src/app/film.guard.ts");
+/* harmony import */ var _serie_guard__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./serie.guard */ "./src/app/serie.guard.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -203,9 +211,15 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
+
+
+
 var routes = [
     {
-        path: "accueil", component: _accueil_accueil_component__WEBPACK_IMPORTED_MODULE_3__["AccueilComponent"],
+        path: "accueil",
+        component: _accueil_accueil_component__WEBPACK_IMPORTED_MODULE_3__["AccueilComponent"],
         canActivate: [_authguard_guard__WEBPACK_IMPORTED_MODULE_19__["AuthguardGuard"]],
         pathMatch: "full"
     },
@@ -227,10 +241,12 @@ var routes = [
     },
     {
         path: "detail-film/:filmID",
+        canActivate: [_film_guard__WEBPACK_IMPORTED_MODULE_23__["FilmGuard"]],
         component: _detail_film_detail_film_component__WEBPACK_IMPORTED_MODULE_14__["DetailFilmComponent"]
     },
     {
         path: "detail-serie/:serieID",
+        canActivate: [_serie_guard__WEBPACK_IMPORTED_MODULE_24__["SerieGuard"]],
         component: _detail_serie_detail_serie_component__WEBPACK_IMPORTED_MODULE_15__["DetailSerieComponent"]
     },
     {
@@ -255,6 +271,9 @@ var AppModule = /** @class */ (function () {
                 _detail_serie_detail_serie_component__WEBPACK_IMPORTED_MODULE_15__["DetailSerieComponent"],
                 _utilisateur_smart_manager_utilisateur_smart_manager_utilisateur_component__WEBPACK_IMPORTED_MODULE_16__["SmartManagerUtilisateurComponent"],
                 _recherche_resultat_recherche_resultat_component__WEBPACK_IMPORTED_MODULE_17__["RechercheResultatComponent"],
+                _favori_gestion_favori_gestion_favori_component__WEBPACK_IMPORTED_MODULE_20__["GestionFavoriComponent"],
+                _favori_smart_manager_favori_smart_manager_favori_component__WEBPACK_IMPORTED_MODULE_21__["SmartManagerFavoriComponent"],
+                _film_smart_manager_film_smart_manager_film_component__WEBPACK_IMPORTED_MODULE_22__["SmartManagerFilmComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -262,7 +281,7 @@ var AppModule = /** @class */ (function () {
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_12__["HttpClientModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forRoot(routes)
             ],
-            providers: [_film_film_service__WEBPACK_IMPORTED_MODULE_10__["FilmService"], _serie_serie_service__WEBPACK_IMPORTED_MODULE_13__["SerieService"], _utilisateur_utilisateur_service__WEBPACK_IMPORTED_MODULE_18__["UtilisateurService"], _authguard_guard__WEBPACK_IMPORTED_MODULE_19__["AuthguardGuard"]],
+            providers: [_film_film_service__WEBPACK_IMPORTED_MODULE_10__["FilmService"], _serie_serie_service__WEBPACK_IMPORTED_MODULE_13__["SerieService"], _utilisateur_utilisateur_service__WEBPACK_IMPORTED_MODULE_18__["UtilisateurService"], _authguard_guard__WEBPACK_IMPORTED_MODULE_19__["AuthguardGuard"], _film_guard__WEBPACK_IMPORTED_MODULE_23__["FilmGuard"], _serie_guard__WEBPACK_IMPORTED_MODULE_24__["SerieGuard"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
         })
     ], AppModule);
@@ -334,7 +353,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n\r\n  <div *ngIf=\"film\">\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-12\">\r\n        <div class=\"card mt-5 mb-5\">\r\n          <div class=\"card-header\">\r\n            {{ film.title }}\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-5\">\r\n                <img src=\"https://image.tmdb.org/t/p/w500/{{ film.poster_path }}\" class=\"img-fluid\" alt=\"{{ film.title }}\">\r\n              </div>\r\n              <div class=\"col-sm-7\">\r\n                <ul class=\"list-group\">\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Date de sortie: </strong> {{ film.release_date | date:'dd-MM-yyyy' }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Résumé: </strong> {{ film.overview }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Durée: </strong> {{ film.runtime }} minutes\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Budget: </strong> {{ film.budget }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Genre: </strong>\r\n                    <span *ngFor=\"let genre of film.genres\" class=\"badge badge-primary mr-2\">\r\n                      {{ genre.name }}\r\n                    </span>\r\n                  </li>\r\n                </ul>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div><!-- /.card -->\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n"
+module.exports = "<div class=\"container\">\r\n\r\n  <div *ngIf=\"film\">\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-12\">\r\n        <div class=\"card mt-5 mb-5\">\r\n          <div class=\"card-header\">\r\n            {{ film.title }}\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-5\">\r\n                <img src=\"https://image.tmdb.org/t/p/w500/{{ film.poster_path }}\" class=\"img-fluid\" alt=\"{{ film.title }}\">\r\n              </div>\r\n              <div class=\"col-sm-7\">\r\n                <ul class=\"list-group\">\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Date de sortie: </strong> {{ film.release_date | date:'dd-MM-yyyy' }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Résumé: </strong> {{ film.overview }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Durée: </strong> {{ film.runtime }} minutes\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Budget: </strong> {{ film.budget }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Genre: </strong>\r\n                    <span *ngFor=\"let genre of film.genres\" class=\"badge badge-primary mr-2\">\r\n                      {{ genre.name }}\r\n                    </span>\r\n                  </li>\r\n                  <button *ngIf=\"authguard.canActivate() == true\" (click)=\"createFavori()\" class=\"btn btn-block btn-info\" value=\"Ajouter à mes favoris\"  >Ajouter à mes favoris</button>\r\n                </ul>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div><!-- /.card -->\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -351,6 +370,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _film_film_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../film/film.service */ "./src/app/film/film.service.ts");
+/* harmony import */ var _authguard_guard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../authguard.guard */ "./src/app/authguard.guard.ts");
+/* harmony import */ var _favori_favori__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../favori/favori */ "./src/app/favori/favori.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -363,10 +384,15 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var DetailFilmComponent = /** @class */ (function () {
-    function DetailFilmComponent(router, filmService) {
+    function DetailFilmComponent(router, filmService, authguard) {
         this.router = router;
         this.filmService = filmService;
+        this.authguard = authguard;
+        this._favoriTmp = new _favori_favori__WEBPACK_IMPORTED_MODULE_4__["Favori"];
+        this._favoriCreated = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
     DetailFilmComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -377,13 +403,39 @@ var DetailFilmComponent = /** @class */ (function () {
             });
         });
     };
+    Object.defineProperty(DetailFilmComponent.prototype, "favoriTmp", {
+        get: function () {
+            return this._favoriTmp;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    DetailFilmComponent.prototype.createFavori = function () {
+        this._favoriCreated.next(this.favoriTmp);
+        this.reset();
+    };
+    DetailFilmComponent.prototype.reset = function () {
+        this._favoriTmp = new _favori_favori__WEBPACK_IMPORTED_MODULE_4__["Favori"];
+    };
+    Object.defineProperty(DetailFilmComponent.prototype, "favoriCreated", {
+        get: function () {
+            return this._favoriCreated;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]),
+        __metadata("design:paramtypes", [])
+    ], DetailFilmComponent.prototype, "favoriCreated", null);
     DetailFilmComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-detail-film',
             template: __webpack_require__(/*! ./detail-film.component.html */ "./src/app/detail-film/detail-film.component.html"),
             styles: [__webpack_require__(/*! ./detail-film.component.css */ "./src/app/detail-film/detail-film.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _film_film_service__WEBPACK_IMPORTED_MODULE_2__["FilmService"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _film_film_service__WEBPACK_IMPORTED_MODULE_2__["FilmService"], _authguard_guard__WEBPACK_IMPORTED_MODULE_3__["AuthguardGuard"]])
     ], DetailFilmComponent);
     return DetailFilmComponent;
 }());
@@ -410,7 +462,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n\r\n  <div *ngIf=\"serie\">\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-12\">\r\n        <div class=\"card mt-5 mb-5\">\r\n          <div class=\"card-header\">\r\n            {{ serie.name }}\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-5\">\r\n                <img src=\"https://image.tmdb.org/t/p/w500/{{ serie.poster_path }}\"  class=\"img-fluid\" alt=\"{{ serie.title }}\">\r\n              </div>\r\n              <div class=\"col-sm-7\">\r\n                <ul class=\"list-group\">\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Date de sortie: </strong> {{ serie.first_air_date | date:'dd-MM-yyyy' }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Résumé: </strong> {{ serie.overview }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Nombre de saison: </strong> {{ serie.number_of_seasons }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Avis des utilisateurs: </strong> {{ serie.average }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Genre: </strong>\r\n                    <span *ngFor=\"let genre of serie.genres\" class=\"badge badge-primary mr-2\">\r\n                      {{ genre.name }}\r\n                    </span>\r\n                  </li>\r\n                </ul>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div><!-- /.card -->\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n\r\n"
+module.exports = "<div class=\"container\">\r\n\r\n  <div *ngIf=\"serie\">\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-12\">\r\n        <div class=\"card mt-5 mb-5\">\r\n          <div class=\"card-header\">\r\n            {{ serie.name }}\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-5\">\r\n                <img src=\"https://image.tmdb.org/t/p/w500/{{ serie.poster_path }}\"  class=\"img-fluid\" alt=\"{{ serie.title }}\">\r\n              </div>\r\n              <div class=\"col-sm-7\">\r\n                <ul class=\"list-group\">\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Date de sortie: </strong> {{ serie.first_air_date | date:'dd-MM-yyyy' }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Résumé: </strong> {{ serie.overview }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Nombre de saison: </strong> {{ serie.number_of_seasons }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Avis des utilisateurs: </strong> {{ serie.average }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Genre: </strong>\r\n                    <span *ngFor=\"let genre of serie.genres\" class=\"badge badge-primary mr-2\">\r\n                      {{ genre.name }}\r\n                    </span>\r\n                  </li>\r\n\r\n                  <input *ngIf=\"authguard.canActivate() == true\" type=\"button\" class=\"btn btn-block btn-info\" value=\"Ajouter à mes favoris\" >\r\n                </ul>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div><!-- /.card -->\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -427,6 +479,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _serie_serie_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../serie/serie.service */ "./src/app/serie/serie.service.ts");
+/* harmony import */ var _authguard_guard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../authguard.guard */ "./src/app/authguard.guard.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -439,10 +492,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var DetailSerieComponent = /** @class */ (function () {
-    function DetailSerieComponent(router, serieService) {
+    function DetailSerieComponent(router, serieService, authguard) {
         this.router = router;
         this.serieService = serieService;
+        this.authguard = authguard;
     }
     DetailSerieComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -459,9 +514,338 @@ var DetailSerieComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./detail-serie.component.html */ "./src/app/detail-serie/detail-serie.component.html"),
             styles: [__webpack_require__(/*! ./detail-serie.component.css */ "./src/app/detail-serie/detail-serie.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _serie_serie_service__WEBPACK_IMPORTED_MODULE_2__["SerieService"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _serie_serie_service__WEBPACK_IMPORTED_MODULE_2__["SerieService"], _authguard_guard__WEBPACK_IMPORTED_MODULE_3__["AuthguardGuard"]])
     ], DetailSerieComponent);
     return DetailSerieComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/favori/favori.service.ts":
+/*!******************************************!*\
+  !*** ./src/app/favori/favori.service.ts ***!
+  \******************************************/
+/*! exports provided: FavoriService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FavoriService", function() { return FavoriService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var FavoriService = /** @class */ (function () {
+    function FavoriService(http) {
+        this.http = http;
+    }
+    FavoriService_1 = FavoriService;
+    FavoriService.prototype.query = function () {
+        return this.http.get(FavoriService_1.URL_API_FAVORI);
+    };
+    FavoriService.prototype.post = function (favori) {
+        return this.http.post(FavoriService_1.URL_API_FAVORI, favori.toJson());
+    };
+    FavoriService.prototype.update = function (favori) {
+        return this.http.put(FavoriService_1.URL_API_FAVORI, favori.toJson());
+    };
+    FavoriService.prototype.delete = function (favori) {
+        return this.http.delete(FavoriService_1.URL_API_FAVORI + "/" + favori.id);
+    };
+    var FavoriService_1;
+    FavoriService.URL_API_FAVORI = "/api/favori";
+    FavoriService = FavoriService_1 = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], FavoriService);
+    return FavoriService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/favori/favori.ts":
+/*!**********************************!*\
+  !*** ./src/app/favori/favori.ts ***!
+  \**********************************/
+/*! exports provided: Favori */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Favori", function() { return Favori; });
+var Favori = /** @class */ (function () {
+    function Favori(element, elementType, utilisateur) {
+        if (element === void 0) { element = 0; }
+        if (elementType === void 0) { elementType = ""; }
+        if (utilisateur === void 0) { utilisateur = 0; }
+        this._element = element;
+        this._elementType = elementType;
+        this._utilisateur = utilisateur;
+    }
+    Object.defineProperty(Favori.prototype, "id", {
+        get: function () {
+            return this._id;
+        },
+        set: function (value) {
+            this._id = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Favori.prototype, "element", {
+        get: function () {
+            return this._element;
+        },
+        set: function (value) {
+            this._element = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Favori.prototype, "elementType", {
+        get: function () {
+            return this._elementType;
+        },
+        set: function (value) {
+            this._elementType = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Favori.prototype, "utilisateur", {
+        get: function () {
+            return this._utilisateur;
+        },
+        set: function (value) {
+            this._utilisateur = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Favori.prototype.fromJson = function (Json) {
+        Object.assign(this, Json);
+        return this;
+    };
+    Favori.prototype.toJson = function () {
+        return {
+            "id": this._id,
+            "element": this._element,
+            "elementType": this._elementType,
+            "utilisateur": this._utilisateur
+        };
+    };
+    return Favori;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/favori/gestion-favori/gestion-favori.component.css":
+/*!********************************************************************!*\
+  !*** ./src/app/favori/gestion-favori/gestion-favori.component.css ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/favori/gestion-favori/gestion-favori.component.html":
+/*!*********************************************************************!*\
+  !*** ./src/app/favori/gestion-favori/gestion-favori.component.html ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  gestion-favori works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/favori/gestion-favori/gestion-favori.component.ts":
+/*!*******************************************************************!*\
+  !*** ./src/app/favori/gestion-favori/gestion-favori.component.ts ***!
+  \*******************************************************************/
+/*! exports provided: GestionFavoriComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GestionFavoriComponent", function() { return GestionFavoriComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var GestionFavoriComponent = /** @class */ (function () {
+    function GestionFavoriComponent() {
+    }
+    GestionFavoriComponent.prototype.ngOnInit = function () {
+    };
+    GestionFavoriComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-gestion-favori',
+            template: __webpack_require__(/*! ./gestion-favori.component.html */ "./src/app/favori/gestion-favori/gestion-favori.component.html"),
+            styles: [__webpack_require__(/*! ./gestion-favori.component.css */ "./src/app/favori/gestion-favori/gestion-favori.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], GestionFavoriComponent);
+    return GestionFavoriComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/favori/smart-manager-favori/smart-manager-favori.component.css":
+/*!********************************************************************************!*\
+  !*** ./src/app/favori/smart-manager-favori/smart-manager-favori.component.css ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/favori/smart-manager-favori/smart-manager-favori.component.html":
+/*!*********************************************************************************!*\
+  !*** ./src/app/favori/smart-manager-favori/smart-manager-favori.component.html ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<app-gestion-favori (favoriCreated)=\"postFavori($event)\"></app-gestion-favori>\n"
+
+/***/ }),
+
+/***/ "./src/app/favori/smart-manager-favori/smart-manager-favori.component.ts":
+/*!*******************************************************************************!*\
+  !*** ./src/app/favori/smart-manager-favori/smart-manager-favori.component.ts ***!
+  \*******************************************************************************/
+/*! exports provided: SmartManagerFavoriComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SmartManagerFavoriComponent", function() { return SmartManagerFavoriComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _favori_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../favori.service */ "./src/app/favori/favori.service.ts");
+/* harmony import */ var _favori__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../favori */ "./src/app/favori/favori.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var SmartManagerFavoriComponent = /** @class */ (function () {
+    function SmartManagerFavoriComponent(favoriService) {
+        this.favoriService = favoriService;
+        this._favoris = [];
+    }
+    SmartManagerFavoriComponent.prototype.ngOnInit = function () {
+        this.getFavoris();
+    };
+    SmartManagerFavoriComponent.prototype.ngOnDestroy = function () {
+        if (this._subQueryFavori) {
+            this._subQueryFavori.unsubscribe();
+        }
+        if (this._subQueryFavori) {
+            this._subPostFavori.unsubscribe();
+        }
+    };
+    SmartManagerFavoriComponent.prototype.getFavoris = function () {
+        var _this = this;
+        this._subQueryFavori = this.favoriService
+            .query()
+            .subscribe(function (favoris) {
+            return _this._favoris = favoris.map(function (favori) { return new _favori__WEBPACK_IMPORTED_MODULE_2__["Favori"]().fromJson(favori); });
+        });
+    };
+    SmartManagerFavoriComponent.prototype.postFavori = function (favori) {
+        var _this = this;
+        this._subPostFavori = this.favoriService.post(favori).subscribe(function (newFavori) { return _this.favoris.push(new _favori__WEBPACK_IMPORTED_MODULE_2__["Favori"]().fromJson(newFavori)); });
+    };
+    Object.defineProperty(SmartManagerFavoriComponent.prototype, "favoris", {
+        get: function () {
+            return this._favoris;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    SmartManagerFavoriComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-smart-manager-favori',
+            template: __webpack_require__(/*! ./smart-manager-favori.component.html */ "./src/app/favori/smart-manager-favori/smart-manager-favori.component.html"),
+            styles: [__webpack_require__(/*! ./smart-manager-favori.component.css */ "./src/app/favori/smart-manager-favori/smart-manager-favori.component.css")]
+        }),
+        __metadata("design:paramtypes", [_favori_service__WEBPACK_IMPORTED_MODULE_1__["FavoriService"]])
+    ], SmartManagerFavoriComponent);
+    return SmartManagerFavoriComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/film.guard.ts":
+/*!*******************************!*\
+  !*** ./src/app/film.guard.ts ***!
+  \*******************************/
+/*! exports provided: FilmGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FilmGuard", function() { return FilmGuard; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var FilmGuard = /** @class */ (function () {
+    function FilmGuard() {
+    }
+    FilmGuard.prototype.canActivate = function (next, state) {
+        return true;
+    };
+    FilmGuard = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        })
+    ], FilmGuard);
+    return FilmGuard;
 }());
 
 
@@ -486,7 +870,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n<div  class=\"col-sm-4\" *ngFor=\"let film of filmPopulaire; let i = index\">\r\n  <div *ngIf=\"i < 18\">\r\n    <div class=\"card mt-3 mb-3\">\r\n      <div class=\"card-header text-center\">\r\n        {{ film.release_date | date:'mediumDate' }}\r\n      </div>\r\n      <div class=\"card-body\">\r\n        <img class=\"card-img-top img-fluid\" src=\"https://image.tmdb.org/t/p/w500/{{ film.poster_path }}\" alt=\"{{ film.original_title }}\" style=\"height: 400px\">\r\n        <p class=\"text-center\">{{ film.title }}</p>\r\n        <a routerLink=\"/detail-film/{{film.id}}\" class=\"btn btn-block btn-info\">Details</a>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n</div>\r\n\r\n\r\n\r\n"
+module.exports = "<div class=\"row\">\r\n<div  class=\"col-sm-4\" *ngFor=\"let film of filmPopulaire; let i = index\">\r\n  <div *ngIf=\"i < 18\">\r\n    <div class=\"card mt-3 mb-3\">\r\n      <div class=\"card-header text-center\">\r\n        {{ film.release_date | date:'mediumDate' }}\r\n      </div>\r\n      <div class=\"card-body\">\r\n        <img class=\"card-img-top img-fluid\" src=\"https://image.tmdb.org/t/p/w500/{{ film.poster_path }}\" alt=\"{{ film.original_title }}\" style=\"height: 400px\">\r\n        <p class=\"text-center\">{{ film.title }}</p>\r\n        <a routerLink=\"/detail-film/{{film.id}}\" class=\"btn btn-block btn-info\" (click)=\"getFilmApiId(film.id)\">Details</a>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n</div>\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -525,6 +909,9 @@ var FilmComponent = /** @class */ (function () {
         this.filmService.getFilmsPopulaire().subscribe(function (data) {
             _this.filmPopulaire = data['results'];
         });
+    };
+    FilmComponent.prototype.getFilmApiId = function (id) {
+        localStorage.setItem("film", String(id));
     };
     FilmComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -565,18 +952,33 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var FilmService = /** @class */ (function () {
-    function FilmService(_http) {
-        this._http = _http;
+    function FilmService(http) {
+        this.http = http;
         this.film_url = "https://api.themoviedb.org/3/";
         this.api_key = "bfb8d0b05e92cf528ef802c947b095b0";
     }
+    FilmService_1 = FilmService;
+    FilmService.prototype.query = function () {
+        return this.http.get(FilmService_1.URL_API_FILM);
+    };
+    FilmService.prototype.post = function (film) {
+        return this.http.post(FilmService_1.URL_API_FILM, film.toJson());
+    };
+    FilmService.prototype.update = function (film) {
+        return this.http.put(FilmService_1.URL_API_FILM, film.toJson());
+    };
+    FilmService.prototype.delete = function (film) {
+        return this.http.delete(FilmService_1.URL_API_FILM + "/" + film.id);
+    };
     FilmService.prototype.getFilm = function (id) {
-        return this._http.get(this.film_url + 'movie/' + id + '?api_key=' + this.api_key + '&language=fr');
+        return this.http.get(this.film_url + 'movie/' + id + '?api_key=' + this.api_key + '&language=fr');
     };
     FilmService.prototype.getFilmsPopulaire = function () {
-        return this._http.get(this.film_url + 'discover/movie?sort_by=popularity.desc' + '&api_key=' + this.api_key + '&language=fr&page=' + this.page_num);
+        return this.http.get(this.film_url + 'discover/movie?sort_by=popularity.desc' + '&api_key=' + this.api_key + '&language=fr&page=' + this.page_num);
     };
-    FilmService = __decorate([
+    var FilmService_1;
+    FilmService.URL_API_FILM = "/api/film";
+    FilmService = FilmService_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
@@ -584,6 +986,207 @@ var FilmService = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], FilmService);
     return FilmService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/film/film.ts":
+/*!******************************!*\
+  !*** ./src/app/film/film.ts ***!
+  \******************************/
+/*! exports provided: Film */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Film", function() { return Film; });
+var Film = /** @class */ (function () {
+    function Film(title, overwiew, releaseDate, voteAverage, posterLink) {
+        if (title === void 0) { title = ""; }
+        if (overwiew === void 0) { overwiew = ""; }
+        if (releaseDate === void 0) { releaseDate = ""; }
+        if (voteAverage === void 0) { voteAverage = 0; }
+        if (posterLink === void 0) { posterLink = ""; }
+        this._title = title;
+        this._overwiew = overwiew;
+        this._releaseDate = releaseDate;
+        this._voteAverage = voteAverage;
+        this._posterLink = posterLink;
+    }
+    Object.defineProperty(Film.prototype, "id", {
+        get: function () {
+            return this._id;
+        },
+        set: function (value) {
+            this._id = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Film.prototype, "title", {
+        get: function () {
+            return this._title;
+        },
+        set: function (value) {
+            this._title = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Film.prototype, "overwiew", {
+        get: function () {
+            return this._overwiew;
+        },
+        set: function (value) {
+            this._overwiew = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Film.prototype, "releaseDate", {
+        get: function () {
+            return this._releaseDate;
+        },
+        set: function (value) {
+            this._releaseDate = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Film.prototype, "voteAverage", {
+        get: function () {
+            return this._voteAverage;
+        },
+        set: function (value) {
+            this._voteAverage = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Film.prototype, "posterLink", {
+        get: function () {
+            return this._posterLink;
+        },
+        set: function (value) {
+            this._posterLink = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Film.prototype.fromJson = function (Json) {
+        Object.assign(this, Json);
+        return this;
+    };
+    Film.prototype.toJson = function () {
+        return {
+            "id": this._id,
+            "title": this._title,
+            "overview": this._overwiew,
+            "releaseDate": this._releaseDate,
+            "voteAverage": this._voteAverage,
+            "posterLink": this._posterLink
+        };
+    };
+    return Film;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/film/smart-manager-film/smart-manager-film.component.css":
+/*!**************************************************************************!*\
+  !*** ./src/app/film/smart-manager-film/smart-manager-film.component.css ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/film/smart-manager-film/smart-manager-film.component.html":
+/*!***************************************************************************!*\
+  !*** ./src/app/film/smart-manager-film/smart-manager-film.component.html ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  smart-manager-film works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/film/smart-manager-film/smart-manager-film.component.ts":
+/*!*************************************************************************!*\
+  !*** ./src/app/film/smart-manager-film/smart-manager-film.component.ts ***!
+  \*************************************************************************/
+/*! exports provided: SmartManagerFilmComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SmartManagerFilmComponent", function() { return SmartManagerFilmComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _film__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../film */ "./src/app/film/film.ts");
+/* harmony import */ var _film_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../film.service */ "./src/app/film/film.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var SmartManagerFilmComponent = /** @class */ (function () {
+    function SmartManagerFilmComponent(filmService) {
+        this.filmService = filmService;
+        this._films = [];
+    }
+    SmartManagerFilmComponent.prototype.ngOnInit = function () {
+        this.getFilms();
+    };
+    SmartManagerFilmComponent.prototype.ngOnDestroy = function () {
+        if (this._subQueryFilm) {
+            this._subQueryFilm.unsubscribe();
+        }
+        if (this._subPostFilm) {
+            this._subPostFilm.unsubscribe();
+        }
+    };
+    SmartManagerFilmComponent.prototype.getFilms = function () {
+        var _this = this;
+        this._subQueryFilm = this.filmService
+            .query()
+            .subscribe(function (films) {
+            return _this._films = films.map(function (film) { return new _film__WEBPACK_IMPORTED_MODULE_1__["Film"]().fromJson(film); });
+        });
+    };
+    SmartManagerFilmComponent.prototype.postFilm = function (film) {
+        var _this = this;
+        this._subPostFilm = this.filmService.post(film).subscribe(function (newFilm) { return _this.films.push(new _film__WEBPACK_IMPORTED_MODULE_1__["Film"]().fromJson(newFilm)); });
+    };
+    Object.defineProperty(SmartManagerFilmComponent.prototype, "films", {
+        get: function () {
+            return this._films;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    SmartManagerFilmComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-smart-manager-film',
+            template: __webpack_require__(/*! ./smart-manager-film.component.html */ "./src/app/film/smart-manager-film/smart-manager-film.component.html"),
+            styles: [__webpack_require__(/*! ./smart-manager-film.component.css */ "./src/app/film/smart-manager-film/smart-manager-film.component.css")]
+        }),
+        __metadata("design:paramtypes", [_film_service__WEBPACK_IMPORTED_MODULE_2__["FilmService"]])
+    ], SmartManagerFilmComponent);
+    return SmartManagerFilmComponent;
 }());
 
 
@@ -788,6 +1391,42 @@ var RechercheResultatComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/serie.guard.ts":
+/*!********************************!*\
+  !*** ./src/app/serie.guard.ts ***!
+  \********************************/
+/*! exports provided: SerieGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SerieGuard", function() { return SerieGuard; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var SerieGuard = /** @class */ (function () {
+    function SerieGuard() {
+    }
+    SerieGuard.prototype.canActivate = function (next, state) {
+        return true;
+    };
+    SerieGuard = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        })
+    ], SerieGuard);
+    return SerieGuard;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/serie/serie.component.css":
 /*!*******************************************!*\
   !*** ./src/app/serie/serie.component.css ***!
@@ -806,7 +1445,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n\r\n  <div class=\"col-sm-4\" *ngFor=\"let serie of seriePopulaire; let i = index\">\r\n\r\n      <div *ngIf=\"i<18\">\r\n\r\n          <div class=\"card mt-3 mb-3\">\r\n\r\n              <div class=\"card-header text-center\">\r\n\r\n                {{serie.first_air_date | date:\"mediumDate\"}}\r\n\r\n              </div>\r\n\r\n              <div class=\"card-body\">\r\n\r\n                  <img class=\"card-img-top img-fluid\" src=\"https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{serie.poster_path}}\" style=\"height: 460px\">\r\n                  <p class=\"text-center\">{{ serie.name }}</p>\r\n                  <a routerLink=\"/detail-serie/{{serie.id}}\" class=\"btn btn-block btn-info\">Details</a>\r\n              </div>\r\n\r\n          </div>\r\n\r\n      </div>\r\n\r\n  </div>\r\n\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\r\n\r\n  <div class=\"col-sm-4\" *ngFor=\"let serie of seriePopulaire; let i = index\">\r\n\r\n      <div *ngIf=\"i<18\">\r\n\r\n          <div class=\"card mt-3 mb-3\">\r\n\r\n              <div class=\"card-header text-center\">\r\n\r\n                {{serie.first_air_date | date:\"mediumDate\"}}\r\n\r\n              </div>\r\n\r\n              <div class=\"card-body\">\r\n\r\n                  <img class=\"card-img-top img-fluid\" src=\"https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{serie.poster_path}}\" style=\"height: 460px\">\r\n                  <p class=\"text-center\">{{ serie.name }}</p>\r\n                  <a routerLink=\"/detail-serie/{{serie.id}}\" class=\"btn btn-block btn-info\" (click)=\"getSerieApiId(serie.id)\">Details</a>\r\n              </div>\r\n\r\n          </div>\r\n\r\n      </div>\r\n\r\n  </div>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -843,6 +1482,9 @@ var SerieComponent = /** @class */ (function () {
     SerieComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.serieService.getSeriePopulaire().subscribe(function (data) { _this.seriePopulaire = data['results']; });
+    };
+    SerieComponent.prototype.getSerieApiId = function (id) {
+        localStorage.setItem("serie", String(id));
     };
     SerieComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -926,7 +1568,7 @@ module.exports = "ody {\r\n  background: #eee !important;\r\n}\r\n\r\n.wrapper {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\r\n  <form class=\"form-signin\" (submit)=\"login()\">\r\n    <h2 class=\"form-signin-heading\">Connexion</h2>\r\n    <input type=\"text\" class=\"form-control\" name=\"username\" placeholder=\"Nom d'utilisateur\" required=\"\" autofocus=\"\" [(ngModel)]=\"utilisateurTmp.username\"/>\r\n    <input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Mot de passe\" required=\"\" [(ngModel)]=\"utilisateurTmp.password\"/>\r\n    <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Se connecter</button>\r\n  </form>\r\n</div>\r\n\r\n"
+module.exports = "<div class=\"wrapper\">\r\n  <form class=\"form-signin\" (submit)=\"login()\">\r\n    <h2 class=\"form-signin-heading\">Connexion</h2>\r\n    <input type=\"text\" class=\"form-control\" name=\"username\" placeholder=\"Nom d'utilisateur\" required=\"\" autofocus=\"\" [(ngModel)]=\"utilisateurTmp.username\"/>\r\n    <input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Mot de passe\" required=\"\" [(ngModel)]=\"utilisateurTmp.password\"/>\r\n    <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Se connecter</button>\r\n  </form>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -973,8 +1615,8 @@ var ConnexionComponent = /** @class */ (function () {
             if (u.username == this._utilisateurTmp.username) {
                 if (u.password == this._utilisateurTmp.password) {
                     this.utilisateurService.setLoggedIn(u);
-                    this.router.navigate(['accueil']);
                     localStorage.setItem('utilisateur', String(u.id));
+                    this.router.navigate(['accueil']);
                 }
             }
         }

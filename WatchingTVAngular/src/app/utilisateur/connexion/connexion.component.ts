@@ -29,8 +29,8 @@ export class ConnexionComponent implements OnInit {
       if(u.username == this._utilisateurTmp.username){
         if(u.password == this._utilisateurTmp.password){
           this.utilisateurService.setLoggedIn(u);
+          localStorage.setItem('utilisateur', String(u.id));
           this.router.navigate(['accueil']);
-          localStorage.setItem('utilisateur', String(u.id))
         }
       }
     }
