@@ -40,19 +40,26 @@ export class DetailSerieComponent implements OnInit {
     return this._serieTmp;
   }
 
-  createFavori(elementType:String){
+  createFavori(){
+    if(!this.serieIsPresent())
+    this.serieTmp.title = this.serie.title;
+    this.serieTmp.overwiew = this.serie.overview;
+    this.serieTmp.season = this.serie.number_of_seasons;
+    this.serieTmp.season = this.serie.number_of_episodes;
+    this.serieTmp.status = this.serie.status;
+    this.serieTmp.releaseDate = this.serie.first_air_date;
+    this.serieTmp.voteAverage = this.serie.vote_average;
+    this.serieTmp.posterLink = "https://image.tmdb.org/t/p/w500/"+this.serie.poster_path;
 
-    /*
-    this.serieService.post(this.serieTmp).subscribe(newFilm => {
-      this.favoriTmp.element=newFilm.id;
-      this.favoriTmp.elementType="film";
+    this.serieService.post(this.serieTmp).subscribe(newSerie => {
+      this.favoriTmp.element=newSerie.id;
+      this.favoriTmp.elementType="serie";
       this.favoriTmp.utilisateur=+localStorage.getItem("utilisateur");
       this.favoriService.post(this.favoriTmp).subscribe();
     });
-
     this.broadcastFavoriCreated.sendFavori(this._favoriTmp);
 
-    this.reset();*/
+    this.reset();
   }
 
   reset(){
@@ -68,6 +75,10 @@ export class DetailSerieComponent implements OnInit {
   @Output()
   get serieCreated():EventEmitter<Serie>{
     return this._serieCreated;
+  }
+
+  serieIsPresent(){
+    return true;
   }
 
 }

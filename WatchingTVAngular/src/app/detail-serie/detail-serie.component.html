@@ -33,7 +33,7 @@
                     </span>
                   </li>
 
-                  <input *ngIf="authguard.canActivate() == true" type="button" class="btn btn-block btn-info" value="Ajouter à mes favoris" >
+                  <input *ngIf="authguard.canActivate() == true" (click)="createFavori()" type="button" class="btn btn-block btn-info" value="Ajouter à mes favoris" >
                 </ul>
               </div>
             </div>

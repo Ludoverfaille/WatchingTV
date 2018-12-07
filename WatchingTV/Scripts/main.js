@@ -194,15 +194,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _favori_gestion_favori_gestion_favori_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./favori/gestion-favori/gestion-favori.component */ "./src/app/favori/gestion-favori/gestion-favori.component.ts");
 /* harmony import */ var _favori_smart_manager_favori_smart_manager_favori_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./favori/smart-manager-favori/smart-manager-favori.component */ "./src/app/favori/smart-manager-favori/smart-manager-favori.component.ts");
 /* harmony import */ var _film_smart_manager_film_smart_manager_film_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./film/smart-manager-film/smart-manager-film.component */ "./src/app/film/smart-manager-film/smart-manager-film.component.ts");
-/* harmony import */ var _film_guard__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./film.guard */ "./src/app/film.guard.ts");
-/* harmony import */ var _serie_guard__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./serie.guard */ "./src/app/serie.guard.ts");
+/* harmony import */ var _serie_smart_manager_serie_smart_manager_serie_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./serie/smart-manager-serie/smart-manager-serie.component */ "./src/app/serie/smart-manager-serie/smart-manager-serie.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -252,12 +250,10 @@ var routes = [
     },
     {
         path: "detail-film/:filmID",
-        canActivate: [_film_guard__WEBPACK_IMPORTED_MODULE_23__["FilmGuard"]],
         component: _detail_film_detail_film_component__WEBPACK_IMPORTED_MODULE_14__["DetailFilmComponent"]
     },
     {
         path: "detail-serie/:serieID",
-        canActivate: [_serie_guard__WEBPACK_IMPORTED_MODULE_24__["SerieGuard"]],
         component: _detail_serie_detail_serie_component__WEBPACK_IMPORTED_MODULE_15__["DetailSerieComponent"]
     },
     {
@@ -285,6 +281,7 @@ var AppModule = /** @class */ (function () {
                 _favori_gestion_favori_gestion_favori_component__WEBPACK_IMPORTED_MODULE_20__["GestionFavoriComponent"],
                 _favori_smart_manager_favori_smart_manager_favori_component__WEBPACK_IMPORTED_MODULE_21__["SmartManagerFavoriComponent"],
                 _film_smart_manager_film_smart_manager_film_component__WEBPACK_IMPORTED_MODULE_22__["SmartManagerFilmComponent"],
+                _serie_smart_manager_serie_smart_manager_serie_component__WEBPACK_IMPORTED_MODULE_23__["SmartManagerSerieComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -292,7 +289,7 @@ var AppModule = /** @class */ (function () {
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_12__["HttpClientModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forRoot(routes)
             ],
-            providers: [_film_film_service__WEBPACK_IMPORTED_MODULE_10__["FilmService"], _serie_serie_service__WEBPACK_IMPORTED_MODULE_13__["SerieService"], _utilisateur_utilisateur_service__WEBPACK_IMPORTED_MODULE_18__["UtilisateurService"], _authguard_guard__WEBPACK_IMPORTED_MODULE_19__["AuthguardGuard"], _film_guard__WEBPACK_IMPORTED_MODULE_23__["FilmGuard"], _serie_guard__WEBPACK_IMPORTED_MODULE_24__["SerieGuard"]],
+            providers: [_film_film_service__WEBPACK_IMPORTED_MODULE_10__["FilmService"], _serie_serie_service__WEBPACK_IMPORTED_MODULE_13__["SerieService"], _utilisateur_utilisateur_service__WEBPACK_IMPORTED_MODULE_18__["UtilisateurService"], _authguard_guard__WEBPACK_IMPORTED_MODULE_19__["AuthguardGuard"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
         })
     ], AppModule);
@@ -482,9 +479,8 @@ var DetailFilmComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    DetailFilmComponent.prototype.createFavori = function (elementType) {
+    DetailFilmComponent.prototype.createFavori = function () {
         var _this = this;
-        this.filmTmp.id = this.film.id;
         this.filmTmp.title = this.film.title;
         this.filmTmp.overwiew = this.film.overview;
         this.filmTmp.releaseDate = this.film.release_date;
@@ -560,7 +556,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n\r\n  <div *ngIf=\"serie\">\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-12\">\r\n        <div class=\"card mt-5 mb-5\">\r\n          <div class=\"card-header\">\r\n            {{ serie.name }}\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-5\">\r\n                <img src=\"https://image.tmdb.org/t/p/w500/{{ serie.poster_path }}\"  class=\"img-fluid\" alt=\"{{ serie.title }}\">\r\n              </div>\r\n              <div class=\"col-sm-7\">\r\n                <ul class=\"list-group\">\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Date de sortie: </strong> {{ serie.first_air_date | date:'dd-MM-yyyy' }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Résumé: </strong> {{ serie.overview }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Nombre de saison: </strong> {{ serie.number_of_seasons }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Avis des utilisateurs: </strong> {{ serie.average }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Genre: </strong>\r\n                    <span *ngFor=\"let genre of serie.genres\" class=\"badge badge-primary mr-2\">\r\n                      {{ genre.name }}\r\n                    </span>\r\n                  </li>\r\n\r\n                  <input *ngIf=\"authguard.canActivate() == true\" type=\"button\" class=\"btn btn-block btn-info\" value=\"Ajouter à mes favoris\" >\r\n                </ul>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div><!-- /.card -->\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n\r\n"
+module.exports = "<div class=\"container\">\r\n\r\n  <div *ngIf=\"serie\">\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-12\">\r\n        <div class=\"card mt-5 mb-5\">\r\n          <div class=\"card-header\">\r\n            {{ serie.name }}\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-5\">\r\n                <img src=\"https://image.tmdb.org/t/p/w500/{{ serie.poster_path }}\"  class=\"img-fluid\" alt=\"{{ serie.title }}\">\r\n              </div>\r\n              <div class=\"col-sm-7\">\r\n                <ul class=\"list-group\">\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Date de sortie: </strong> {{ serie.first_air_date | date:'dd-MM-yyyy' }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Résumé: </strong> {{ serie.overview }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Nombre de saison: </strong> {{ serie.number_of_seasons }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Avis des utilisateurs: </strong> {{ serie.average }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Genre: </strong>\r\n                    <span *ngFor=\"let genre of serie.genres\" class=\"badge badge-primary mr-2\">\r\n                      {{ genre.name }}\r\n                    </span>\r\n                  </li>\r\n\r\n                  <input *ngIf=\"authguard.canActivate() == true\" (click)=\"createFavori()\" type=\"button\" class=\"btn btn-block btn-info\" value=\"Ajouter à mes favoris\" >\r\n                </ul>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div><!-- /.card -->\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -634,18 +630,25 @@ var DetailSerieComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    DetailSerieComponent.prototype.createFavori = function (elementType) {
-        /*
-        this.serieService.post(this.serieTmp).subscribe(newFilm => {
-          this.favoriTmp.element=newFilm.id;
-          this.favoriTmp.elementType="film";
-          this.favoriTmp.utilisateur=+localStorage.getItem("utilisateur");
-          this.favoriService.post(this.favoriTmp).subscribe();
+    DetailSerieComponent.prototype.createFavori = function () {
+        var _this = this;
+        if (!this.serieIsPresent())
+            this.serieTmp.title = this.serie.title;
+        this.serieTmp.overwiew = this.serie.overview;
+        this.serieTmp.season = this.serie.number_of_seasons;
+        this.serieTmp.season = this.serie.number_of_episodes;
+        this.serieTmp.status = this.serie.status;
+        this.serieTmp.releaseDate = this.serie.first_air_date;
+        this.serieTmp.voteAverage = this.serie.vote_average;
+        this.serieTmp.posterLink = "https://image.tmdb.org/t/p/w500/" + this.serie.poster_path;
+        this.serieService.post(this.serieTmp).subscribe(function (newSerie) {
+            _this.favoriTmp.element = newSerie.id;
+            _this.favoriTmp.elementType = "serie";
+            _this.favoriTmp.utilisateur = +localStorage.getItem("utilisateur");
+            _this.favoriService.post(_this.favoriTmp).subscribe();
         });
-    
         this.broadcastFavoriCreated.sendFavori(this._favoriTmp);
-    
-        this.reset();*/
+        this.reset();
     };
     DetailSerieComponent.prototype.reset = function () {
         this._serieTmp = new _serie_serie__WEBPACK_IMPORTED_MODULE_4__["Serie"];
@@ -665,6 +668,9 @@ var DetailSerieComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    DetailSerieComponent.prototype.serieIsPresent = function () {
+        return true;
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
         __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]),
@@ -977,42 +983,6 @@ var SmartManagerFavoriComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_favori_service__WEBPACK_IMPORTED_MODULE_1__["FavoriService"]])
     ], SmartManagerFavoriComponent);
     return SmartManagerFavoriComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/film.guard.ts":
-/*!*******************************!*\
-  !*** ./src/app/film.guard.ts ***!
-  \*******************************/
-/*! exports provided: FilmGuard */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FilmGuard", function() { return FilmGuard; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-var FilmGuard = /** @class */ (function () {
-    function FilmGuard() {
-    }
-    FilmGuard.prototype.canActivate = function (next, state) {
-        return true;
-    };
-    FilmGuard = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
-            providedIn: 'root'
-        })
-    ], FilmGuard);
-    return FilmGuard;
 }());
 
 
@@ -1558,42 +1528,6 @@ var RechercheResultatComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/serie.guard.ts":
-/*!********************************!*\
-  !*** ./src/app/serie.guard.ts ***!
-  \********************************/
-/*! exports provided: SerieGuard */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SerieGuard", function() { return SerieGuard; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-var SerieGuard = /** @class */ (function () {
-    function SerieGuard() {
-    }
-    SerieGuard.prototype.canActivate = function (next, state) {
-        return true;
-    };
-    SerieGuard = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
-            providedIn: 'root'
-        })
-    ], SerieGuard);
-    return SerieGuard;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/serie/serie.component.css":
 /*!*******************************************!*\
   !*** ./src/app/serie/serie.component.css ***!
@@ -1692,18 +1626,27 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var SerieService = /** @class */ (function () {
-    function SerieService(_http) {
-        this._http = _http;
+    function SerieService(http) {
+        this.http = http;
         this._serie_url = "https://api.themoviedb.org/3/";
         this._api_key = "bfb8d0b05e92cf528ef802c947b095b0";
     }
+    SerieService_1 = SerieService;
+    SerieService.prototype.query = function () {
+        return this.http.get(SerieService_1.URL_API_SERIE);
+    };
+    SerieService.prototype.post = function (serie) {
+        return this.http.post(SerieService_1.URL_API_SERIE, serie.toJson());
+    };
     SerieService.prototype.getSerie = function (id) {
-        return this._http.get(this._serie_url + "tv/" + id + "?api_key=" + this._api_key + "&language=fr");
+        return this.http.get(this._serie_url + "tv/" + id + "?api_key=" + this._api_key + "&language=fr");
     };
     SerieService.prototype.getSeriePopulaire = function () {
-        return this._http.get(this._serie_url + 'discover/tv?sort_by=popularity.desc' + '&api_key=' + this._api_key + '&language=fr');
+        return this.http.get(this._serie_url + 'discover/tv?sort_by=popularity.desc' + '&api_key=' + this._api_key + '&language=fr');
     };
-    SerieService = __decorate([
+    var SerieService_1;
+    SerieService.URL_API_SERIE = "/api/serie";
+    SerieService = SerieService_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
@@ -1854,6 +1797,103 @@ var Serie = /** @class */ (function () {
         };
     };
     return Serie;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/serie/smart-manager-serie/smart-manager-serie.component.css":
+/*!*****************************************************************************!*\
+  !*** ./src/app/serie/smart-manager-serie/smart-manager-serie.component.css ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/serie/smart-manager-serie/smart-manager-serie.component.html":
+/*!******************************************************************************!*\
+  !*** ./src/app/serie/smart-manager-serie/smart-manager-serie.component.html ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<app-detail-serie (serieCreated)=\"postSerie($event)\"></app-detail-serie>\n"
+
+/***/ }),
+
+/***/ "./src/app/serie/smart-manager-serie/smart-manager-serie.component.ts":
+/*!****************************************************************************!*\
+  !*** ./src/app/serie/smart-manager-serie/smart-manager-serie.component.ts ***!
+  \****************************************************************************/
+/*! exports provided: SmartManagerSerieComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SmartManagerSerieComponent", function() { return SmartManagerSerieComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _serie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../serie */ "./src/app/serie/serie.ts");
+/* harmony import */ var _serie_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../serie.service */ "./src/app/serie/serie.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var SmartManagerSerieComponent = /** @class */ (function () {
+    function SmartManagerSerieComponent(serieService) {
+        this.serieService = serieService;
+        this._series = [];
+    }
+    SmartManagerSerieComponent.prototype.ngOnInit = function () {
+        this.getSeries();
+    };
+    SmartManagerSerieComponent.prototype.ngOnDestroy = function () {
+        if (this._subQuerySerie) {
+            this._subQuerySerie.unsubscribe();
+        }
+        if (this._subPostSerie) {
+            this._subPostSerie.unsubscribe();
+        }
+    };
+    SmartManagerSerieComponent.prototype.getSeries = function () {
+        var _this = this;
+        this._subQuerySerie = this.serieService
+            .query()
+            .subscribe(function (series) {
+            return _this._series = series.map(function (serie) { return new _serie__WEBPACK_IMPORTED_MODULE_1__["Serie"]().fromJson(serie); });
+        });
+    };
+    SmartManagerSerieComponent.prototype.postSerie = function (serie) {
+        var _this = this;
+        this._subPostSerie = this.serieService.post(serie).subscribe(function (newSerie) { return _this.series.push(new _serie__WEBPACK_IMPORTED_MODULE_1__["Serie"]().fromJson(newSerie)); });
+    };
+    Object.defineProperty(SmartManagerSerieComponent.prototype, "series", {
+        get: function () {
+            return this._series;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    SmartManagerSerieComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-smart-manager-serie',
+            template: __webpack_require__(/*! ./smart-manager-serie.component.html */ "./src/app/serie/smart-manager-serie/smart-manager-serie.component.html"),
+            styles: [__webpack_require__(/*! ./smart-manager-serie.component.css */ "./src/app/serie/smart-manager-serie/smart-manager-serie.component.css")]
+        }),
+        __metadata("design:paramtypes", [_serie_service__WEBPACK_IMPORTED_MODULE_2__["SerieService"]])
+    ], SmartManagerSerieComponent);
+    return SmartManagerSerieComponent;
 }());
 
 

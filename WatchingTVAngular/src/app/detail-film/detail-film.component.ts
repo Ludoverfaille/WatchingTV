@@ -40,8 +40,7 @@ export class DetailFilmComponent implements OnInit {
     return this._filmTmp;
   }
 
-  createFavori(elementType:String){
-    this.filmTmp.id = this.film.id;
+  createFavori(){
     this.filmTmp.title=this.film.title;
     this.filmTmp.overwiew=this.film.overview;
     this.filmTmp.releaseDate=this.film.release_date;

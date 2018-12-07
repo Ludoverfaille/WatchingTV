@@ -22,8 +22,7 @@ import {AuthguardGuard} from './authguard.guard';
 import { GestionFavoriComponent } from './favori/gestion-favori/gestion-favori.component';
 import { SmartManagerFavoriComponent } from './favori/smart-manager-favori/smart-manager-favori.component';
 import { SmartManagerFilmComponent } from './film/smart-manager-film/smart-manager-film.component';
-import {FilmGuard} from './film.guard';
-import {SerieGuard} from './serie.guard';
+import { SmartManagerSerieComponent } from './serie/smart-manager-serie/smart-manager-serie.component';
 
 const routes:Routes =[
   {
@@ -50,12 +49,10 @@ const routes:Routes =[
   },
   {
     path: "detail-film/:filmID",
-    canActivate: [FilmGuard],
     component:DetailFilmComponent
   },
   {
     path: "detail-serie/:serieID",
-    canActivate: [SerieGuard],
     component:DetailSerieComponent
   },
   {
@@ -83,6 +80,7 @@ const routes:Routes =[
     GestionFavoriComponent,
     SmartManagerFavoriComponent,
     SmartManagerFilmComponent,
+    SmartManagerSerieComponent,
 
   ],
   imports: [
@@ -91,7 +89,7 @@ const routes:Routes =[
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [FilmService,SerieService,UtilisateurService, AuthguardGuard, FilmGuard, SerieGuard],
+  providers: [FilmService,SerieService,UtilisateurService, AuthguardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
