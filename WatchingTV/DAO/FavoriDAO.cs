@@ -7,7 +7,7 @@ namespace WatchingTV.DAO
 {
     public class FavoriDAO
     {
-        public static readonly string TABLE_NAME = "Commentaire";
+        public static readonly string TABLE_NAME = "Favori";
         public static readonly string COLUMN_ID = "Id";
         public static readonly string COLUMN_ELEMENT = "Element";
         public static readonly string COLUMN_ELEMENTTYPE = "ElementType";
