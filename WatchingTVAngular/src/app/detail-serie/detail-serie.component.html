@@ -15,7 +15,13 @@
               <div class="col-sm-7">
                 <ul class="list-group">
                   <li class="list-group-item">
-                    <strong>Date de sortie: </strong> {{ serie.first_air_date | date:'dd-MM-yyyy' }}
+                    <strong>Premiére diffusion: </strong> {{ serie.first_air_date | date:'dd MMMM yyyy' }}
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Crée par: </strong>
+                    <span *ngFor="let crea of serie.created_by" class="badge badge-primary mr-2">
+                      {{ crea.name }}
+                    </span>
                   </li>
                   <li class="list-group-item">
                     <strong>Résumé: </strong> {{ serie.overview }}
@@ -24,7 +30,14 @@
                     <strong>Nombre de saison: </strong> {{ serie.number_of_seasons }}
                   </li>
                   <li class="list-group-item">
-                    <strong>Avis des utilisateurs: </strong> {{ serie.average }}
+                    <strong>Avis des utilisateurs: </strong> {{ serie.vote_average }} / 10
+                  </li>
+
+                  <li class="list-group-item">
+                    <strong>Network: </strong>
+                    <span *ngFor="let net of serie.networks">
+                      {{ net.name }}
+                    </span>
                   </li>
                   <li class="list-group-item">
                     <strong>Genre: </strong>
@@ -32,8 +45,8 @@
                       {{ genre.name }}
                     </span>
                   </li>
-
-                  <input *ngIf="authguard.canActivate() == true" (click)="createFavori()" type="button" class="btn btn-block btn-info" value="Ajouter à mes favoris" >
+                  <button *ngIf="authguard.canActivate() == true" (click)="createFavori()" type="button" class="btn btn-block btn-info" value="Ajouter à mes favoris">Ajoter à mes favoris</button>
+                  <button *ngIf="!authguard.canActivate()" class="btn btn-block btn-info">Vous devez être connecté pour ajouter cette série dans vos favoris</button>
                 </ul>
               </div>
             </div>

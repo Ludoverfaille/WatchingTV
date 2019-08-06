@@ -15,16 +15,28 @@
               <div class="col-sm-7">
                 <ul class="list-group">
                   <li class="list-group-item">
-                    <strong>Date de sortie: </strong> {{ film.release_date | date:'dd-MM-yyyy' }}
+                    <strong>Date de sortie: </strong> {{ film.release_date | date:'dd MMMM yyyy' }}
                   </li>
                   <li class="list-group-item">
                     <strong>Résumé: </strong> {{ film.overview }}
                   </li>
                   <li class="list-group-item">
+                    <strong>Avis des utilisateurs: </strong> {{ film.vote_average }} / 10
+                  </li>
+                  <li class="list-group-item">
                     <strong>Durée: </strong> {{ film.runtime }} minutes
                   </li>
                   <li class="list-group-item">
-                    <strong>Budget: </strong> {{ film.budget }}
+                    <strong>BoxOffice: </strong> {{ film.revenue }} dollars
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Budget: </strong> {{ film.budget }} dollars
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Production: </strong>
+                    <span *ngFor="let prod of film.production_companies" >
+                      {{ prod.name }}
+                    </span>
                   </li>
                   <li class="list-group-item">
                     <strong>Genre: </strong>
@@ -33,6 +45,7 @@
                     </span>
                   </li>
                   <button *ngIf="authguard.canActivate() == true" (click)="createFavori()" class="btn btn-block btn-info" value="Ajouter à mes favoris">Ajouter à mes favoris</button>
+                  <button *ngIf="!authguard.canActivate()" class="btn btn-block btn-info">Vous devez être connecté pour ajouter ce film dans vos favoris</button>
                 </ul>
               </div>
             </div>
