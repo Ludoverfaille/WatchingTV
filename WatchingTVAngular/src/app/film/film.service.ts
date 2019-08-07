@@ -14,9 +14,7 @@ export class FilmService {
 
   public static readonly URL_API_FILM:string="/api/film";
 
-  constructor(public http: HttpClient) {
-
-  }
+  constructor(public http: HttpClient) {  }
 
   public query():Observable<Film[]>{
     return this.http.get<Film[]>(FilmService.URL_API_FILM);

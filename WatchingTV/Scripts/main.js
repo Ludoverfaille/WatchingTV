@@ -329,7 +329,10 @@ var AuthguardGuard = /** @class */ (function () {
         this.utilisateur = utilisateur;
     }
     AuthguardGuard.prototype.canActivate = function (next, state) {
-        return this.utilisateur.getLoggedIn();
+        return this.utilisateur.isLoggedIn;
+    };
+    AuthguardGuard.prototype.getIdUtilisateur = function () {
+        return this.utilisateur.idUtilisateurLogged;
     };
     AuthguardGuard = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -902,7 +905,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div  class=\"col-sm-4\" *ngFor=\"let film of favFilms; let i = index\">\r\n    <a>hello</a>\r\n    <div *ngIf=\"i < 18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{ film.releaseDate}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"{{ film.posterLink }}\" style=\"height: 400px\">\r\n          <p class=\"text-center\">{{film.title}}</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<!--\r\n<div class=\"row\">\r\n  <div class=\"col-sm-4\" *ngFor=\"let serie of favSeries; let i = index\">\r\n    <div *ngIf=\"i<18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{serie.releaseDate | date:\"mediumDate\"}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{serie.posterLink}}\" style=\"height: 460px\">\r\n          <p class=\"text-center\">{{ serie.title }}</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>-->\r\n\r\n"
+module.exports = "<button (click)=\"getFavFilms()\">Charger les films</button>\r\n\r\n<div class=\"row\">\r\n  <div  class=\"col-sm-4\" *ngFor=\"let film of favFilms; let i = index\">\r\n    <div *ngIf=\"i < 18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{ film.releaseDate}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"{{ film.posterLink }}\" style=\"height: 400px\">\r\n          <p class=\"text-center\">{{film.title}}</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n<!--<div class=\"row\">\r\n  <div class=\"col-sm-4\" *ngFor=\"let serie of favSeries; let i = index\">\r\n    <div *ngIf=\"i<18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{serie.releaseDate | date:\"mediumDate\"}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{serie.posterLink}}\" style=\"height: 460px\">\r\n          <p class=\"text-center\">{{ serie.title }}</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>-->\r\n\r\n"
 
 /***/ }),
 
@@ -924,6 +927,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _film_film__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../film/film */ "./src/app/film/film.ts");
 /* harmony import */ var _film_film_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../film/film.service */ "./src/app/film/film.service.ts");
 /* harmony import */ var _serie_serie_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../serie/serie.service */ "./src/app/serie/serie.service.ts");
+/* harmony import */ var _authguard_guard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../authguard.guard */ "./src/app/authguard.guard.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -941,12 +945,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var GestionFavoriComponent = /** @class */ (function () {
-    function GestionFavoriComponent(favoriService, filmService, serieService, router) {
+    function GestionFavoriComponent(favoriService, filmService, serieService, router, authGuard) {
         this.favoriService = favoriService;
         this.filmService = filmService;
         this.serieService = serieService;
         this.router = router;
+        this.authGuard = authGuard;
         this._favoris = [];
         this._favoriTmp = new _favori__WEBPACK_IMPORTED_MODULE_1__["Favori"]();
         this._films = [];
@@ -955,19 +961,20 @@ var GestionFavoriComponent = /** @class */ (function () {
         this._favSeries = [];
     }
     GestionFavoriComponent.prototype.ngOnInit = function () {
+        this.getFavoris();
         this.getFavFilms();
         this.getFavSeries();
     };
     GestionFavoriComponent.prototype.getFavFilms = function () {
         this.getFavoris();
-        this.getFilms;
+        this.getFilms();
         for (var _i = 0, _a = this._favoris; _i < _a.length; _i++) {
             var fav = _a[_i];
-            if (fav.utilisateur == +localStorage.getItem("utilisateur")) {
+            if (fav.utilisateur == this.authGuard.getIdUtilisateur()) {
                 for (var _b = 0, _c = this._films; _b < _c.length; _b++) {
                     var film = _c[_b];
                     if (fav.element == film.id && fav.elementType == "film") {
-                        console.log("Film favori ajouté");
+                        console.log("Film" + film.title + " ajouté");
                         this._favFilms.push(film);
                     }
                 }
@@ -1035,13 +1042,34 @@ var GestionFavoriComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(GestionFavoriComponent.prototype, "favoris", {
+        get: function () {
+            return this._favoris;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(GestionFavoriComponent.prototype, "films", {
+        get: function () {
+            return this._films;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(GestionFavoriComponent.prototype, "series", {
+        get: function () {
+            return this._series;
+        },
+        enumerable: true,
+        configurable: true
+    });
     GestionFavoriComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-gestion-favori',
             template: __webpack_require__(/*! ./gestion-favori.component.html */ "./src/app/favori/gestion-favori/gestion-favori.component.html"),
             styles: [__webpack_require__(/*! ./gestion-favori.component.css */ "./src/app/favori/gestion-favori/gestion-favori.component.css")]
         }),
-        __metadata("design:paramtypes", [_favori_service__WEBPACK_IMPORTED_MODULE_2__["FavoriService"], _film_film_service__WEBPACK_IMPORTED_MODULE_6__["FilmService"], _serie_serie_service__WEBPACK_IMPORTED_MODULE_7__["SerieService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]])
+        __metadata("design:paramtypes", [_favori_service__WEBPACK_IMPORTED_MODULE_2__["FavoriService"], _film_film_service__WEBPACK_IMPORTED_MODULE_6__["FilmService"], _serie_serie_service__WEBPACK_IMPORTED_MODULE_7__["SerieService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"], _authguard_guard__WEBPACK_IMPORTED_MODULE_8__["AuthguardGuard"]])
     ], GestionFavoriComponent);
     return GestionFavoriComponent;
 }());
@@ -1500,7 +1528,7 @@ module.exports = ".form-control-borderless {\r\n  border: none;\r\n}\r\n\r\n.for
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light\" style=\"background-color: chocolate\">\r\n  <a class=\"navbar-brand\" routerLink=\"accueil\">WatchingTv</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarText\">\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item\">\r\n        <a routerLink=\"film\"  class=\"nav-link\">Film</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a routerLink=\"série\" class=\"nav-link\">Serie</a>\r\n      </li>\r\n      <li *ngIf=\"!authGuard.canActivate()\" class=\"nav-item\">\r\n        <a routerLink=\"connexion\" class=\"nav-link\">Se connecter</a>\r\n      </li>\r\n      <li *ngIf=\"!authGuard.canActivate()\" class=\"nav-item\">\r\n        <a routerLink=\"inscription\" class=\"nav-link\">S'inscrire</a>\r\n      </li>\r\n    </ul>\r\n    <form class=\"form-inline my-2 my-lg-0\" name=\"research\">\r\n      <input class=\"form-control mr-sm-2\" type=\"text\" name=\"recherches\" [(ngModel)]=\"resultat\" placeholder=\"Rechercher\">\r\n      <button routerLink=\"recherche-resultat/{{resultat}}\" class=\"btn btn-success my-2 my-sm-0\" name=\"button\" type=\"submit\"(click)=\"rechercher()\">Rechercher</button>\r\n    </form>\r\n  </div>\r\n</nav>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light\" style=\"background-color: chocolate\">\r\n  <a class=\"navbar-brand\" routerLink=\"accueil\">WatchingTv</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarText\">\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item\">\r\n        <a routerLink=\"film\"  class=\"nav-link\">Film</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a routerLink=\"série\" class=\"nav-link\">Serie</a>\r\n      </li>\r\n      <li *ngIf=\"!authGuard.canActivate()\" class=\"nav-item\">\r\n        <a routerLink=\"connexion\" class=\"nav-link\">Se connecter</a>\r\n      </li>\r\n      <li *ngIf=\"!authGuard.canActivate()\" class=\"nav-item\">\r\n        <a routerLink=\"inscription\" class=\"nav-link\">S'inscrire</a>\r\n      </li>\r\n      <li *ngIf=\"authGuard.canActivate()\" class=\"nav-item\">\r\n        <a routerLink=\"favoris\" class=\"nav-link\">Favoris</a>\r\n      </li>\r\n      <li *ngIf=\"authGuard.canActivate()\" class=\"nav-item\">\r\n        {{authGuard.getIdUtilisateur()}}\r\n      </li>\r\n    </ul>\r\n    <form class=\"form-inline my-2 my-lg-0\" name=\"research\">\r\n      <input class=\"form-control mr-sm-2\" type=\"text\" name=\"recherches\" [(ngModel)]=\"resultat\" placeholder=\"Rechercher\">\r\n      <button routerLink=\"recherche-resultat/{{resultat}}\" class=\"btn btn-success my-2 my-sm-0\" name=\"button\" type=\"submit\"(click)=\"rechercher()\">Rechercher</button>\r\n    </form>\r\n  </div>\r\n</nav>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -2117,6 +2145,7 @@ var ConnexionComponent = /** @class */ (function () {
             if (u.username == this._utilisateurTmp.username) {
                 if (u.password == this._utilisateurTmp.password) {
                     this.utilisateurService.setLoggedIn(u);
+                    this.utilisateurService.setIdUtilisateur(u);
                     localStorage.setItem('utilisateur', String(u.id));
                     this.router.navigate(['accueil']);
                 }
@@ -2387,12 +2416,26 @@ var UtilisateurService = /** @class */ (function () {
     UtilisateurService.prototype.delete = function (utilisateur) {
         return this.http.delete(UtilisateurService_1.URL_API_UTILISATEUR + "/" + utilisateur.id);
     };
-    UtilisateurService.prototype.getLoggedIn = function () {
-        return this._isLoggedIn;
-    };
+    Object.defineProperty(UtilisateurService.prototype, "isLoggedIn", {
+        get: function () {
+            return this._isLoggedIn;
+        },
+        enumerable: true,
+        configurable: true
+    });
     UtilisateurService.prototype.setLoggedIn = function (utilisateur) {
         this._isLoggedIn = !this._isLoggedIn;
     };
+    UtilisateurService.prototype.setIdUtilisateur = function (utilisateur) {
+        this._idUtilisateurLogged = utilisateur.id;
+    };
+    Object.defineProperty(UtilisateurService.prototype, "idUtilisateurLogged", {
+        get: function () {
+            return this._idUtilisateurLogged;
+        },
+        enumerable: true,
+        configurable: true
+    });
     var UtilisateurService_1;
     UtilisateurService.URL_API_UTILISATEUR = "/api/utilisateur";
     UtilisateurService = UtilisateurService_1 = __decorate([

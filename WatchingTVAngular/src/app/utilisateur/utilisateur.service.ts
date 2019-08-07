@@ -13,6 +13,7 @@ export class UtilisateurService {
   constructor(public http:HttpClient) { }
 
   private _isLoggedIn:boolean = false;
+  private _idUtilisateurLogged:number;
 
   public query():Observable<Utilisateur[]>{
     return this.http.get<Utilisateur[]>(UtilisateurService.URL_API_UTILISATEUR);
@@ -30,11 +31,21 @@ export class UtilisateurService {
     return this.http.delete<any>(UtilisateurService.URL_API_UTILISATEUR + "/" + utilisateur.id);
   }
 
-  getLoggedIn() {
+
+  get isLoggedIn(): boolean {
     return this._isLoggedIn;
   }
 
   setLoggedIn(utilisateur: Utilisateur) {
     this._isLoggedIn = !this._isLoggedIn;
+  }
+
+  setIdUtilisateur(utilisateur: Utilisateur){
+    this._idUtilisateurLogged = utilisateur.id;
+  }
+
+
+  get idUtilisateurLogged(): number {
+    return this._idUtilisateurLogged;
   }
 }

@@ -1,6 +1,7 @@
+<button (click)="getFavFilms()">Charger les films</button>
+
 <div class="row">
   <div  class="col-sm-4" *ngFor="let film of favFilms; let i = index">
-    <a>hello</a>
     <div *ngIf="i < 18">
       <div class="card mt-3 mb-3">
         <div class="card-header text-center">
@@ -14,8 +15,10 @@
     </div>
   </div>
 </div>
-<!--
-<div class="row">
+
+
+
+<!--<div class="row">
   <div class="col-sm-4" *ngFor="let serie of favSeries; let i = index">
     <div *ngIf="i<18">
       <div class="card mt-3 mb-3">

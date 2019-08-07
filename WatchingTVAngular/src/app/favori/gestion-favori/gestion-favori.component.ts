@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {Favori} from '../favori';
 import {Subscription} from 'rxjs';
 import {FavoriService} from '../favori.service';
@@ -7,6 +7,7 @@ import {Serie} from '../../serie/serie';
 import {Film} from '../../film/film';
 import {FilmService} from '../../film/film.service';
 import {SerieService} from '../../serie/serie.service';
+import {AuthguardGuard} from '../../authguard.guard';
 
 @Component({
   selector: 'app-gestion-favori',
@@ -27,21 +28,22 @@ export class GestionFavoriComponent implements OnInit {
   private _favSeries:Serie[]=[];
   private _subQuerySerie: Subscription;
 
-  constructor(public favoriService:FavoriService, public filmService:FilmService, public serieService:SerieService, private router: ActivatedRoute) { }
+  constructor(public favoriService:FavoriService, public filmService:FilmService, public serieService:SerieService, private router: ActivatedRoute, public authGuard: AuthguardGuard) { }
 
   ngOnInit(){
+    this.getFavoris();
     this.getFavFilms();
     this.getFavSeries();
   }
 
   getFavFilms(){
     this.getFavoris();
-    this.getFilms;
+    this.getFilms();
     for(let fav of this._favoris){
-      if(fav.utilisateur == +localStorage.getItem("utilisateur")){
+      if(fav.utilisateur == this.authGuard.getIdUtilisateur()){
         for(let film of this._films){
           if(fav.element == film.id && fav.elementType == "film") {
-            console.log("Film favori ajouté");
+            console.log("Film"+film.title+" ajouté");
             this._favFilms.push(film);
           }
         }
@@ -98,4 +100,17 @@ export class GestionFavoriComponent implements OnInit {
   get favSeries(): Serie[] {
     return this._favSeries;
   }
+
+  get favoris(): Favori[] {
+    return this._favoris;
+  }
+
+  get films(): Film[] {
+    return this._films;
+  }
+
+  get series(): Serie[] {
+    return this._series;
+  }
+
 }
