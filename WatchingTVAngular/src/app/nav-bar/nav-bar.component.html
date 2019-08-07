@@ -11,6 +11,9 @@
       <li class="nav-item">
         <a routerLink="série" class="nav-link">Serie</a>
       </li>
+      <li *ngIf="authGuard.canActivate()" class="nav-item">
+        <a routerLink="favoris" class="nav-link">Mes favoris</a>
+      </li>
       <li *ngIf="!authGuard.canActivate()" class="nav-item">
         <a routerLink="connexion" class="nav-link">Se connecter</a>
       </li>
