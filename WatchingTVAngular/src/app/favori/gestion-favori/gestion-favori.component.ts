@@ -32,7 +32,7 @@ export class GestionFavoriComponent implements OnInit {
 
   ngOnInit(){
     this.getFavoris();
-    this.getFavFilms();
+    this.getFavFilms()
     this.getFavSeries();
   }
 
@@ -55,10 +55,10 @@ export class GestionFavoriComponent implements OnInit {
     this.getFavoris();
     this.getSeries();
     for(let fav of this._favoris){
-      if(fav.utilisateur == +localStorage.getItem("utilisateur")){
+      if(fav.utilisateur == this.authGuard.getIdUtilisateur()){
         for(let serie of this._series){
           if(fav.element == serie.id && fav.elementType == "serie") {
-            console.log("Serie favori ajouté");
+            console.log("Serie"+serie.title+"ajouté");
             this._favSeries.push(serie);
           }
         }

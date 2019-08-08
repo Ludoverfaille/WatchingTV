@@ -11,9 +11,6 @@
       <li class="nav-item">
         <a routerLink="série" class="nav-link">Serie</a>
       </li>
-      <li *ngIf="authGuard.canActivate()" class="nav-item">
-        <a routerLink="favoris" class="nav-link">Mes favoris</a>
-      </li>
       <li *ngIf="!authGuard.canActivate()" class="nav-item">
         <a routerLink="connexion" class="nav-link">Se connecter</a>
       </li>
@@ -25,6 +22,9 @@
       </li>
       <li *ngIf="authGuard.canActivate()" class="nav-item">
         {{authGuard.getIdUtilisateur()}}
+      </li>
+      <li *ngIf="authGuard.canActivate()" class="nav-item">
+        <a class="nav-link">Deconnexion</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0" name="research">
