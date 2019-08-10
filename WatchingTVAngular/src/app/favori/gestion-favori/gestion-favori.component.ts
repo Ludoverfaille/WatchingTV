@@ -108,7 +108,6 @@ export class GestionFavoriComponent implements OnInit, AfterViewInit {
   }
 
   deleteFavori(id:Number,element:String) {
-    console.log(id, element);
     if (confirm("Voullez vous vraiment le retirer des favoris?")) {
       for (let favori of this._favoris) {
         if (favori.elementType == element && favori.element == id && favori.utilisateur == this.authGuard.getIdUtilisateur()) {
