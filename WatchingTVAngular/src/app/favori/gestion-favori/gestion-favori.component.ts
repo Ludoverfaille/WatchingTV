@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 import {AfterViewInit, Component, OnChanges, OnInit} from '@angular/core';
+=======
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+>>>>>>> Stashed changes
 import {Favori} from '../favori';
 import {Subscription} from 'rxjs';
 import {FavoriService} from '../favori.service';
@@ -8,6 +12,7 @@ import {Film} from '../../film/film';
 import {FilmService} from '../../film/film.service';
 import {SerieService} from '../../serie/serie.service';
 import {AuthguardGuard} from '../../authguard.guard';
+import index from '@angular/cli/lib/cli';
 
 @Component({
   selector: 'app-gestion-favori',
@@ -19,6 +24,8 @@ export class GestionFavoriComponent implements OnInit, AfterViewInit {
   private _favoris:Favori[]=[];
   private _subQueryFavori:Subscription;
   private _favoriTmp: Favori = new Favori();
+
+  private _favoriDeleted:EventEmitter<Favori> = new EventEmitter()
 
   private _films:Film[]=[];
   private _favFilms:Film[]=[];
@@ -47,6 +54,20 @@ export class GestionFavoriComponent implements OnInit, AfterViewInit {
   }
 
   getFavFilms(){
+
+    for(let favoriteFilm of this._favFilms){
+      const indexToDelete=this
+        .favoris
+        .map(t=>t.id)
+        .indexOf(favoriteFilm.id);
+
+      if(indexToDelete == -1){
+        return;
+      }
+
+      this._favFilms.splice(indexToDelete,1);
+    }
+
     this.getFavoris();
     this.getFilms();
     for(let fav of this._favoris){
@@ -71,6 +92,18 @@ export class GestionFavoriComponent implements OnInit, AfterViewInit {
             console.log("Serie"+serie.title+"ajouté");
             this._favSeries.push(serie);
           }
+        }
+      }
+    }
+  }
+
+  deleteFavori(id:Number,element:String) {
+    console.log(id, element);
+    if (confirm("Voullez vous vraiment le retirer des favoris?")) {
+      for (let favori of this._favoris) {
+        if (favori.elementType == element && favori.element == id && favori.utilisateur == this.authGuard.getIdUtilisateur()) {
+          console.log(favori.id);
+          this._favoriDeleted.next(favori);
         }
       }
     }
@@ -116,6 +149,11 @@ export class GestionFavoriComponent implements OnInit, AfterViewInit {
     return this._favoris;
   }
 
+  @Input()
+  set favoris(value: Favori[]) {
+    this._favoris = value;
+  }
+
   get films(): Film[] {
     return this._films;
   }
@@ -125,7 +163,13 @@ export class GestionFavoriComponent implements OnInit, AfterViewInit {
   }
 
 
+<<<<<<< Updated upstream
   getFilmApiId(id: number) {
     localStorage.setItem("film",String(id))
+=======
+  @Output()
+  get favoriDeleted(): EventEmitter<Favori> {
+    return this._favoriDeleted;
+>>>>>>> Stashed changes
   }
 }

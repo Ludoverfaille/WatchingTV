@@ -15,6 +15,8 @@ export class AuthguardGuard implements CanActivate {
     return this.utilisateur.isLoggedIn;
   }
 
+
+
   getIdUtilisateur(): Observable<number> | Promise<number> | number {
     return this.utilisateur.idUtilisateurLogged;
   }

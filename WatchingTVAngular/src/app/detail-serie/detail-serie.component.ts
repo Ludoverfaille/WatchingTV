@@ -70,7 +70,10 @@ export class DetailSerieComponent implements OnInit {
       this.favoriTmp.utilisateur = +localStorage.getItem("utilisateur");
       this.favoriService.post(this.favoriTmp).subscribe();
     }
-    this.broadcastFavoriCreated.sendFavori(this._favoriTmp);
+
+    this._favoriCreated.next(this.favoriTmp);
+
+    // this.broadcastFavoriCreated.sendFavori(this._favoriTmp);
 
     this.reset();
   }

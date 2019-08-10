@@ -13,7 +13,7 @@ export class BroadcastFavoriCreateService {
 
   constructor() { }
 
-  public sendFavori(favori:Favori){
-    this.favoriCreatedSubject.next(favori);
-  }
+  // public sendFavori(favori:Favori){
+  //   this.favoriCreatedSubject.next(favori);
+  // }
 }

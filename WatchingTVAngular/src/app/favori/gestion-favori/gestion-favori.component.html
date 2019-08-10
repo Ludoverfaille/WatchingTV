@@ -8,8 +8,14 @@
           {{ film.releaseDate}}
         </div>
         <div class="card-body">
+<<<<<<< Updated upstream
           <img class="card-img-top img-fluid" src="{{ film.posterLink }}"  style="height: 400px">
           <p class="text-center">{{film.title}}</p>
+=======
+          <img class="card-img-top img-fluid" src="{{ film.posterLink }}" style="height: 400px">
+          <p class="text-center">{{film.title}} {{film.id}}</p>
+          <button (click)="deleteFavori(film.id,'film')" class="btn btn-block btn-info" >Supprimer le favori</button>
+>>>>>>> Stashed changes
         </div>
       </div>
     </div>

@@ -48,7 +48,7 @@ module.exports = "/*!\n * Bootstrap v4.1.3 (https://getbootstrap.com/)\n * Copyr
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* You can add global styles to this file, and also import other style files */\n"
+module.exports = "/* You can add global styles to this file, and also import other style files */\r\n"
 
 /***/ }),
 
@@ -580,8 +580,8 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\NICO-PC\Desktop\Helha 2018 - 2019\GitKraken\WatchingTV\WatchingTVAngular\node_modules\bootstrap\dist\css\bootstrap.css */"./node_modules/bootstrap/dist/css/bootstrap.css");
-module.exports = __webpack_require__(/*! C:\Users\NICO-PC\Desktop\Helha 2018 - 2019\GitKraken\WatchingTV\WatchingTVAngular\src\styles.css */"./src/styles.css");
+__webpack_require__(/*! D:\Data\Documents\Cours 2018 - 2019\GIT WatchingTV\GitKraken\WatchingTV\WatchingTVAngular\node_modules\bootstrap\dist\css\bootstrap.css */"./node_modules/bootstrap/dist/css/bootstrap.css");
+module.exports = __webpack_require__(/*! D:\Data\Documents\Cours 2018 - 2019\GIT WatchingTV\GitKraken\WatchingTV\WatchingTVAngular\src\styles.css */"./src/styles.css");
 
 
 /***/ })

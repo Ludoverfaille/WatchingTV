@@ -67,7 +67,9 @@ export class DetailFilmComponent implements OnInit {
       this.favoriService.post(this.favoriTmp).subscribe();
     }
 
-    this.broadcastFavoriCreated.sendFavori(this._favoriTmp);
+    this._favoriCreated.next(this.favoriTmp);
+
+    // this.broadcastFavoriCreated.sendFavori(this._favoriTmp);
 
     this.reset();
   }

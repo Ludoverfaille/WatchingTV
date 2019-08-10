@@ -1,1 +1,3 @@
-<app-gestion-favori (favoriCreated)="postFavori($event)"></app-gestion-favori>
+<app-gestion-favori (favoriCreated)="postFavori($event)"
+                    (favoriDeleted)="deleteFavori($event)"
+                    [favoris]="favoris"></app-gestion-favori>

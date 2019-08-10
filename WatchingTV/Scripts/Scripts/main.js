@@ -375,9 +375,12 @@ var BroadcastFavoriCreateService = /** @class */ (function () {
     function BroadcastFavoriCreateService() {
         this.favoriCreatedSubject = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](null);
     }
+<<<<<<< Updated upstream
     BroadcastFavoriCreateService.prototype.sendFavori = function (favori) {
         this.favoriCreatedSubject.next(favori);
     };
+=======
+>>>>>>> Stashed changes
     BroadcastFavoriCreateService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
@@ -409,7 +412,11 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+<<<<<<< Updated upstream
 module.exports = "<div class=\"container\">\r\n\r\n  <div *ngIf=\"film\">\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-12\">\r\n        <div class=\"card mt-5 mb-5\">\r\n          <div class=\"card-header\">\r\n            {{ film.title }}\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-5\">\r\n                <img src=\"https://image.tmdb.org/t/p/w500/{{ film.poster_path }}\" class=\"img-fluid\" alt=\"{{ film.title }}\">\r\n              </div>\r\n              <div class=\"col-sm-7\">\r\n                <ul class=\"list-group\">\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Date de sortie: </strong> {{ film.release_date | date:'dd MMMM yyyy' }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Résumé: </strong> {{ film.overview }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Avis des utilisateurs: </strong> {{ film.vote_average }} / 10\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Durée: </strong> {{ film.runtime }} minutes\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>BoxOffice: </strong> {{ film.revenue }} dollars\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Budget: </strong> {{ film.budget }} dollars\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Production: </strong>\r\n                    <span *ngFor=\"let prod of film.production_companies\" >\r\n                      {{ prod.name }}\r\n                    </span>\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Genre: </strong>\r\n                    <span *ngFor=\"let genre of film.genres\" class=\"badge badge-primary mr-2\">\r\n                      {{ genre.name }}\r\n                    </span>\r\n                  </li>\r\n                  <button *ngIf=\"authguard.canActivate() == true\" (click)=\"createFavori()\" class=\"btn btn-block btn-info\" value=\"Ajouter à mes favoris\">Ajouter à mes favoris</button>\r\n                  <button *ngIf=\"!authguard.canActivate()\" class=\"btn btn-block btn-info\">Vous devez être connecté pour ajouter ce film dans vos favoris</button>\r\n                </ul>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div><!-- /.card -->\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n"
+=======
+module.exports = "<div class=\"container\">\r\n\r\n  <div *ngIf=\"film\">\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-12\">\r\n        <div class=\"card mt-5 mb-5\">\r\n          <div class=\"card-header\">\r\n            {{ film.title }}\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-5\">\r\n                <img src=\"https://image.tmdb.org/t/p/w500/{{ film.poster_path }}\" class=\"img-fluid\" alt=\"{{ film.title }}\">\r\n              </div>\r\n              <div class=\"col-sm-7\">\r\n                <ul class=\"list-group\">\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Date de sortie: </strong> {{ film.release_date | date:'dd MMMM yyyy' }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Résumé: </strong> {{ film.overview }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Avis des utilisateurs: </strong> {{ film.vote_average }} / 10\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Durée: </strong> {{ film.runtime }} minutes\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>BoxOffice: </strong> {{ film.revenue }} dollars\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Budget: </strong> {{ film.budget }} dollars\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Production: </strong>\r\n                    <span *ngFor=\"let prod of film.production_companies\" >\r\n                      {{ prod.name }}\r\n                    </span>\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Genre: </strong>\r\n                    <span *ngFor=\"let genre of film.genres\" class=\"badge badge-primary mr-2\">\r\n                      {{ genre.name }}\r\n                    </span>\r\n                  </li>\r\n                  <button *ngIf=\"authguard.canActivate() == true\" (click)=\"createFavori()\" class=\"btn btn-block btn-info\" value=\"Ajouter à mes favoris\">Ajouter à mes favoris</button>\r\n                  <button *ngIf=\"!authguard.canActivate()\" class=\"btn btn-block btn-info\">Vous devez être connecté pour ajouter ce film dans vos favoris</button>\r\n                </ul>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n"
+>>>>>>> Stashed changes
 
 /***/ }),
 
@@ -506,7 +513,12 @@ var DetailFilmComponent = /** @class */ (function () {
             this.favoriTmp.utilisateur = +localStorage.getItem("utilisateur");
             this.favoriService.post(this.favoriTmp).subscribe();
         }
+<<<<<<< Updated upstream
         this.broadcastFavoriCreated.sendFavori(this._favoriTmp);
+=======
+        this._favoriCreated.next(this.favoriTmp);
+        // this.broadcastFavoriCreated.sendFavori(this._favoriTmp);
+>>>>>>> Stashed changes
         this.reset();
     };
     DetailFilmComponent.prototype.getFilms = function () {
@@ -689,7 +701,12 @@ var DetailSerieComponent = /** @class */ (function () {
             this.favoriTmp.utilisateur = +localStorage.getItem("utilisateur");
             this.favoriService.post(this.favoriTmp).subscribe();
         }
+<<<<<<< Updated upstream
         this.broadcastFavoriCreated.sendFavori(this._favoriTmp);
+=======
+        this._favoriCreated.next(this.favoriTmp);
+        // this.broadcastFavoriCreated.sendFavori(this._favoriTmp);
+>>>>>>> Stashed changes
         this.reset();
     };
     DetailSerieComponent.prototype.getSeries = function () {
@@ -905,7 +922,11 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+<<<<<<< Updated upstream
 module.exports = "<button (click)=\"getFavFilms()\">Charger les films</button>\r\n<button (click)=\"getFavSeries()\">Charger les séries</button>\r\n<div class=\"row\">\r\n  <div  class=\"col-sm-4\" *ngFor=\"let film of favFilms; let i = index\">\r\n    <div *ngIf=\"i < 18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{ film.releaseDate}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"{{ film.posterLink }}\" style=\"height: 400px\">\r\n          <p class=\"text-center\">{{film.title}}</p>\r\n          <a routerLink=\"/detail-film/{{film.id}}\" class=\"btn btn-block btn-info\" (click)=\"getFilmApiId(film.id)\">Details</a>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-sm-4\" *ngFor=\"let serie of favSeries; let i = index\">\r\n    <div *ngIf=\"i<18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{serie.releaseDate | date:\"mediumDate\"}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"{{serie.posterLink}}\" style=\"height: 400px\">\r\n          <p class=\"text-center\">{{ serie.title }}</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
+=======
+module.exports = "<button (click)=\"getFavFilms()\">Charger les films</button>\r\n<button (click)=\"getFavSeries()\">Charger les séries</button>\r\n<div class=\"row\">\r\n  <div  class=\"col-sm-4\" *ngFor=\"let film of favFilms; let i = index\">\r\n    <div *ngIf=\"i < 18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{ film.releaseDate}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"{{ film.posterLink }}\" style=\"height: 400px\">\r\n          <p class=\"text-center\">{{film.title}} {{film.id}}</p>\r\n          <button>Bouton de test</button>\r\n          <button (click)=\"deleteFavori(film.id,'film')\" class=\"btn btn-block btn-info\" >Supprimer le favori</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-sm-4\" *ngFor=\"let serie of favSeries; let i = index\">\r\n    <div *ngIf=\"i<18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{serie.releaseDate | date:\"mediumDate\"}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"{{serie.posterLink}}\" style=\"height: 400px\">\r\n          <p class=\"text-center\">{{ serie.title }}</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
+>>>>>>> Stashed changes
 
 /***/ }),
 
@@ -955,6 +976,10 @@ var GestionFavoriComponent = /** @class */ (function () {
         this.authGuard = authGuard;
         this._favoris = [];
         this._favoriTmp = new _favori__WEBPACK_IMPORTED_MODULE_1__["Favori"]();
+<<<<<<< Updated upstream
+=======
+        this._favoriDeleted = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+>>>>>>> Stashed changes
         this._films = [];
         this._favFilms = [];
         this._series = [];
@@ -965,6 +990,7 @@ var GestionFavoriComponent = /** @class */ (function () {
         this.getFavFilms();
         this.getFavSeries();
     };
+<<<<<<< Updated upstream
     GestionFavoriComponent.prototype.ngAfterViewInit = function () {
         // this._subQuerySerie = new Subscription()
         // this._subQueryFilm = new Subscription();
@@ -980,6 +1006,27 @@ var GestionFavoriComponent = /** @class */ (function () {
             if (fav.utilisateur == this.authGuard.getIdUtilisateur()) {
                 for (var _b = 0, _c = this._films; _b < _c.length; _b++) {
                     var film = _c[_b];
+=======
+    GestionFavoriComponent.prototype.getFavFilms = function () {
+        for (var _i = 0, _a = this._favFilms; _i < _a.length; _i++) {
+            var favoriteFilm = _a[_i];
+            var indexToDelete = this
+                .favoris
+                .map(function (t) { return t.id; })
+                .indexOf(favoriteFilm.id);
+            if (indexToDelete == -1) {
+                return;
+            }
+            this._favFilms.splice(indexToDelete, 1);
+        }
+        this.getFavoris();
+        this.getFilms();
+        for (var _b = 0, _c = this._favoris; _b < _c.length; _b++) {
+            var fav = _c[_b];
+            if (fav.utilisateur == this.authGuard.getIdUtilisateur()) {
+                for (var _d = 0, _e = this._films; _d < _e.length; _d++) {
+                    var film = _e[_d];
+>>>>>>> Stashed changes
                     if (fav.element == film.id && fav.elementType == "film") {
                         console.log("Film" + film.title + " ajouté");
                         this._favFilms.push(film);
@@ -1004,9 +1051,24 @@ var GestionFavoriComponent = /** @class */ (function () {
             }
         }
     };
+<<<<<<< Updated upstream
     GestionFavoriComponent.prototype.getFavoris = function () {
         var _this = this;
         console.log(this._subQueryFavori);
+=======
+    GestionFavoriComponent.prototype.deleteFavori = function (id, element) {
+        if (confirm("Voullez vous vraiment le retirer des favoris?")) {
+            for (var _i = 0, _a = this._favoris; _i < _a.length; _i++) {
+                var favori = _a[_i];
+                // if(favori.elementType==element && favori.element==id && favori.utilisateur==this.authGuard.getIdUtilisateur()){
+                this._favoriDeleted.next(favori);
+                // }
+            }
+        }
+    };
+    GestionFavoriComponent.prototype.getFavoris = function () {
+        var _this = this;
+>>>>>>> Stashed changes
         this._subQueryFavori = this.favoriService
             .query()
             .subscribe(function (favoris) {
@@ -1071,6 +1133,21 @@ var GestionFavoriComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+<<<<<<< Updated upstream
+=======
+    Object.defineProperty(GestionFavoriComponent.prototype, "favoriDeleted", {
+        get: function () {
+            return this._favoriDeleted;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]),
+        __metadata("design:paramtypes", [])
+    ], GestionFavoriComponent.prototype, "favoriDeleted", null);
+>>>>>>> Stashed changes
     GestionFavoriComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-gestion-favori',
@@ -1104,7 +1181,11 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+<<<<<<< Updated upstream
 module.exports = "<app-gestion-favori (favoriCreated)=\"postFavori($event)\"></app-gestion-favori>\r\n"
+=======
+module.exports = "<app-gestion-favori (favoriCreated)=\"postFavori($event)\"\n                    (favoriDeleted)=\"deleteFavori($event)\"\n></app-gestion-favori>\n"
+>>>>>>> Stashed changes
 
 /***/ }),
 
@@ -1148,6 +1229,12 @@ var SmartManagerFavoriComponent = /** @class */ (function () {
         if (this._subQueryFavori) {
             this._subPostFavori.unsubscribe();
         }
+<<<<<<< Updated upstream
+=======
+        if (this._subDeleteFavori) {
+            this._subDeleteFavori.unsubscribe();
+        }
+>>>>>>> Stashed changes
     };
     SmartManagerFavoriComponent.prototype.getFavoris = function () {
         var _this = this;
@@ -1168,6 +1255,30 @@ var SmartManagerFavoriComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+<<<<<<< Updated upstream
+=======
+    SmartManagerFavoriComponent.prototype.updateTodo = function (favori) {
+        this._subUpdateFavori = this.favoriService
+            .update(favori)
+            .subscribe(function () { return console.log("OK"); }, function () { return console.log("Problème update"); });
+    };
+    SmartManagerFavoriComponent.prototype.deleteFavori = function (favori) {
+        var _this = this;
+        this.favoriService
+            .delete(favori)
+            .subscribe(function () { return _this.deleteFavoriFromArray(favori); });
+    };
+    SmartManagerFavoriComponent.prototype.deleteFavoriFromArray = function (favori) {
+        var indexToDelete = this
+            .favoris
+            .map(function (t) { return t.id; })
+            .indexOf(favori.id);
+        if (indexToDelete == -1) {
+            return;
+        }
+        this.favoris.splice(indexToDelete, 1);
+    };
+>>>>>>> Stashed changes
     SmartManagerFavoriComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-smart-manager-favori',
@@ -1439,7 +1550,11 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+<<<<<<< Updated upstream
 module.exports = "<app-detail-film (filmCreated)=\"postFilm($event)\"></app-detail-film>\r\n"
+=======
+module.exports = "<app-detail-film (filmCreated)=\"postFilm($event)\"></app-detail-film>\n"
+>>>>>>> Stashed changes
 
 /***/ }),
 
@@ -2009,7 +2124,11 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+<<<<<<< Updated upstream
 module.exports = "<app-detail-serie (serieCreated)=\"postSerie($event)\"></app-detail-serie>\r\n"
+=======
+module.exports = "<app-detail-serie (serieCreated)=\"postSerie($event)\"></app-detail-serie>\n"
+>>>>>>> Stashed changes
 
 /***/ }),
 
@@ -2304,7 +2423,11 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+<<<<<<< Updated upstream
 module.exports = "<app-inscription (utilisateurCreated)=\"postUtilisateur($event)\"></app-inscription>\r\n"
+=======
+module.exports = "<app-inscription (utilisateurCreated)=\"postUtilisateur($event)\"></app-inscription>\n"
+>>>>>>> Stashed changes
 
 /***/ }),
 
@@ -2612,7 +2735,11 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< Updated upstream
 module.exports = __webpack_require__(/*! C:\Users\NICO-PC\Desktop\Helha 2018 - 2019\GitKraken\WatchingTV\WatchingTVAngular\src\main.ts */"./src/main.ts");
+=======
+module.exports = __webpack_require__(/*! D:\Data\Documents\Cours 2018 - 2019\GIT WatchingTV\GitKraken\WatchingTV\WatchingTVAngular\src\main.ts */"./src/main.ts");
+>>>>>>> Stashed changes
 
 
 /***/ })

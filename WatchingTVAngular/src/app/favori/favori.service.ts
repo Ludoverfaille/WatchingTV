@@ -27,4 +27,5 @@ export class FavoriService {
   public delete(favori:Favori): Observable<any>{
     return this.http.delete<any>(FavoriService.URL_API_FAVORI + "/" + favori.id);
   }
+
 }

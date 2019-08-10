@@ -13,6 +13,8 @@ export class SmartManagerFavoriComponent implements OnInit, OnDestroy {
   private _favoris:Favori[] = [];
   private _subQueryFavori: Subscription;
   private _subPostFavori: Subscription;
+  private _subUpdateFavori: Subscription;
+  private _subDeleteFavori: Subscription;
 
   constructor(public favoriService:FavoriService) { }
 
@@ -26,6 +28,9 @@ export class SmartManagerFavoriComponent implements OnInit, OnDestroy {
     }
     if(this._subQueryFavori){
       this._subPostFavori.unsubscribe();
+    }
+    if(this._subDeleteFavori){
+      this._subDeleteFavori.unsubscribe();
     }
   }
 
@@ -44,4 +49,33 @@ export class SmartManagerFavoriComponent implements OnInit, OnDestroy {
   get favoris(): Favori[] {
     return this._favoris;
   }
+
+  updateTodo(favori:Favori){
+    this._subUpdateFavori = this.favoriService
+      .update(favori)
+      .subscribe(()=>console.log("OK"),
+        ()=>console.log("Problème update"));
+  }
+
+  deleteFavori(favori:Favori){
+    this.favoriService
+      .delete(favori)
+      .subscribe(
+        ()=>this.deleteFavoriFromArray(favori));
+  }
+
+  deleteFavoriFromArray(favori:Favori){
+    const indexToDelete=this
+      .favoris
+      .map(t=>t.id)
+      .indexOf(favori.id);
+
+    if(indexToDelete == -1){
+      return;
+    }
+
+    this.favoris.splice(indexToDelete,1);
+  }
+
+
 }
