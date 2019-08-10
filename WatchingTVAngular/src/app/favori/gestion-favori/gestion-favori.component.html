@@ -1,5 +1,6 @@
 <button (click)="getFavFilms()">Charger les films</button>
 <button (click)="getFavSeries()">Charger les séries</button>
+
 <div class="row">
   <div  class="col-sm-4" *ngFor="let film of favFilms; let i = index">
     <div *ngIf="i < 18">
@@ -8,14 +9,9 @@
           {{ film.releaseDate}}
         </div>
         <div class="card-body">
-<<<<<<< Updated upstream
-          <img class="card-img-top img-fluid" src="{{ film.posterLink }}"  style="height: 400px">
-          <p class="text-center">{{film.title}}</p>
-=======
           <img class="card-img-top img-fluid" src="{{ film.posterLink }}" style="height: 400px">
           <p class="text-center">{{film.title}} {{film.id}}</p>
           <button (click)="deleteFavori(film.id,'film')" class="btn btn-block btn-info" >Supprimer le favori</button>
->>>>>>> Stashed changes
         </div>
       </div>
     </div>

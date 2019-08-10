@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-import {AfterViewInit, Component, OnChanges, OnInit} from '@angular/core';
-=======
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
->>>>>>> Stashed changes
+import {AfterViewInit,Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {Favori} from '../favori';
 import {Subscription} from 'rxjs';
 import {FavoriService} from '../favori.service';
@@ -83,6 +79,20 @@ export class GestionFavoriComponent implements OnInit, AfterViewInit {
   }
 
   getFavSeries(){
+
+    for(let favoriteSerie of this._favSeries){
+      const indexToDelete=this
+        .favoris
+        .map(t=>t.id)
+        .indexOf(favoriteSerie.id);
+
+      if(indexToDelete == -1){
+        return;
+      }
+
+      this._favSeries.splice(indexToDelete,1);
+    }
+
     this.getFavoris();
     this.getSeries();
     for(let fav of this._favoris){
@@ -162,14 +172,12 @@ export class GestionFavoriComponent implements OnInit, AfterViewInit {
     return this._series;
   }
 
-
-<<<<<<< Updated upstream
   getFilmApiId(id: number) {
-    localStorage.setItem("film",String(id))
-=======
+    localStorage.setItem("film", String(id))
+  }
+
   @Output()
   get favoriDeleted(): EventEmitter<Favori> {
     return this._favoriDeleted;
->>>>>>> Stashed changes
   }
 }
