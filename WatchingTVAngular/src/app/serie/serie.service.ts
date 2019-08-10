@@ -16,6 +16,7 @@ export class SerieService {
 
   constructor(public http: HttpClient) { }
 
+
   public query():Observable<Serie[]>{
     return this.http.get<Serie[]>(SerieService.URL_API_SERIE);
   }

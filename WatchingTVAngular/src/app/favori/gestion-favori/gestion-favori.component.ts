@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnChanges, OnInit} from '@angular/core';
 import {Favori} from '../favori';
 import {Subscription} from 'rxjs';
 import {FavoriService} from '../favori.service';
@@ -14,7 +14,7 @@ import {AuthguardGuard} from '../../authguard.guard';
   templateUrl: './gestion-favori.component.html',
   styleUrls: ['./gestion-favori.component.css']
 })
-export class GestionFavoriComponent implements OnInit {
+export class GestionFavoriComponent implements OnInit, AfterViewInit {
 
   private _favoris:Favori[]=[];
   private _subQueryFavori:Subscription;
@@ -28,12 +28,22 @@ export class GestionFavoriComponent implements OnInit {
   private _favSeries:Serie[]=[];
   private _subQuerySerie: Subscription;
 
-  constructor(public favoriService:FavoriService, public filmService:FilmService, public serieService:SerieService, private router: ActivatedRoute, public authGuard: AuthguardGuard) { }
+  constructor(public favoriService:FavoriService, public filmService:FilmService, public serieService:SerieService, private router: ActivatedRoute, public authGuard: AuthguardGuard) {
+
+  }
 
   ngOnInit(){
     this.getFavoris();
-    this.getFavFilms()
+    this.getFavFilms();
     this.getFavSeries();
+  }
+
+  ngAfterViewInit(): void {
+    // this._subQuerySerie = new Subscription()
+    // this._subQueryFilm = new Subscription();
+    // this._subQueryFavori = new Subscription();
+    // this.getFavFilms();
+    // this.getFavSeries();
   }
 
   getFavFilms(){
@@ -67,6 +77,7 @@ export class GestionFavoriComponent implements OnInit {
   }
 
   getFavoris(){
+    console.log(this._subQueryFavori);
     this._subQueryFavori = this.favoriService
       .query()
       .subscribe(favoris=>
@@ -113,4 +124,8 @@ export class GestionFavoriComponent implements OnInit {
     return this._series;
   }
 
+
+  getFilmApiId(id: number) {
+    localStorage.setItem("film",String(id))
+  }
 }
