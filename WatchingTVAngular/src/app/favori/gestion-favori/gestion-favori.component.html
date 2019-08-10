@@ -10,7 +10,8 @@
         </div>
         <div class="card-body">
           <img class="card-img-top img-fluid" src="{{ film.posterLink }}" style="height: 400px">
-          <p class="text-center">{{film.title}} {{film.id}}</p>
+          <p class="text-center">{{film.title}}</p>
+          <a routerLink="/detail-film/{{film.idFilm}}" class="btn btn-block btn-info" (click)="getFilmApiId(film.idFilm)">Details</a>
           <button (click)="deleteFavori(film.id,'film')" class="btn btn-block btn-info" >Supprimer le favori</button>
         </div>
       </div>

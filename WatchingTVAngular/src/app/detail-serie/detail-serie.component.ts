@@ -45,7 +45,8 @@ export class DetailSerieComponent implements OnInit {
 
   createFavori(){
     this._serieTmp = this.serieIsPresent();
-    if(this._serieTmp.title == "") {
+    if(this.serieTmp.title == "") {
+      this.serieTmp.idSerie = this.serie.id;
       this.serieTmp.title = this.serie.name;
       this.serieTmp.overwiew = this.serie.overview;
       this.serieTmp.season = this.serie.number_of_seasons;
@@ -55,8 +56,8 @@ export class DetailSerieComponent implements OnInit {
       this.serieTmp.voteAverage = this.serie.vote_average;
       this.serieTmp.posterLink = "https://image.tmdb.org/t/p/w500/" + this.serie.poster_path;
 
-
       this.serieService.post(this.serieTmp).subscribe(newSerie => {
+        this.favoriTmp.idAPI = this.serie.id;
         this.favoriTmp.element = newSerie.id;
         this.favoriTmp.elementType = "serie";
         this.favoriTmp.utilisateur = +localStorage.getItem("utilisateur");
@@ -64,7 +65,7 @@ export class DetailSerieComponent implements OnInit {
       });
     }
     else{
-
+      this.favoriTmp.idAPI = this.serie.id;
       this.favoriTmp.element = this._serieTmp.id;
       this.favoriTmp.elementType = "serie";
       this.favoriTmp.utilisateur = +localStorage.getItem("utilisateur");

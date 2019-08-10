@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "D:/Data/Documents/Cours 2018 - 2019/GIT WatchingTV/GitKraken/WatchingTV/WatchingTV/Scripts/Scripts",
+            "outputPath": "C:/Users/NICO-PC/Desktop/Helha 2018 - 2019/GitKraken/WatchingTV/WatchingTV/Scripts",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",

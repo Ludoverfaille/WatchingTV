@@ -1,6 +1,7 @@
 export class Film {
 
   private _id:number;
+  private _idFilm:number;
   private _title:string;
   private _overwiew:string;
   private _releaseDate:string;
@@ -8,7 +9,8 @@ export class Film {
   private _posterLink:string;
 
 
-  constructor(title: string="", overwiew: string="", releaseDate: string="", voteAverage: number=0, posterLink: string="") {
+  constructor(idFilm:number=0,title: string="", overwiew: string="", releaseDate: string="", voteAverage: number=0, posterLink: string="") {
+    this._idFilm = idFilm;
     this._title = title;
     this._overwiew = overwiew;
     this._releaseDate = releaseDate;
@@ -23,6 +25,14 @@ export class Film {
 
   set id(value: number) {
     this._id = value;
+  }
+
+  get idFilm():number{
+    return this._idFilm;
+  }
+
+  set idFilm(value:number){
+    this._idFilm = value;
   }
 
   get title(): string {
@@ -73,6 +83,7 @@ export class Film {
   public toJson():any{
     return{
       "id": this._id,
+      "idFilm": this._idFilm,
       "title": this._title,
       "overview": this._overwiew,
       "releaseDate": this._releaseDate,

@@ -47,6 +47,7 @@ export class DetailFilmComponent implements OnInit {
   createFavori(){
     this._filmTmp = this.filmIsPresent();
     if(this.filmTmp.title == ""){
+      this.filmTmp.idFilm = this.film.id;
       this.filmTmp.title = this.film.title;
       this.filmTmp.overwiew=this.film.overview;
       this.filmTmp.releaseDate=this.film.release_date;
@@ -54,6 +55,7 @@ export class DetailFilmComponent implements OnInit {
       this.filmTmp.posterLink="https://image.tmdb.org/t/p/w500/"+this.film.poster_path;
 
       this.filmService.post(this.filmTmp).subscribe(newFilm => {
+        this.favoriTmp.idAPI= this.film.id;
         this.favoriTmp.element=newFilm.id;
         this.favoriTmp.elementType="film";
         this.favoriTmp.utilisateur=+localStorage.getItem("utilisateur");
@@ -61,6 +63,7 @@ export class DetailFilmComponent implements OnInit {
       });
     }
     else{
+      this.favoriTmp.idAPI= this.film.id;
       this.favoriTmp.element=this._filmTmp.id;
       this.favoriTmp.elementType="film";
       this.favoriTmp.utilisateur=+localStorage.getItem("utilisateur");
@@ -101,7 +104,7 @@ export class DetailFilmComponent implements OnInit {
     this.getFilms();
     for(let f of this._films){
       if(f.title == this.film.title){
-        console.log("La série est déja présente");
+        console.log("La film est déja présente");
         return f;
       }
     }

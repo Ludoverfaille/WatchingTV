@@ -1,6 +1,7 @@
 export class Serie {
 
   private _id:number;
+  private _idSerie:number;
   private _title:string;
   private _overwiew:string;
   private _season:number;
@@ -11,7 +12,8 @@ export class Serie {
   private _posterLink:string;
 
 
-  constructor(title: string="", overwiew: string="", season: number=0, episode: number=0, status: string="", releaseDate: string="", voteAverage: number=0, posterLink: string="") {
+  constructor(idSerie:number=0,title: string="", overwiew: string="", season: number=0, episode: number=0, status: string="", releaseDate: string="", voteAverage: number=0, posterLink: string="") {
+    this._idSerie = idSerie;
     this._title = title;
     this._overwiew = overwiew;
     this._season = season;
@@ -28,6 +30,14 @@ export class Serie {
 
   set id(value: number) {
     this._id = value;
+  }
+
+  get idSerie(): number{
+    return this._idSerie;
+  }
+
+  set idSerie(value: number){
+    this._idSerie = value;
   }
 
   get title(): string {

@@ -9,6 +9,8 @@ namespace WatchingTV.Models
     {
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
+        [JsonProperty(PropertyName = "idSerie")]
+        public int IdSerie { get; set; }
         [JsonProperty(PropertyName = "title")]
         public string Title { get; set; }
         [JsonProperty(PropertyName = "overview")]
@@ -29,6 +31,7 @@ namespace WatchingTV.Models
         public Serie(SqlDataReader reader)
         {
             Id = Int32.Parse(reader[SerieDAO.COLUMN_ID].ToString());
+            IdSerie = Int32.Parse(reader[SerieDAO.COLUMN_IDSERIE].ToString());
             Title = reader[SerieDAO.COLUMN_TITLE].ToString();
             Overview = reader[SerieDAO.COLUMN_OVERVIEW].ToString();
             Season = Int32.Parse(reader[SerieDAO.COLUMN_SEASON].ToString());

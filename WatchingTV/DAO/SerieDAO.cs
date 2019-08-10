@@ -9,6 +9,7 @@ namespace WatchingTV.DAO
     {
         public static readonly string TABLE_NAME = "Serie";
         public static readonly string COLUMN_ID = "Id";
+        public static readonly string COLUMN_IDSERIE = "IdSerie";
         public static readonly string COLUMN_TITLE = "Title";
         public static readonly string COLUMN_OVERVIEW = "Overview";
         public static readonly string COLUMN_SEASON = "Season";
@@ -21,12 +22,12 @@ namespace WatchingTV.DAO
         public static readonly string QUERY = "SELECT * FROM " + TABLE_NAME;
         public static readonly string GET = QUERY + " WHERE " + COLUMN_ID + " = @id";
         public static readonly string CREATE = "INSERT INTO " + TABLE_NAME +
-            "(" + COLUMN_TITLE + ", " + COLUMN_OVERVIEW + ", " + COLUMN_SEASON + ", " + COLUMN_EPISODE + ", " + COLUMN_STATUS + 
+            "(" + COLUMN_IDSERIE + ", " + COLUMN_TITLE + ", " + COLUMN_OVERVIEW + ", " + COLUMN_SEASON + ", " + COLUMN_EPISODE + ", " + COLUMN_STATUS + 
             ", " + COLUMN_RELEASE_DATE + ", " + COLUMN_VOTE_AVERAGE + ", " + COLUMN_POSTER_LINK +
             ") OUTPUT INSERTED." + COLUMN_ID +
-            " VALUES(@title, @overview, @season, @episode, @status, @releaseDate, @voteAverage, @posterLink)";
+            " VALUES(@idSerie,@title, @overview, @season, @episode, @status, @releaseDate, @voteAverage, @posterLink)";
         public static readonly string UPDATE = "UPDATE " + TABLE_NAME +
-            " SET " + COLUMN_TITLE + " = @title, " + COLUMN_OVERVIEW + " = @overview, "
+            " SET " + COLUMN_IDSERIE + " = @idSerie, " + COLUMN_TITLE + " = @title, " + COLUMN_OVERVIEW + " = @overview, "
             + COLUMN_SEASON  + " = @season, " + COLUMN_EPISODE + " = @episode, " + COLUMN_STATUS + " = @status, "
             + COLUMN_RELEASE_DATE + " = @releaseDate, " + COLUMN_VOTE_AVERAGE + " = @voteAverage, "
             + COLUMN_POSTER_LINK + " = @posterLink WHERE " + COLUMN_ID + " = @id";
@@ -74,6 +75,7 @@ namespace WatchingTV.DAO
                 connection.Open();
 
                 SqlCommand command = new SqlCommand(CREATE, connection);
+                command.Parameters.AddWithValue("@idSerie", serie.IdSerie);
                 command.Parameters.AddWithValue("@title", serie.Title);
                 command.Parameters.AddWithValue("@overview", serie.Overview);
                 command.Parameters.AddWithValue("@season", serie.Season);
@@ -94,6 +96,7 @@ namespace WatchingTV.DAO
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(UPDATE, connection);
+                command.Parameters.AddWithValue("@idSerie", serie.IdSerie);
                 command.Parameters.AddWithValue("@title", serie.Title);
                 command.Parameters.AddWithValue("@overview", serie.Overview);
                 command.Parameters.AddWithValue("@season", serie.Season);

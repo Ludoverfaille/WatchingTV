@@ -406,7 +406,7 @@ module.exports = "#comment{\r\n  margin-left: 20px;\r\n  box-shadow: 0 2px 0 #e6
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n\r\n  <div *ngIf=\"film\">\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-12\">\r\n        <div class=\"card mt-5 mb-5\">\r\n          <div class=\"card-header\">\r\n            {{ film.title }}\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-5\">\r\n                <img src=\"https://image.tmdb.org/t/p/w500/{{ film.poster_path }}\" class=\"img-fluid\" alt=\"{{ film.title }}\">\r\n              </div>\r\n              <div class=\"col-sm-7\">\r\n                <ul class=\"list-group\">\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Date de sortie: </strong> {{ film.release_date | date:'dd MMMM yyyy' }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Résumé: </strong> {{ film.overview }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Avis des utilisateurs: </strong> {{ film.vote_average }} / 10\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Durée: </strong> {{ film.runtime }} minutes\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>BoxOffice: </strong> {{ film.revenue }} dollars\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Budget: </strong> {{ film.budget }} dollars\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Production: </strong>\r\n                    <span *ngFor=\"let prod of film.production_companies\" >\r\n                      {{ prod.name }}\r\n                    </span>\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Genre: </strong>\r\n                    <span *ngFor=\"let genre of film.genres\" class=\"badge badge-primary mr-2\">\r\n                      {{ genre.name }}\r\n                    </span>\r\n                  </li>\r\n                  <button *ngIf=\"authguard.canActivate() == true\" (click)=\"createFavori()\" class=\"btn btn-block btn-info\" value=\"Ajouter à mes favoris\">Ajouter à mes favoris</button>\r\n                  <button *ngIf=\"!authguard.canActivate()\" class=\"btn btn-block btn-info\">Vous devez être connecté pour ajouter ce film dans vos favoris</button>\r\n                </ul>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div id=\"wrap\">\r\n      <div id=\"main\">\r\n        <div class=\"row\">\r\n          <div class=\"col-md-5\">\r\n            <h3 class=\"heading\">Commentaires</h3>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    <div id=\"comment-message\" class=\"form-row\">\r\n      <textarea name = \"comment\" placeholder = \"Message\" id = \"comment\" ></textarea>\r\n    </div>\r\n    <input type=\"submit\" name=\"dsubmit\" id=\"commentSubmit\" value=\"Commenter\"/>\r\n  </div>\r\n\r\n</div>\r\n"
+module.exports = "<div class=\"container\">\r\n\r\n  <div *ngIf=\"film\">\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-12\">\r\n        <div class=\"card mt-5 mb-5\">\r\n          <div class=\"card-header\">\r\n            {{ film.title }}\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-5\">\r\n                <img src=\"https://image.tmdb.org/t/p/w500/{{ film.poster_path }}\" class=\"img-fluid\" alt=\"{{ film.title }}\">\r\n              </div>\r\n              <div class=\"col-sm-7\">\r\n                <ul class=\"list-group\">\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Date de sortie: </strong> {{ film.release_date | date:'dd MMMM yyyy' }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Résumé: </strong> {{ film.overview }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Avis des utilisateurs: </strong> {{ film.vote_average }} / 10\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                  <strong>Durée: </strong> {{ film.runtime }} minutes\r\n                </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>BoxOffice: </strong> {{ film.revenue }} dollars\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Budget: </strong> {{ film.budget }} dollars\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Production: </strong>\r\n                    <span *ngFor=\"let prod of film.production_companies\" >\r\n                      {{ prod.name }}\r\n                    </span>\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Genre: </strong>\r\n                    <span *ngFor=\"let genre of film.genres\" class=\"badge badge-primary mr-2\">\r\n                      {{ genre.name }}\r\n                    </span>\r\n                  </li>\r\n                  <button *ngIf=\"authguard.canActivate() == true\" (click)=\"createFavori()\" class=\"btn btn-block btn-info\" value=\"Ajouter à mes favoris\">Ajouter à mes favoris</button>\r\n                  <button *ngIf=\"!authguard.canActivate()\" class=\"btn btn-block btn-info\">Vous devez être connecté pour ajouter ce film dans vos favoris</button>\r\n                </ul>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div id=\"wrap\">\r\n      <div id=\"main\">\r\n        <div class=\"row\">\r\n          <div class=\"col-md-5\">\r\n            <h3 class=\"heading\">Commentaires</h3>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    <div id=\"comment-message\" class=\"form-row\">\r\n      <textarea name = \"comment\" placeholder = \"Message\" id = \"comment\" ></textarea>\r\n    </div>\r\n    <input type=\"submit\" name=\"dsubmit\" id=\"commentSubmit\" value=\"Commenter\"/>\r\n  </div>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -485,12 +485,14 @@ var DetailFilmComponent = /** @class */ (function () {
         var _this = this;
         this._filmTmp = this.filmIsPresent();
         if (this.filmTmp.title == "") {
+            this.filmTmp.idFilm = this.film.id;
             this.filmTmp.title = this.film.title;
             this.filmTmp.overwiew = this.film.overview;
             this.filmTmp.releaseDate = this.film.release_date;
             this.filmTmp.voteAverage = this.film.vote_average;
             this.filmTmp.posterLink = "https://image.tmdb.org/t/p/w500/" + this.film.poster_path;
             this.filmService.post(this.filmTmp).subscribe(function (newFilm) {
+                _this.favoriTmp.idAPI = _this.film.id;
                 _this.favoriTmp.element = newFilm.id;
                 _this.favoriTmp.elementType = "film";
                 _this.favoriTmp.utilisateur = +localStorage.getItem("utilisateur");
@@ -498,6 +500,7 @@ var DetailFilmComponent = /** @class */ (function () {
             });
         }
         else {
+            this.favoriTmp.idAPI = this.film.id;
             this.favoriTmp.element = this._filmTmp.id;
             this.favoriTmp.elementType = "film";
             this.favoriTmp.utilisateur = +localStorage.getItem("utilisateur");
@@ -538,7 +541,7 @@ var DetailFilmComponent = /** @class */ (function () {
         for (var _i = 0, _a = this._films; _i < _a.length; _i++) {
             var f = _a[_i];
             if (f.title == this.film.title) {
-                console.log("La série est déja présente");
+                console.log("La film est déja présente");
                 return f;
             }
         }
@@ -587,7 +590,7 @@ module.exports = "#comment{\r\n  margin-left: 20px;\r\n  box-shadow: 0 2px 0 #e6
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n\r\n  <div *ngIf=\"serie\">\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-12\">\r\n        <div class=\"card mt-5 mb-5\">\r\n          <div class=\"card-header\">\r\n            {{ serie.name }}\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-5\">\r\n                <img src=\"https://image.tmdb.org/t/p/w500/{{ serie.poster_path }}\"  class=\"img-fluid\" alt=\"{{ serie.title }}\">\r\n              </div>\r\n              <div class=\"col-sm-7\">\r\n                <ul class=\"list-group\">\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Premiére diffusion: </strong> {{ serie.first_air_date | date:'dd MMMM yyyy' }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Crée par: </strong>\r\n                    <span *ngFor=\"let crea of serie.created_by\" class=\"badge badge-primary mr-2\">\r\n                      {{ crea.name }}\r\n                    </span>\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Résumé: </strong> {{ serie.overview }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Nombre de saison: </strong> {{ serie.number_of_seasons }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Avis des utilisateurs: </strong> {{ serie.vote_average }} / 10\r\n                  </li>\r\n\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Network: </strong>\r\n                    <span *ngFor=\"let net of serie.networks\">\r\n                      {{ net.name }}\r\n                    </span>\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Genre: </strong>\r\n                    <span *ngFor=\"let genre of serie.genres\" class=\"badge badge-primary mr-2\">\r\n                      {{ genre.name }}\r\n                    </span>\r\n                  </li>\r\n                  <button *ngIf=\"authguard.canActivate() == true\" (click)=\"createFavori()\" type=\"button\" class=\"btn btn-block btn-info\" value=\"Ajouter à mes favoris\">Ajouter à mes favoris</button>\r\n                  <button *ngIf=\"!authguard.canActivate()\" class=\"btn btn-block btn-info\">Vous devez être connecté pour ajouter cette série dans vos favoris</button>\r\n                </ul>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div id=\"wrap\">\r\n    <div id=\"main\">\r\n      <div class=\"row\">\r\n        <div class=\"col-md-5\">\r\n          <h3 class=\"heading\">Commentaires</h3>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div id=\"comment-message\" class=\"form-row\">\r\n      <textarea name = \"comment\" placeholder = \"Message\" id = \"comment\" ></textarea>\r\n    </div>\r\n    <input type=\"submit\" name=\"dsubmit\" id=\"commentSubmit\" value=\"Commenter\">\r\n\r\n</div>\r\n\r\n"
+module.exports = "<div class=\"container\">\r\n\r\n  <div *ngIf=\"serie\">\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-12\">\r\n        <div class=\"card mt-5 mb-5\">\r\n          <div class=\"card-header\">\r\n            {{ serie.name }}\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-5\">\r\n                <img src=\"https://image.tmdb.org/t/p/w500/{{ serie.poster_path }}\"  class=\"img-fluid\" alt=\"{{ serie.title }}\">\r\n              </div>\r\n              <div class=\"col-sm-7\">\r\n                <ul class=\"list-group\">\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Premiére diffusion: </strong> {{ serie.first_air_date | date:'dd MMMM yyyy' }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Crée par: </strong>\r\n                    <span *ngFor=\"let crea of serie.created_by\" class=\"badge badge-primary mr-2\">\r\n                      {{ crea.name }}\r\n                    </span>\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                  <strong>Résumé: </strong> {{ serie.overview }}\r\n                </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Nombre de saison: </strong> {{ serie.number_of_seasons }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Avis des utilisateurs: </strong> {{ serie.vote_average }} / 10\r\n                  </li>\r\n\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Network: </strong>\r\n                    <span *ngFor=\"let net of serie.networks\">\r\n                      {{ net.name }}\r\n                    </span>\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Genre: </strong>\r\n                    <span *ngFor=\"let genre of serie.genres\" class=\"badge badge-primary mr-2\">\r\n                      {{ genre.name }}\r\n                    </span>\r\n                  </li>\r\n                  <button *ngIf=\"authguard.canActivate() == true\" (click)=\"createFavori()\" type=\"button\" class=\"btn btn-block btn-info\" value=\"Ajouter à mes favoris\">Ajouter à mes favoris</button>\r\n                  <button *ngIf=\"!authguard.canActivate()\" class=\"btn btn-block btn-info\">Vous devez être connecté pour ajouter cette série dans vos favoris</button>\r\n                </ul>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div id=\"wrap\">\r\n    <div id=\"main\">\r\n      <div class=\"row\">\r\n        <div class=\"col-md-5\">\r\n          <h3 class=\"heading\">Commentaires</h3>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div id=\"comment-message\" class=\"form-row\">\r\n      <textarea name = \"comment\" placeholder = \"Message\" id = \"comment\" ></textarea>\r\n    </div>\r\n    <input type=\"submit\" name=\"dsubmit\" id=\"commentSubmit\" value=\"Commenter\">\r\n\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -665,7 +668,8 @@ var DetailSerieComponent = /** @class */ (function () {
     DetailSerieComponent.prototype.createFavori = function () {
         var _this = this;
         this._serieTmp = this.serieIsPresent();
-        if (this._serieTmp.title == "") {
+        if (this.serieTmp.title == "") {
+            this.serieTmp.idSerie = this.serie.id;
             this.serieTmp.title = this.serie.name;
             this.serieTmp.overwiew = this.serie.overview;
             this.serieTmp.season = this.serie.number_of_seasons;
@@ -675,6 +679,7 @@ var DetailSerieComponent = /** @class */ (function () {
             this.serieTmp.voteAverage = this.serie.vote_average;
             this.serieTmp.posterLink = "https://image.tmdb.org/t/p/w500/" + this.serie.poster_path;
             this.serieService.post(this.serieTmp).subscribe(function (newSerie) {
+                _this.favoriTmp.idAPI = _this.serie.id;
                 _this.favoriTmp.element = newSerie.id;
                 _this.favoriTmp.elementType = "serie";
                 _this.favoriTmp.utilisateur = +localStorage.getItem("utilisateur");
@@ -682,6 +687,7 @@ var DetailSerieComponent = /** @class */ (function () {
             });
         }
         else {
+            this.favoriTmp.idAPI = this.serie.id;
             this.favoriTmp.element = this._serieTmp.id;
             this.favoriTmp.elementType = "serie";
             this.favoriTmp.utilisateur = +localStorage.getItem("utilisateur");
@@ -819,10 +825,12 @@ var FavoriService = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Favori", function() { return Favori; });
 var Favori = /** @class */ (function () {
-    function Favori(element, elementType, utilisateur) {
+    function Favori(idAPI, element, elementType, utilisateur) {
+        if (idAPI === void 0) { idAPI = 0; }
         if (element === void 0) { element = 0; }
         if (elementType === void 0) { elementType = ""; }
         if (utilisateur === void 0) { utilisateur = 0; }
+        this._idAPI = idAPI;
         this._element = element;
         this._elementType = elementType;
         this._utilisateur = utilisateur;
@@ -833,6 +841,16 @@ var Favori = /** @class */ (function () {
         },
         set: function (value) {
             this._id = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Favori.prototype, "idAPI", {
+        get: function () {
+            return this._idAPI;
+        },
+        set: function (value) {
+            this._idAPI = value;
         },
         enumerable: true,
         configurable: true
@@ -874,6 +892,7 @@ var Favori = /** @class */ (function () {
     Favori.prototype.toJson = function () {
         return {
             "id": this._id,
+            "idAPI": this._idAPI,
             "element": this._element,
             "elementType": this._elementType,
             "utilisateur": this._utilisateur
@@ -904,7 +923,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<button (click)=\"getFavFilms()\">Charger les films</button>\r\n<button (click)=\"getFavSeries()\">Charger les séries</button>\r\n\r\n<div class=\"row\">\r\n  <div  class=\"col-sm-4\" *ngFor=\"let film of favFilms; let i = index\">\r\n    <div *ngIf=\"i < 18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{ film.releaseDate}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"{{ film.posterLink }}\" style=\"height: 400px\">\r\n          <p class=\"text-center\">{{film.title}} {{film.id}}</p>\r\n          <button (click)=\"deleteFavori(film.id,'film')\" class=\"btn btn-block btn-info\" >Supprimer le favori</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-sm-4\" *ngFor=\"let serie of favSeries; let i = index\">\r\n    <div *ngIf=\"i<18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{serie.releaseDate | date:\"mediumDate\"}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"{{serie.posterLink}}\" style=\"height: 400px\">\r\n          <p class=\"text-center\">{{ serie.title }}</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
+module.exports = "<button (click)=\"getFavFilms()\">Charger les films</button>\r\n<button (click)=\"getFavSeries()\">Charger les séries</button>\r\n\r\n<div class=\"row\">\r\n  <div  class=\"col-sm-4\" *ngFor=\"let film of favFilms; let i = index\">\r\n    <div *ngIf=\"i < 18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{ film.releaseDate}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"{{ film.posterLink }}\" style=\"height: 400px\">\r\n          <p class=\"text-center\">{{film.title}}</p>\r\n          <a routerLink=\"/detail-film/{{film.idFilm}}\" class=\"btn btn-block btn-info\" (click)=\"getFilmApiId(film.idFilm)\">Details</a>\r\n          <button (click)=\"deleteFavori(film.id,'film')\" class=\"btn btn-block btn-info\" >Supprimer le favori</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-sm-4\" *ngFor=\"let serie of favSeries; let i = index\">\r\n    <div *ngIf=\"i<18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{serie.releaseDate | date:\"mediumDate\"}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"{{serie.posterLink}}\" style=\"height: 400px\">\r\n          <p class=\"text-center\">{{ serie.title }}</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -1408,12 +1427,14 @@ var FilmService = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Film", function() { return Film; });
 var Film = /** @class */ (function () {
-    function Film(title, overwiew, releaseDate, voteAverage, posterLink) {
+    function Film(idFilm, title, overwiew, releaseDate, voteAverage, posterLink) {
+        if (idFilm === void 0) { idFilm = 0; }
         if (title === void 0) { title = ""; }
         if (overwiew === void 0) { overwiew = ""; }
         if (releaseDate === void 0) { releaseDate = ""; }
         if (voteAverage === void 0) { voteAverage = 0; }
         if (posterLink === void 0) { posterLink = ""; }
+        this._idFilm = idFilm;
         this._title = title;
         this._overwiew = overwiew;
         this._releaseDate = releaseDate;
@@ -1426,6 +1447,16 @@ var Film = /** @class */ (function () {
         },
         set: function (value) {
             this._id = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Film.prototype, "idFilm", {
+        get: function () {
+            return this._idFilm;
+        },
+        set: function (value) {
+            this._idFilm = value;
         },
         enumerable: true,
         configurable: true
@@ -1487,6 +1518,7 @@ var Film = /** @class */ (function () {
     Film.prototype.toJson = function () {
         return {
             "id": this._id,
+            "idFilm": this._idFilm,
             "title": this._title,
             "overview": this._overwiew,
             "releaseDate": this._releaseDate,
@@ -1939,7 +1971,8 @@ var SerieService = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Serie", function() { return Serie; });
 var Serie = /** @class */ (function () {
-    function Serie(title, overwiew, season, episode, status, releaseDate, voteAverage, posterLink) {
+    function Serie(idSerie, title, overwiew, season, episode, status, releaseDate, voteAverage, posterLink) {
+        if (idSerie === void 0) { idSerie = 0; }
         if (title === void 0) { title = ""; }
         if (overwiew === void 0) { overwiew = ""; }
         if (season === void 0) { season = 0; }
@@ -1948,6 +1981,7 @@ var Serie = /** @class */ (function () {
         if (releaseDate === void 0) { releaseDate = ""; }
         if (voteAverage === void 0) { voteAverage = 0; }
         if (posterLink === void 0) { posterLink = ""; }
+        this._idSerie = idSerie;
         this._title = title;
         this._overwiew = overwiew;
         this._season = season;
@@ -1963,6 +1997,16 @@ var Serie = /** @class */ (function () {
         },
         set: function (value) {
             this._id = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Serie.prototype, "idSerie", {
+        get: function () {
+            return this._idSerie;
+        },
+        set: function (value) {
+            this._idSerie = value;
         },
         enumerable: true,
         configurable: true

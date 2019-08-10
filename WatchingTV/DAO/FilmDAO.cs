@@ -9,6 +9,7 @@ namespace WatchingTV.DAO
     {
         public static readonly string TABLE_NAME = "Film";
         public static readonly string COLUMN_ID = "Id";
+        public static readonly string COLUMN_IDFILM = "IdFilm";
         public static readonly string COLUMN_TITLE = "Title";
         public static readonly string COLUMN_OVERVIEW = "Overview";
         public static readonly string COLUMN_RELEASE_DATE = "ReleaseDate";
@@ -18,12 +19,12 @@ namespace WatchingTV.DAO
         public static readonly string QUERY = "SELECT * FROM " + TABLE_NAME;
         public static readonly string GET = QUERY + " WHERE " + COLUMN_ID + " = @id";
         public static readonly string CREATE = "INSERT INTO " + TABLE_NAME +
-            "(" + COLUMN_TITLE + ", " + COLUMN_OVERVIEW +
+            "(" + COLUMN_IDFILM + ", " + COLUMN_TITLE + ", " + COLUMN_OVERVIEW +
             ", " + COLUMN_RELEASE_DATE + ", " + COLUMN_VOTE_AVERAGE + ", " + COLUMN_POSTER_LINK +
             ") OUTPUT INSERTED." + COLUMN_ID + 
-            " VALUES(@title, @overview, @releaseDate, @voteAverage, @posterLink)";
+            " VALUES(@idFilm,@title, @overview, @releaseDate, @voteAverage, @posterLink)";
         public static readonly string UPDATE = "UPDATE " + TABLE_NAME +
-            " SET " + COLUMN_TITLE + " = @title, " + COLUMN_OVERVIEW + " = @overview, "
+            " SET " + COLUMN_TITLE + " = @title, " + COLUMN_IDFILM + " = @idFilm, " + COLUMN_OVERVIEW + " = @overview, "
             + COLUMN_RELEASE_DATE + " = @releaseDate, " + COLUMN_VOTE_AVERAGE + " = @voteAverage, "
             + COLUMN_POSTER_LINK + " = @posterLink WHERE " + COLUMN_ID + " = @id";
         public static readonly string DELETE = "DELETE FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = @id";
@@ -70,6 +71,7 @@ namespace WatchingTV.DAO
                 connection.Open();
 
                 SqlCommand command = new SqlCommand(CREATE, connection);
+                command.Parameters.AddWithValue("@idFilm", film.IdFilm);
                 command.Parameters.AddWithValue("@title", film.Title);
                 command.Parameters.AddWithValue("@overview", film.Overview);
                 command.Parameters.AddWithValue("@releaseDate", film.ReleaseDate);
@@ -87,6 +89,7 @@ namespace WatchingTV.DAO
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(UPDATE, connection);
+                command.Parameters.AddWithValue("@idFilm", film.IdFilm);
                 command.Parameters.AddWithValue("@title", film.Title);
                 command.Parameters.AddWithValue("@overview", film.Overview);
                 command.Parameters.AddWithValue("@releaseDate", film.ReleaseDate);
