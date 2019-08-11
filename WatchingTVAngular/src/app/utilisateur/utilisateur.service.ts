@@ -14,6 +14,7 @@ export class UtilisateurService {
 
   private _isLoggedIn:boolean = false;
   private _idUtilisateurLogged:number;
+  private _utilisateurLogged:Utilisateur;
 
   public query():Observable<Utilisateur[]>{
     return this.http.get<Utilisateur[]>(UtilisateurService.URL_API_UTILISATEUR);
@@ -47,5 +48,13 @@ export class UtilisateurService {
 
   get idUtilisateurLogged(): number {
     return this._idUtilisateurLogged;
+  }
+
+  get utilisateurLogged(): Utilisateur {
+    return this._utilisateurLogged;
+  }
+
+  set utilisateurLogged(value: Utilisateur) {
+    this._utilisateurLogged = value;
   }
 }

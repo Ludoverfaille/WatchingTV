@@ -24,7 +24,7 @@
         {{authGuard.getIdUtilisateur()}}
       </li>
       <li *ngIf="authGuard.canActivate()" class="nav-item">
-        <a class="nav-link">Deconnexion</a>
+        <a routerLink="accueil" class="nav-link" (click)="authGuard.changeLog(authGuard.getUtilisateurLogged())">Deconnexion</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0" name="research">
