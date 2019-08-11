@@ -45,7 +45,7 @@
                     </span>
                   </li>
                   <button *ngIf="authguard.canActivate() == true" (click)="createFavori()" class="btn btn-block btn-info" value="Ajouter à mes favoris">Ajouter à mes favoris</button>
-                  <button *ngIf="!authguard.canActivate()" class="btn btn-block btn-info">Vous devez être connecté pour ajouter ce film dans vos favoris</button>
+                  <button *ngIf="!authguard.canActivate()" class="btn btn-block btn-danger">Vous devez être connecté pour ajouter ce film dans vos favoris</button>
                 </ul>
               </div>
             </div>
@@ -53,19 +53,21 @@
         </div>
       </div>
     </div>
-  </div>
-  <div id="wrap">
+
+    <div *ngIf="isFavori()" id="wrap">
       <div id="main">
         <div class="row">
           <div class="col-md-5">
-            <h3 class="heading">Commentaires</h3>
+            <h3  class="heading">Commentaires</h3>
           </div>
         </div>
       </div>
-    <div id="comment-message" class="form-row">
-      <textarea name = "comment" placeholder = "Message" id = "comment" ></textarea>
+      <div id="comment-message" class="form-row">
+        <textarea name = "comment" placeholder = "Message" id = "comment" ></textarea>
+      </div>
+      <input type="submit" name="dsubmit" id="commentSubmit" value="Commenter"/>
     </div>
-    <input type="submit" name="dsubmit" id="commentSubmit" value="Commenter"/>
+
   </div>
 
 </div>

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FilmService} from '../film/film.service';
 import {AuthguardGuard} from '../authguard.guard';
 import {Favori} from '../favori/favori';
@@ -7,7 +7,8 @@ import {Film} from '../film/film';
 import {BroadcastFavoriCreateService} from '../broadcast-favori-create.service';
 import {FavoriService} from '../favori/favori.service';
 import {Serie} from '../serie/serie';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
+import {GestionFavoriComponent} from '../favori/gestion-favori/gestion-favori.component';
 
 @Component({
   selector: 'app-detail-film',
@@ -22,10 +23,12 @@ export class DetailFilmComponent implements OnInit {
   private _films:Film[] = [];
   private _subQueryFilm: Subscription;
 
+  private _favoris : Favori[] = [];
   private _favoriTmp: Favori = new Favori;
+  private _subQueryFavori: Subscription;
   private _favoriCreated:EventEmitter<Favori> = new EventEmitter();
 
-  constructor(public router:ActivatedRoute,private filmService:FilmService,private favoriService:FavoriService, public authguard:AuthguardGuard, public broadcastFavoriCreated:BroadcastFavoriCreateService) { }
+  constructor(public router:ActivatedRoute,private filmService:FilmService,private favoriService:FavoriService, public authguard:AuthguardGuard, public route:Router) { }
 
   ngOnInit() {
     this.router.params.subscribe((params)=>{
@@ -34,6 +37,7 @@ export class DetailFilmComponent implements OnInit {
         this.film = data;
       })
     })
+    this.getFavoris();
   }
 
   get favoriTmp(): Favori{
@@ -72,9 +76,8 @@ export class DetailFilmComponent implements OnInit {
 
     this._favoriCreated.next(this.favoriTmp);
 
-    // this.broadcastFavoriCreated.sendFavori(this._favoriTmp);
-
     this.reset();
+    this.route.navigate(['accueil']);
   }
 
   getFilms(){
@@ -110,4 +113,22 @@ export class DetailFilmComponent implements OnInit {
     }
     return new Film;
   }
+
+  getFavoris(){
+    console.log(this._subQueryFavori);
+    this._subQueryFavori = this.favoriService
+      .query()
+      .subscribe(favoris=>
+        this._favoris = favoris.map(favoris=>new Favori().fromJson(favoris)));
+  }
+
+  isFavori():boolean{
+    for(let favori of this._favoris){
+      if(favori.utilisateur == this.authguard.getIdUtilisateur() && favori.idAPI == this.film.id){
+        return true;
+      }
+    }
+    return false;
+  }
+
 }

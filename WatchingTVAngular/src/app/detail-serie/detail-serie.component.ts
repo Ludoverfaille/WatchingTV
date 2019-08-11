@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {SerieService} from '../serie/serie.service';
 import {AuthguardGuard} from '../authguard.guard';
 import {Serie} from '../serie/serie';
@@ -21,10 +21,12 @@ export class DetailSerieComponent implements OnInit {
   private _series:Serie[] = [];
   private _subQuerySerie: Subscription;
 
+  private _favoris: Favori[] = [];
   private _favoriTmp: Favori = new Favori;
+  private _subQueryFavori: Subscription;
   private _favoriCreated:EventEmitter<Favori> = new EventEmitter();
 
-  constructor(public router:ActivatedRoute,private serieService:SerieService,private favoriService:FavoriService, public authguard:AuthguardGuard, public broadcastFavoriCreated:BroadcastFavoriCreateService) { }
+  constructor(public router:ActivatedRoute,private serieService:SerieService,private favoriService:FavoriService, public authguard:AuthguardGuard,  public route:Router) { }
 
   ngOnInit() {
     this.router.params.subscribe((params) => {
@@ -33,6 +35,7 @@ export class DetailSerieComponent implements OnInit {
         this.serie = data;
       })
     })
+    this.getFavoris();
   }
 
   get favoriTmp(): Favori{
@@ -74,9 +77,9 @@ export class DetailSerieComponent implements OnInit {
 
     this._favoriCreated.next(this.favoriTmp);
 
-    // this.broadcastFavoriCreated.sendFavori(this._favoriTmp);
-
     this.reset();
+
+    this.route.navigate(['accueil']);
   }
 
   getSeries(){
@@ -113,6 +116,21 @@ export class DetailSerieComponent implements OnInit {
     return new Serie;
   }
 
+  getFavoris(){
+    console.log(this._subQueryFavori);
+    this._subQueryFavori = this.favoriService
+      .query()
+      .subscribe(favoris=>
+        this._favoris = favoris.map(favoris=>new Favori().fromJson(favoris)));
+  }
 
+  isFavori():boolean{
+    for(let favori of this._favoris){
+      if(favori.utilisateur == this.authguard.getIdUtilisateur() && favori.idAPI == this.serie.id){
+        return true;
+      }
+    }
+    return false;
+  }
 
 }
