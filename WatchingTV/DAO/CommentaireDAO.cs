@@ -9,17 +9,15 @@ namespace WatchingTV.DAO
     {
         public static readonly string TABLE_NAME = "Commentaire";
         public static readonly string COLUMN_ID = "Id";
-        public static readonly string COLUMN_ELEMENT = "Element";
-        public static readonly string COLUMN_ELEMENTTYPE = "ElementType";
-        public static readonly string COLUMN_UTILISATEUR = "Utilisateur";
         public static readonly string COLUMN_CONTENU = "Contenu";
+        public static readonly string COLUMN_IDFAVORI = "IdFavori";
 
         public static readonly string QUERY = "SELECT * FROM " + TABLE_NAME;
         public static readonly string GET = QUERY + " WHERE " + COLUMN_ID + " = @id";
         public static readonly string CREATE = "INSERT INTO " + TABLE_NAME
-            + "(" + COLUMN_ELEMENT + ", " + COLUMN_ELEMENTTYPE + ", " + COLUMN_UTILISATEUR + "," + COLUMN_CONTENU + ") OUTPUT INSERTED."
+            + "(" + COLUMN_IDFAVORI + ", " + "," + COLUMN_CONTENU + ") OUTPUT INSERTED."
             + COLUMN_ID + " VALUES(@element, @elementType, @utilisateur, @contenu)";
-        public static readonly string UPDATE = $"UPDATE {TABLE_NAME} SET {COLUMN_ELEMENT} = @element, {COLUMN_ELEMENTTYPE} = @elementType, {COLUMN_UTILISATEUR} = @utilisateur, {COLUMN_CONTENU} = @contenu WHERE {COLUMN_ID} = @id";
+        public static readonly string UPDATE = $"UPDATE {TABLE_NAME} SET {COLUMN_IDFAVORI} = @idFavori, {COLUMN_CONTENU} = @contenu WHERE {COLUMN_ID} = @id";
         public static readonly string DELETE = $"DELETE FROM {TABLE_NAME} WHERE {COLUMN_ID} = @id";
 
 
@@ -64,9 +62,7 @@ namespace WatchingTV.DAO
                 connection.Open();
 
                 SqlCommand command = new SqlCommand(CREATE, connection);
-                command.Parameters.AddWithValue("@element", commentaire.Element);
-                command.Parameters.AddWithValue("@elementType", commentaire.ElementType);
-                command.Parameters.AddWithValue("@utilisateur", commentaire.Utilisateur);
+                command.Parameters.AddWithValue("@idFavori", commentaire.IdFavori);
                 command.Parameters.AddWithValue("@contenu", commentaire.Contenu);
                 commentaire.Id = (int)command.ExecuteScalar();
             }
@@ -80,9 +76,7 @@ namespace WatchingTV.DAO
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(UPDATE, connection);
-                command.Parameters.AddWithValue("@element", commentaire.Element);
-                command.Parameters.AddWithValue("@elementType", commentaire.ElementType);
-                command.Parameters.AddWithValue("@utilisateur", commentaire.Utilisateur);
+                command.Parameters.AddWithValue("@idFavori", commentaire.IdFavori);
                 command.Parameters.AddWithValue("@contenu", commentaire.Contenu);
                 command.Parameters.AddWithValue("@id", commentaire.Id);
 

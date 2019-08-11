@@ -24,6 +24,8 @@ import { SmartManagerFavoriComponent } from './favori/smart-manager-favori/smart
 import { SmartManagerFilmComponent } from './film/smart-manager-film/smart-manager-film.component';
 import { SmartManagerSerieComponent } from './serie/smart-manager-serie/smart-manager-serie.component';
 import {FavoriService} from './favori/favori.service';
+import { CommentaireComponent } from './commentaire/commentaire.component';
+import { SmartManagerCommentaireComponent } from './commentaire/smart-manager-commentaire/smart-manager-commentaire.component';
 
 const routes:Routes =[
   {
@@ -86,6 +88,8 @@ const routes:Routes =[
     SmartManagerFavoriComponent,
     SmartManagerFilmComponent,
     SmartManagerSerieComponent,
+    CommentaireComponent,
+    SmartManagerCommentaireComponent,
 
   ],
   imports: [

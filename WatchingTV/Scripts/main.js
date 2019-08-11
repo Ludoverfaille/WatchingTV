@@ -191,12 +191,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _film_smart_manager_film_smart_manager_film_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./film/smart-manager-film/smart-manager-film.component */ "./src/app/film/smart-manager-film/smart-manager-film.component.ts");
 /* harmony import */ var _serie_smart_manager_serie_smart_manager_serie_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./serie/smart-manager-serie/smart-manager-serie.component */ "./src/app/serie/smart-manager-serie/smart-manager-serie.component.ts");
 /* harmony import */ var _favori_favori_service__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./favori/favori.service */ "./src/app/favori/favori.service.ts");
+/* harmony import */ var _commentaire_commentaire_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./commentaire/commentaire.component */ "./src/app/commentaire/commentaire.component.ts");
+/* harmony import */ var _commentaire_smart_manager_commentaire_smart_manager_commentaire_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./commentaire/smart-manager-commentaire/smart-manager-commentaire.component */ "./src/app/commentaire/smart-manager-commentaire/smart-manager-commentaire.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -283,6 +287,8 @@ var AppModule = /** @class */ (function () {
                 _favori_smart_manager_favori_smart_manager_favori_component__WEBPACK_IMPORTED_MODULE_21__["SmartManagerFavoriComponent"],
                 _film_smart_manager_film_smart_manager_film_component__WEBPACK_IMPORTED_MODULE_22__["SmartManagerFilmComponent"],
                 _serie_smart_manager_serie_smart_manager_serie_component__WEBPACK_IMPORTED_MODULE_23__["SmartManagerSerieComponent"],
+                _commentaire_commentaire_component__WEBPACK_IMPORTED_MODULE_25__["CommentaireComponent"],
+                _commentaire_smart_manager_commentaire_smart_manager_commentaire_component__WEBPACK_IMPORTED_MODULE_26__["SmartManagerCommentaireComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -348,6 +354,261 @@ var AuthguardGuard = /** @class */ (function () {
         __metadata("design:paramtypes", [_utilisateur_utilisateur_service__WEBPACK_IMPORTED_MODULE_1__["UtilisateurService"]])
     ], AuthguardGuard);
     return AuthguardGuard;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/commentaire/commentaire.component.css":
+/*!*******************************************************!*\
+  !*** ./src/app/commentaire/commentaire.component.css ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/commentaire/commentaire.component.html":
+/*!********************************************************!*\
+  !*** ./src/app/commentaire/commentaire.component.html ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  commentaire works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/commentaire/commentaire.component.ts":
+/*!******************************************************!*\
+  !*** ./src/app/commentaire/commentaire.component.ts ***!
+  \******************************************************/
+/*! exports provided: CommentaireComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CommentaireComponent", function() { return CommentaireComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var CommentaireComponent = /** @class */ (function () {
+    function CommentaireComponent() {
+    }
+    CommentaireComponent.prototype.ngOnInit = function () {
+    };
+    CommentaireComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-commentaire',
+            template: __webpack_require__(/*! ./commentaire.component.html */ "./src/app/commentaire/commentaire.component.html"),
+            styles: [__webpack_require__(/*! ./commentaire.component.css */ "./src/app/commentaire/commentaire.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], CommentaireComponent);
+    return CommentaireComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/commentaire/commentaire.service.ts":
+/*!****************************************************!*\
+  !*** ./src/app/commentaire/commentaire.service.ts ***!
+  \****************************************************/
+/*! exports provided: CommentaireService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CommentaireService", function() { return CommentaireService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var CommentaireService = /** @class */ (function () {
+    function CommentaireService() {
+    }
+    CommentaireService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [])
+    ], CommentaireService);
+    return CommentaireService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/commentaire/commentaire.ts":
+/*!********************************************!*\
+  !*** ./src/app/commentaire/commentaire.ts ***!
+  \********************************************/
+/*! exports provided: Commentaire */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Commentaire", function() { return Commentaire; });
+var Commentaire = /** @class */ (function () {
+    function Commentaire(idFavori, contenu) {
+        if (idFavori === void 0) { idFavori = 0; }
+        if (contenu === void 0) { contenu = ""; }
+        this._idFavori = idFavori;
+        this._contenu = contenu;
+    }
+    Object.defineProperty(Commentaire.prototype, "id", {
+        get: function () {
+            return this._id;
+        },
+        set: function (value) {
+            this._id = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Commentaire.prototype, "idFavori", {
+        get: function () {
+            return this._idFavori;
+        },
+        set: function (value) {
+            this._idFavori = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Commentaire.prototype, "contenu", {
+        get: function () {
+            return this._contenu;
+        },
+        set: function (value) {
+            this._contenu = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Commentaire.prototype.fromJson = function (Json) {
+        Object.assign(this, Json);
+        return this;
+    };
+    Commentaire.prototype.toJson = function () {
+        return {
+            "id": this._id,
+            "idFavori": this._idFavori,
+            "contenu": this._contenu
+        };
+    };
+    return Commentaire;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/commentaire/smart-manager-commentaire/smart-manager-commentaire.component.css":
+/*!***********************************************************************************************!*\
+  !*** ./src/app/commentaire/smart-manager-commentaire/smart-manager-commentaire.component.css ***!
+  \***********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/commentaire/smart-manager-commentaire/smart-manager-commentaire.component.html":
+/*!************************************************************************************************!*\
+  !*** ./src/app/commentaire/smart-manager-commentaire/smart-manager-commentaire.component.html ***!
+  \************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  smart-manager-commentaire works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/commentaire/smart-manager-commentaire/smart-manager-commentaire.component.ts":
+/*!**********************************************************************************************!*\
+  !*** ./src/app/commentaire/smart-manager-commentaire/smart-manager-commentaire.component.ts ***!
+  \**********************************************************************************************/
+/*! exports provided: SmartManagerCommentaireComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SmartManagerCommentaireComponent", function() { return SmartManagerCommentaireComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _commentaire__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../commentaire */ "./src/app/commentaire/commentaire.ts");
+/* harmony import */ var _commentaire_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../commentaire.service */ "./src/app/commentaire/commentaire.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var SmartManagerCommentaireComponent = /** @class */ (function () {
+    function SmartManagerCommentaireComponent(commentaireService) {
+        this.commentaireService = commentaireService;
+        this._commentaires = [];
+    }
+    SmartManagerCommentaireComponent.prototype.ngOnInit = function () {
+    };
+    SmartManagerCommentaireComponent.prototype.ngOnDestroy = function () {
+    };
+    SmartManagerCommentaireComponent.prototype.getCommentaires = function () {
+        var _this = this;
+        this._subQueryCommentaire = this.commentaireService
+            .query()
+            .subscribe(function (commentaires) {
+            return _this._commentaires = commentaires.map(function (commentaire) { return new _commentaire__WEBPACK_IMPORTED_MODULE_1__["Commentaire"]().fromJson(commentaire); });
+        });
+    };
+    SmartManagerCommentaireComponent.prototype.postCommentaire = function (commentaire) {
+        var _this = this;
+        this._subPostCommentaire = this.commentaireService.post(commentaire).subscribe(function (newCommentaire) { return _this.commentaires.push(new _commentaire__WEBPACK_IMPORTED_MODULE_1__["Commentaire"]().fromJson(newCommentaire)); });
+    };
+    Object.defineProperty(SmartManagerCommentaireComponent.prototype, "commentaires", {
+        get: function () {
+            return this._commentaires;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    SmartManagerCommentaireComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-smart-manager-commentaire',
+            template: __webpack_require__(/*! ./smart-manager-commentaire.component.html */ "./src/app/commentaire/smart-manager-commentaire/smart-manager-commentaire.component.html"),
+            styles: [__webpack_require__(/*! ./smart-manager-commentaire.component.css */ "./src/app/commentaire/smart-manager-commentaire/smart-manager-commentaire.component.css")]
+        }),
+        __metadata("design:paramtypes", [_commentaire_service__WEBPACK_IMPORTED_MODULE_2__["CommentaireService"]])
+    ], SmartManagerCommentaireComponent);
+    return SmartManagerCommentaireComponent;
 }());
 
 
