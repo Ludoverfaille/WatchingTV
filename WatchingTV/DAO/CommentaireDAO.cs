@@ -15,8 +15,10 @@ namespace WatchingTV.DAO
         public static readonly string QUERY = "SELECT * FROM " + TABLE_NAME;
         public static readonly string GET = QUERY + " WHERE " + COLUMN_ID + " = @id";
         public static readonly string CREATE = "INSERT INTO " + TABLE_NAME
-            + "(" + COLUMN_IDFAVORI + ", " + "," + COLUMN_CONTENU + ") OUTPUT INSERTED."
-            + COLUMN_ID + " VALUES(@element, @elementType, @utilisateur, @contenu)";
+            + "(" + COLUMN_CONTENU + "," + COLUMN_IDFAVORI + ") OUTPUT INSERTED."
+            + COLUMN_ID + " VALUES(@contenu, @idFavori)";
+
+        //ATTENTION A MODIFIER SI UTILISE
         public static readonly string UPDATE = $"UPDATE {TABLE_NAME} SET {COLUMN_IDFAVORI} = @idFavori, {COLUMN_CONTENU} = @contenu WHERE {COLUMN_ID} = @id";
         public static readonly string DELETE = $"DELETE FROM {TABLE_NAME} WHERE {COLUMN_ID} = @id";
 
@@ -62,8 +64,10 @@ namespace WatchingTV.DAO
                 connection.Open();
 
                 SqlCommand command = new SqlCommand(CREATE, connection);
-                command.Parameters.AddWithValue("@idFavori", commentaire.IdFavori);
+                
                 command.Parameters.AddWithValue("@contenu", commentaire.Contenu);
+                command.Parameters.AddWithValue("@idFavori", commentaire.IdFavori);
+
                 commentaire.Id = (int)command.ExecuteScalar();
             }
             return commentaire;
@@ -76,8 +80,9 @@ namespace WatchingTV.DAO
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(UPDATE, connection);
-                command.Parameters.AddWithValue("@idFavori", commentaire.IdFavori);
+                
                 command.Parameters.AddWithValue("@contenu", commentaire.Contenu);
+                command.Parameters.AddWithValue("@idFavori", commentaire.IdFavori);
                 command.Parameters.AddWithValue("@id", commentaire.Id);
 
                 hasBeenChanged = command.ExecuteNonQuery() != 0;

@@ -50,13 +50,6 @@ export class SmartManagerFavoriComponent implements OnInit, OnDestroy {
     return this._favoris;
   }
 
-  updateTodo(favori:Favori){
-    this._subUpdateFavori = this.favoriService
-      .update(favori)
-      .subscribe(()=>console.log("OK"),
-        ()=>console.log("Problème update"));
-  }
-
   deleteFavori(favori:Favori){
     this.favoriService
       .delete(favori)

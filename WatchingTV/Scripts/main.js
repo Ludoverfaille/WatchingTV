@@ -434,6 +434,7 @@ var CommentaireComponent = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CommentaireService", function() { return CommentaireService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -444,14 +445,32 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var CommentaireService = /** @class */ (function () {
-    function CommentaireService() {
+    function CommentaireService(http) {
+        this.http = http;
     }
-    CommentaireService = __decorate([
+    CommentaireService_1 = CommentaireService;
+    CommentaireService.prototype.query = function () {
+        return this.http.get(CommentaireService_1.URL_API_COMMENTAIRE);
+    };
+    CommentaireService.prototype.post = function (commentaire) {
+        return this.http.post(CommentaireService_1.URL_API_COMMENTAIRE, commentaire.toJson());
+    };
+    CommentaireService.prototype.update = function (commentaire) {
+        return this.http.put(CommentaireService_1.URL_API_COMMENTAIRE, commentaire.toJson());
+    };
+    CommentaireService.prototype.delete = function (commentaire) {
+        return this.http.delete(CommentaireService_1.URL_API_COMMENTAIRE + "/" + commentaire.id);
+    };
+    var CommentaireService_1;
+    CommentaireService.URL_API_COMMENTAIRE = "/api/commentaire";
+    CommentaireService = CommentaireService_1 = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [])
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], CommentaireService);
     return CommentaireService;
 }());
@@ -543,7 +562,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  smart-manager-commentaire works!\n</p>\n"
+module.exports = "<app-detail-film (commentaireCreated)=\"postCommentaire($event)\"></app-detail-film>\n"
 
 /***/ }),
 
@@ -633,7 +652,7 @@ module.exports = "#comment{\n  margin-left: 20px;\n  box-shadow: 0 2px 0 #e6e6e6
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n\r\n  <div *ngIf=\"film\">\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-12\">\r\n        <div class=\"card mt-5 mb-5\">\r\n          <div class=\"card-header\">\r\n            {{ film.title }}\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-5\">\r\n                <img src=\"https://image.tmdb.org/t/p/w500/{{ film.poster_path }}\" class=\"img-fluid\" alt=\"{{ film.title }}\">\r\n              </div>\r\n              <div class=\"col-sm-7\">\r\n                <ul class=\"list-group\">\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Date de sortie: </strong> {{ film.release_date | date:'dd MMMM yyyy' }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Résumé: </strong> {{ film.overview }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Avis des utilisateurs: </strong> {{ film.vote_average }} / 10\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                  <strong>Durée: </strong> {{ film.runtime }} minutes\r\n                </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>BoxOffice: </strong> {{ film.revenue }} dollars\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Budget: </strong> {{ film.budget }} dollars\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Production: </strong>\r\n                    <span *ngFor=\"let prod of film.production_companies\" >\r\n                      {{ prod.name }}\r\n                    </span>\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Genre: </strong>\r\n                    <span *ngFor=\"let genre of film.genres\" class=\"badge badge-primary mr-2\">\r\n                      {{ genre.name }}\r\n                    </span>\r\n                  </li>\r\n                  <button *ngIf=\"authguard.canActivate() == true\" (click)=\"createFavori()\" class=\"btn btn-block btn-info\" value=\"Ajouter à mes favoris\">Ajouter à mes favoris</button>\r\n                  <button *ngIf=\"!authguard.canActivate()\" class=\"btn btn-block btn-danger\">Vous devez être connecté pour ajouter ce film dans vos favoris</button>\r\n                </ul>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div *ngIf=\"isFavori()\" id=\"wrap\">\r\n      <div id=\"main\">\r\n        <div class=\"row\">\r\n          <div class=\"col-md-5\">\r\n            <h3  class=\"heading\">Commentaires</h3>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div id=\"comment-message\" class=\"form-row\">\r\n        <textarea name = \"comment\" placeholder = \"Message\" id = \"comment\" ></textarea>\r\n      </div>\r\n      <input type=\"submit\" name=\"dsubmit\" id=\"commentSubmit\" value=\"Commenter\"/>\r\n    </div>\r\n\r\n  </div>\r\n\r\n</div>\r\n"
+module.exports = "<div class=\"container\">\r\n\r\n  <div *ngIf=\"film\">\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-12\">\r\n        <div class=\"card mt-5 mb-5\">\r\n          <div class=\"card-header\">\r\n            {{ film.title }}\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <div class=\"row\">\r\n              <div class=\"col-sm-5\">\r\n                <img src=\"https://image.tmdb.org/t/p/w500/{{ film.poster_path }}\" class=\"img-fluid\" alt=\"{{ film.title }}\">\r\n              </div>\r\n              <div class=\"col-sm-7\">\r\n                <ul class=\"list-group\">\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Date de sortie: </strong> {{ film.release_date | date:'dd MMMM yyyy' }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Résumé: </strong> {{ film.overview }}\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Avis des utilisateurs: </strong> {{ film.vote_average }} / 10\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                  <strong>Durée: </strong> {{ film.runtime }} minutes\r\n                </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>BoxOffice: </strong> {{ film.revenue }} dollars\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Budget: </strong> {{ film.budget }} dollars\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Production: </strong>\r\n                    <span *ngFor=\"let prod of film.production_companies\" >\r\n                      {{ prod.name }}\r\n                    </span>\r\n                  </li>\r\n                  <li class=\"list-group-item\">\r\n                    <strong>Genre: </strong>\r\n                    <span *ngFor=\"let genre of film.genres\" class=\"badge badge-primary mr-2\">\r\n                      {{ genre.name }}\r\n                    </span>\r\n                  </li>\r\n                  <button *ngIf=\"authguard.canActivate() == true\" (click)=\"createFavori()\" class=\"btn btn-block btn-info\" value=\"Ajouter à mes favoris\">Ajouter à mes favoris</button>\r\n                  <button *ngIf=\"!authguard.canActivate()\" class=\"btn btn-block btn-danger\">Vous devez être connecté pour ajouter ce film dans vos favoris</button>\r\n                </ul>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div *ngIf=\"isFavori()\" id=\"wrap\">\r\n      <form action=\"\" #formCommentaire=\"ngForm\" (submit)=\"createCommentaire()\">\r\n        <div id=\"main\">\r\n          <div class=\"row\">\r\n            <div class=\"col-md-5\">\r\n              <h3  class=\"heading\">Commentaires</h3>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div id=\"comment-message\" class=\"form-row\">\r\n          <!--<textarea name = \"comment\" placeholder = \"Message\" id = \"comment\" [(ngModel)]=\"utilisateurTmp.confirmPassword\">-->\r\n          <!--<input type=\"password\" class=\"form-control\" required=\"\" name=\"passwordr\" value=\"\" [(ngModel)]=\"utilisateurTmp.confirmPassword\">-->\r\n          <input type=\"text\" class=\"form-control\" required=\"\" name=\"commentaire\" value=\"\" [(ngModel)]=\"commentaireTmp.contenu\">\r\n        </div>\r\n        <button type=\"input\" name=\"submit\" value=\"newCommentaire\" class=\"btn btn-success btn-icon\" [disabled]=\"!formCommentaire.form.valid\">Créer le commentaire</button>\r\n      </form>\r\n    </div>\r\n\r\n  </div>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -654,6 +673,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _favori_favori__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../favori/favori */ "./src/app/favori/favori.ts");
 /* harmony import */ var _film_film__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../film/film */ "./src/app/film/film.ts");
 /* harmony import */ var _favori_favori_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../favori/favori.service */ "./src/app/favori/favori.service.ts");
+/* harmony import */ var _commentaire_commentaire__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../commentaire/commentaire */ "./src/app/commentaire/commentaire.ts");
+/* harmony import */ var _commentaire_commentaire_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../commentaire/commentaire.service */ "./src/app/commentaire/commentaire.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -670,11 +691,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var DetailFilmComponent = /** @class */ (function () {
-    function DetailFilmComponent(router, filmService, favoriService, authguard, route) {
+    function DetailFilmComponent(router, filmService, favoriService, commentaireService, authguard, route) {
         this.router = router;
         this.filmService = filmService;
         this.favoriService = favoriService;
+        this.commentaireService = commentaireService;
         this.authguard = authguard;
         this.route = route;
         this._filmTmp = new _film_film__WEBPACK_IMPORTED_MODULE_5__["Film"];
@@ -683,6 +707,8 @@ var DetailFilmComponent = /** @class */ (function () {
         this._favoris = [];
         this._favoriTmp = new _favori_favori__WEBPACK_IMPORTED_MODULE_4__["Favori"];
         this._favoriCreated = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this._commentaireTmp = new _commentaire_commentaire__WEBPACK_IMPORTED_MODULE_7__["Commentaire"]();
+        this._commentaireCreated = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
     DetailFilmComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -748,6 +774,7 @@ var DetailFilmComponent = /** @class */ (function () {
     DetailFilmComponent.prototype.reset = function () {
         this._filmTmp = new _film_film__WEBPACK_IMPORTED_MODULE_5__["Film"];
         this._favoriTmp = new _favori_favori__WEBPACK_IMPORTED_MODULE_4__["Favori"];
+        this._commentaireTmp = new _commentaire_commentaire__WEBPACK_IMPORTED_MODULE_7__["Commentaire"];
     };
     Object.defineProperty(DetailFilmComponent.prototype, "favoriCreated", {
         get: function () {
@@ -787,11 +814,36 @@ var DetailFilmComponent = /** @class */ (function () {
         for (var _i = 0, _a = this._favoris; _i < _a.length; _i++) {
             var favori = _a[_i];
             if (favori.utilisateur == this.authguard.getIdUtilisateur() && favori.idAPI == this.film.id) {
+                this._favoriTmp.id = favori.id;
                 return true;
             }
         }
         return false;
     };
+    DetailFilmComponent.prototype.createCommentaire = function () {
+        this._commentaireTmp.idFavori = this._favoriTmp.id;
+        console.log(this.commentaireTmp.idFavori);
+        this.commentaireService.post(this._commentaireTmp).subscribe();
+        this._commentaireCreated.next(this._commentaireTmp);
+        this.reset();
+    };
+    Object.defineProperty(DetailFilmComponent.prototype, "commentaireTmp", {
+        get: function () {
+            return this._commentaireTmp;
+        },
+        set: function (value) {
+            this._commentaireTmp = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DetailFilmComponent.prototype, "commentaireCreated", {
+        get: function () {
+            return this._commentaireCreated;
+        },
+        enumerable: true,
+        configurable: true
+    });
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
         __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]),
@@ -802,13 +854,18 @@ var DetailFilmComponent = /** @class */ (function () {
         __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]),
         __metadata("design:paramtypes", [])
     ], DetailFilmComponent.prototype, "filmCreated", null);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]),
+        __metadata("design:paramtypes", [])
+    ], DetailFilmComponent.prototype, "commentaireCreated", null);
     DetailFilmComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-detail-film',
             template: __webpack_require__(/*! ./detail-film.component.html */ "./src/app/detail-film/detail-film.component.html"),
             styles: [__webpack_require__(/*! ./detail-film.component.css */ "./src/app/detail-film/detail-film.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _film_film_service__WEBPACK_IMPORTED_MODULE_2__["FilmService"], _favori_favori_service__WEBPACK_IMPORTED_MODULE_6__["FavoriService"], _authguard_guard__WEBPACK_IMPORTED_MODULE_3__["AuthguardGuard"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _film_film_service__WEBPACK_IMPORTED_MODULE_2__["FilmService"], _favori_favori_service__WEBPACK_IMPORTED_MODULE_6__["FavoriService"], _commentaire_commentaire_service__WEBPACK_IMPORTED_MODULE_8__["CommentaireService"], _authguard_guard__WEBPACK_IMPORTED_MODULE_3__["AuthguardGuard"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
     ], DetailFilmComponent);
     return DetailFilmComponent;
 }());
@@ -1186,7 +1243,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<button (click)=\"getFavFilms()\">Charger les films</button>\r\n<button (click)=\"getFavSeries()\">Charger les séries</button>\r\n\r\n<div class=\"row\">\r\n  <div  class=\"col-sm-4\" *ngFor=\"let film of favFilms; let i = index\">\r\n    <div *ngIf=\"i < 18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{ film.releaseDate}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"{{ film.posterLink }}\" style=\"height: 400px\">\r\n          <p class=\"text-center\">{{film.title}}</p>\r\n          <a routerLink=\"/detail-film/{{film.idFilm}}\" class=\"btn btn-block btn-info\" (click)=\"getFilmApiId(film.idFilm)\">Details</a>\r\n          <button (click)=\"deleteFavori(film.id,'film')\" class=\"btn btn-block btn-info\" >Supprimer le favori</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-sm-4\" *ngFor=\"let serie of favSeries; let i = index\">\r\n    <div *ngIf=\"i<18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{serie.releaseDate | date:\"mediumDate\"}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"{{serie.posterLink}}\" style=\"height: 400px\">\r\n          <p class=\"text-center\">{{ serie.title }}</p>\r\n          <a routerLink=\"/detail-serie/{{serie.idSerie}}\" class=\"btn btn-block btn-info\" (click)=\"getFilmApiId(serie.idSerie)\">Details</a>\r\n          // A VERIFIER, serie.idSerie = 0 !!!!!\r\n          <button (click)=\"deleteFavori(serie.id,'serie')\" class=\"btn btn-block btn-info\" >Supprimer le favori</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
+module.exports = "<button (click)=\"getFavFilms()\">Charger les films</button>\r\n<button (click)=\"getFavSeries()\">Charger les séries</button>\r\n\r\n<div class=\"row\">\r\n  <div  class=\"col-sm-4\" *ngFor=\"let film of favFilms; let i = index\">\r\n    <div *ngIf=\"i < 18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{ film.releaseDate}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"{{ film.posterLink }}\" style=\"height: 400px\">\r\n          <p class=\"text-center\">{{film.title}}</p>\r\n          <a routerLink=\"/detail-film/{{film.idFilm}}\" class=\"btn btn-block btn-info\" (click)=\"getFilmApiId(film.idFilm)\">Details</a>\r\n          <button (click)=\"deleteFavori(film.id,'film')\" class=\"btn btn-block btn-info\" >Supprimer le favori</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-sm-4\" *ngFor=\"let serie of favSeries; let i = index\">\r\n    <div *ngIf=\"i<18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{serie.releaseDate | date:\"mediumDate\"}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"{{serie.posterLink}}\" style=\"height: 400px\">\r\n          <p class=\"text-center\">{{ serie.title }}</p>\r\n          <a routerLink=\"/detail-serie/{{serie.idSerie}}\" class=\"btn btn-block btn-info\" (click)=\"getFilmApiId(serie.idSerie)\">Details</a>\r\n           <!--A VERIFIER, serie.idSerie = 0 !!!!!-->\r\n          <button (click)=\"deleteFavori(serie.id,'serie')\" class=\"btn btn-block btn-info\" >Supprimer le favori</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -1509,11 +1566,6 @@ var SmartManagerFavoriComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    SmartManagerFavoriComponent.prototype.updateTodo = function (favori) {
-        this._subUpdateFavori = this.favoriService
-            .update(favori)
-            .subscribe(function () { return console.log("OK"); }, function () { return console.log("Problème update"); });
-    };
     SmartManagerFavoriComponent.prototype.deleteFavori = function (favori) {
         var _this = this;
         this.favoriService

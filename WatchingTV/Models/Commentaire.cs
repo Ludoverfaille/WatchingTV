@@ -9,16 +9,16 @@ namespace WatchingTV.Models
     {
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
-        [JsonProperty(PropertyName = "idFavori")]
-        public int IdFavori { get; set; }
         [JsonProperty(PropertyName = "contenu")]
         public string Contenu { get; set; }
+        [JsonProperty(PropertyName = "idFavori")]
+        public int IdFavori { get; set; }
 
         public Commentaire(SqlDataReader reader)
         {
             Id = Int32.Parse(reader[CommentaireDAO.COLUMN_ID].ToString());
-            IdFavori = Int32.Parse(reader[CommentaireDAO.COLUMN_IDFAVORI].ToString());
             Contenu = reader[CommentaireDAO.COLUMN_CONTENU].ToString();
+            IdFavori = Int32.Parse(reader[CommentaireDAO.COLUMN_IDFAVORI].ToString());
         }
 
         public Commentaire()

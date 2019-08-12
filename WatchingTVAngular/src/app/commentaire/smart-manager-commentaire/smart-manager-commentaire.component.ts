@@ -37,4 +37,5 @@ export class SmartManagerCommentaireComponent implements OnInit, OnDestroy {
   get commentaires(): Commentaire[] {
     return this._commentaires;
   }
+
 }

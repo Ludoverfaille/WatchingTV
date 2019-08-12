@@ -55,17 +55,21 @@
     </div>
 
     <div *ngIf="isFavori()" id="wrap">
-      <div id="main">
-        <div class="row">
-          <div class="col-md-5">
-            <h3  class="heading">Commentaires</h3>
+      <form action="" #formCommentaire="ngForm" (submit)="createCommentaire()">
+        <div id="main">
+          <div class="row">
+            <div class="col-md-5">
+              <h3  class="heading">Commentaires</h3>
+            </div>
           </div>
         </div>
-      </div>
-      <div id="comment-message" class="form-row">
-        <textarea name = "comment" placeholder = "Message" id = "comment" ></textarea>
-      </div>
-      <input type="submit" name="dsubmit" id="commentSubmit" value="Commenter"/>
+        <div id="comment-message" class="form-row">
+          <!--<textarea name = "comment" placeholder = "Message" id = "comment" [(ngModel)]="utilisateurTmp.confirmPassword">-->
+          <!--<input type="password" class="form-control" required="" name="passwordr" value="" [(ngModel)]="utilisateurTmp.confirmPassword">-->
+          <input type="text" class="form-control" required="" name="commentaire" value="" [(ngModel)]="commentaireTmp.contenu">
+        </div>
+        <button type="input" name="submit" value="newCommentaire" class="btn btn-success btn-icon" [disabled]="!formCommentaire.form.valid">Créer le commentaire</button>
+      </form>
     </div>
 
   </div>

@@ -4,11 +4,10 @@ import {FilmService} from '../film/film.service';
 import {AuthguardGuard} from '../authguard.guard';
 import {Favori} from '../favori/favori';
 import {Film} from '../film/film';
-import {BroadcastFavoriCreateService} from '../broadcast-favori-create.service';
 import {FavoriService} from '../favori/favori.service';
-import {Serie} from '../serie/serie';
 import {Observable, Subscription} from 'rxjs';
-import {GestionFavoriComponent} from '../favori/gestion-favori/gestion-favori.component';
+import {Commentaire} from '../commentaire/commentaire';
+import {CommentaireService} from '../commentaire/commentaire.service';
 
 @Component({
   selector: 'app-detail-film',
@@ -28,7 +27,10 @@ export class DetailFilmComponent implements OnInit {
   private _subQueryFavori: Subscription;
   private _favoriCreated:EventEmitter<Favori> = new EventEmitter();
 
-  constructor(public router:ActivatedRoute,private filmService:FilmService,private favoriService:FavoriService, public authguard:AuthguardGuard, public route:Router) { }
+  private _commentaireTmp: Commentaire = new Commentaire();
+  private _commentaireCreated:EventEmitter<Commentaire> = new EventEmitter();
+
+  constructor(public router:ActivatedRoute,private filmService:FilmService,private favoriService:FavoriService,private commentaireService:CommentaireService, public authguard:AuthguardGuard, public route:Router) { }
 
   ngOnInit() {
     this.router.params.subscribe((params)=>{
@@ -91,6 +93,7 @@ export class DetailFilmComponent implements OnInit {
   reset(){
     this._filmTmp = new Film;
     this._favoriTmp = new Favori;
+    this._commentaireTmp = new Commentaire;
   }
 
   @Output()
@@ -125,10 +128,31 @@ export class DetailFilmComponent implements OnInit {
   isFavori():boolean{
     for(let favori of this._favoris){
       if(favori.utilisateur == this.authguard.getIdUtilisateur() && favori.idAPI == this.film.id){
+        this._favoriTmp.id = favori.id;
         return true;
       }
     }
     return false;
   }
 
+  createCommentaire(){
+    this._commentaireTmp.idFavori = this._favoriTmp.id;
+    console.log(this.commentaireTmp.idFavori);
+    this.commentaireService.post(this._commentaireTmp).subscribe();
+    this._commentaireCreated.next(this._commentaireTmp);
+    this.reset();
+  }
+
+  get commentaireTmp(): Commentaire {
+    return this._commentaireTmp;
+  }
+
+  set commentaireTmp(value: Commentaire) {
+    this._commentaireTmp = value;
+  }
+
+  @Output()
+  get commentaireCreated(): EventEmitter<Commentaire> {
+    return this._commentaireCreated;
+  }
 }
