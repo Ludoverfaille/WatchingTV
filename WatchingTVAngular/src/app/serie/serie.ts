@@ -112,6 +112,7 @@ export class Serie {
   public toJson():any{
     return{
       "id": this._id,
+      "idSerie": this._idSerie,
       "title": this._title,
       "overview": this._overwiew,
       "season":this._season,

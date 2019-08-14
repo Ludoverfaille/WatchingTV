@@ -175,6 +175,10 @@ export class GestionFavoriComponent implements OnInit, AfterViewInit {
     localStorage.setItem("film", String(id))
   }
 
+  getSerieApiId(idSerie: number) {
+    localStorage.setItem("serie", String(idSerie))
+  }
+
   @Output()
   get favoriDeleted(): EventEmitter<Favori> {
     return this._favoriDeleted;

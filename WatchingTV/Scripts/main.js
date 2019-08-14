@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".form-control-borderless {\n  border: none;\n}\n\n.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {\n  border: none;\n  outline: none;\n  box-shadow: none;\n}\n"
+module.exports = ".form-control-borderless {\r\n  border: none;\r\n}\r\n\r\n.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {\r\n  border: none;\r\n  outline: none;\r\n  box-shadow: none;\r\n}\r\n"
 
 /***/ }),
 
@@ -41,7 +41,7 @@ module.exports = ".form-control-borderless {\n  border: none;\n}\n\n.form-contro
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p *ngIf=\"authGuard.canActivate() == true\">\n  Connecté\n</p>\nBienvenue\n"
+module.exports = "<p *ngIf=\"authGuard.canActivate() == true\">\r\n  Connecté\r\n</p>\r\nBienvenue\r\n"
 
 /***/ }),
 
@@ -378,7 +378,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  commentaire works!\n</p>\n"
+module.exports = "<p>\r\n  commentaire works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -562,7 +562,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-detail-film (commentaireCreated)=\"postCommentaire($event)\"></app-detail-film>\n"
+module.exports = "<app-detail-film (commentaireCreated)=\"postCommentaire($event)\"></app-detail-film>\r\n"
 
 /***/ }),
 
@@ -641,7 +641,7 @@ var SmartManagerCommentaireComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#comment{\n  margin-left: 20px;\n  box-shadow: 0 2px 0 #e6e6e6;\n  height: 40px;\n  padding-left: 10px;\n  width: 650px;\n  height: 200px;\n}\n#commentSubmit{\n  margin-left: 20px;\n  width: 250px;\n  height: 55px;\n  color: white;\n  font-size: 20px;\n  background-color: #2c95dc;\n  box-shadow: 0 3px 0 #09466f;\n  margin-bottom: 30px;\n  padding-left: 20px;\n  border-radius: 5px;\n}\n#commentSubmit:hover {\n  background-color: #09466f;\n}\nh3.heading{\n  margin-left: 20px;\n  background-color: #fafafa;\n  font-size: 25px;\n  float: left;\n  padding-left: 40px;\n  position: relative;\n  width: 405px;\n  height: 40px;\n  padding-top: 5px;\n\n}\n\n"
+module.exports = "#comment{\r\n  margin-left: 20px;\r\n  box-shadow: 0 2px 0 #e6e6e6;\r\n  height: 40px;\r\n  padding-left: 10px;\r\n  width: 650px;\r\n  height: 200px;\r\n}\r\n#commentSubmit{\r\n  margin-left: 20px;\r\n  width: 250px;\r\n  height: 55px;\r\n  color: white;\r\n  font-size: 20px;\r\n  background-color: #2c95dc;\r\n  box-shadow: 0 3px 0 #09466f;\r\n  margin-bottom: 30px;\r\n  padding-left: 20px;\r\n  border-radius: 5px;\r\n}\r\n#commentSubmit:hover {\r\n  background-color: #09466f;\r\n}\r\nh3.heading{\r\n  margin-left: 20px;\r\n  background-color: #fafafa;\r\n  font-size: 25px;\r\n  float: left;\r\n  padding-left: 40px;\r\n  position: relative;\r\n  width: 405px;\r\n  height: 40px;\r\n  padding-top: 5px;\r\n\r\n}\r\n\r\n"
 
 /***/ }),
 
@@ -881,7 +881,7 @@ var DetailFilmComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#comment{\n  margin-left: 20px;\n  box-shadow: 0 2px 0 #e6e6e6;\n  height: 40px;\n  padding-left: 10px;\n  width: 650px;\n  height: 200px;\n}\n#commentSubmit{\n  margin-left: 20px;\n  width: 250px;\n  height: 55px;\n  color: white;\n  font-size: 20px;\n  background-color: #2c95dc;\n  box-shadow: 0 3px 0 #09466f;\n  margin-bottom: 30px;\n  padding-left: 20px;\n  border-radius: 5px;\n}\n#commentSubmit:hover {\n  background-color: #09466f;\n}\nh3.heading{\n  margin-left: 20px;\n  background-color: #fafafa;\n  font-size: 25px;\n  float: left;\n  padding-left: 40px;\n  position: relative;\n  width: 405px;\n  height: 40px;\n  padding-top: 5px;\n\n}\n"
+module.exports = "#comment{\r\n  margin-left: 20px;\r\n  box-shadow: 0 2px 0 #e6e6e6;\r\n  height: 40px;\r\n  padding-left: 10px;\r\n  width: 650px;\r\n  height: 200px;\r\n}\r\n#commentSubmit{\r\n  margin-left: 20px;\r\n  width: 250px;\r\n  height: 55px;\r\n  color: white;\r\n  font-size: 20px;\r\n  background-color: #2c95dc;\r\n  box-shadow: 0 3px 0 #09466f;\r\n  margin-bottom: 30px;\r\n  padding-left: 20px;\r\n  border-radius: 5px;\r\n}\r\n#commentSubmit:hover {\r\n  background-color: #09466f;\r\n}\r\nh3.heading{\r\n  margin-left: 20px;\r\n  background-color: #fafafa;\r\n  font-size: 25px;\r\n  float: left;\r\n  padding-left: 40px;\r\n  position: relative;\r\n  width: 405px;\r\n  height: 40px;\r\n  padding-top: 5px;\r\n\r\n}\r\n"
 
 /***/ }),
 
@@ -1243,7 +1243,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<button (click)=\"getFavFilms()\">Charger les films</button>\r\n<button (click)=\"getFavSeries()\">Charger les séries</button>\r\n\r\n<div class=\"row\">\r\n  <div  class=\"col-sm-4\" *ngFor=\"let film of favFilms; let i = index\">\r\n    <div *ngIf=\"i < 18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{ film.releaseDate}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"{{ film.posterLink }}\" style=\"height: 400px\">\r\n          <p class=\"text-center\">{{film.title}}</p>\r\n          <a routerLink=\"/detail-film/{{film.idFilm}}\" class=\"btn btn-block btn-info\" (click)=\"getFilmApiId(film.idFilm)\">Details</a>\r\n          <button (click)=\"deleteFavori(film.id,'film')\" class=\"btn btn-block btn-info\" >Supprimer le favori</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-sm-4\" *ngFor=\"let serie of favSeries; let i = index\">\r\n    <div *ngIf=\"i<18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{serie.releaseDate | date:\"mediumDate\"}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"{{serie.posterLink}}\" style=\"height: 400px\">\r\n          <p class=\"text-center\">{{ serie.title }}</p>\r\n          <a routerLink=\"/detail-serie/{{serie.idSerie}}\" class=\"btn btn-block btn-info\" (click)=\"getFilmApiId(serie.idSerie)\">Details</a>\r\n           <!--A VERIFIER, serie.idSerie = 0 !!!!!-->\r\n          <button (click)=\"deleteFavori(serie.id,'serie')\" class=\"btn btn-block btn-info\" >Supprimer le favori</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
+module.exports = "<button (click)=\"getFavFilms()\">Charger les films</button>\r\n<button (click)=\"getFavSeries()\">Charger les séries</button>\r\n\r\n<div class=\"row\">\r\n  <div  class=\"col-sm-4\" *ngFor=\"let film of favFilms; let i = index\">\r\n    <div *ngIf=\"i < 18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{ film.releaseDate}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"{{ film.posterLink }}\" style=\"height: 400px\">\r\n          <p class=\"text-center\">{{film.title}}</p>\r\n          <a routerLink=\"/detail-film/{{film.idFilm}}\" class=\"btn btn-block btn-info\" (click)=\"getFilmApiId(film.idFilm)\">Details</a>\r\n          <button (click)=\"deleteFavori(film.id,'film')\" class=\"btn btn-block btn-info\" >Supprimer le favori</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-sm-4\" *ngFor=\"let serie of favSeries; let i = index\">\r\n    <div *ngIf=\"i<18\">\r\n      <div class=\"card mt-3 mb-3\">\r\n        <div class=\"card-header text-center\">\r\n          {{serie.releaseDate | date:\"mediumDate\"}}\r\n        </div>\r\n        <div class=\"card-body\">\r\n          <img class=\"card-img-top img-fluid\" src=\"{{serie.posterLink}}\" style=\"height: 400px\">\r\n          <p class=\"text-center\">{{ serie.title }}</p>\r\n          <a routerLink=\"/detail-serie/{{serie.idSerie}}\" class=\"btn btn-block btn-info\" (click)=\"getSerieApiId(serie.idSerie)\">Details</a> <!--A VERIFIER, serie.idSerie = 0 !!!!!-->\r\n          <button (click)=\"deleteFavori(serie.id,'serie')\" class=\"btn btn-block btn-info\" >Supprimer le favori</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -1449,6 +1449,9 @@ var GestionFavoriComponent = /** @class */ (function () {
     GestionFavoriComponent.prototype.getFilmApiId = function (id) {
         localStorage.setItem("film", String(id));
     };
+    GestionFavoriComponent.prototype.getSerieApiId = function (idSerie) {
+        localStorage.setItem("serie", String(idSerie));
+    };
     Object.defineProperty(GestionFavoriComponent.prototype, "favoriDeleted", {
         get: function () {
             return this._favoriDeleted;
@@ -1499,7 +1502,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-gestion-favori (favoriCreated)=\"postFavori($event)\"\n                    (favoriDeleted)=\"deleteFavori($event)\"\n                    [favoris]=\"favoris\"></app-gestion-favori>\n"
+module.exports = "<app-gestion-favori (favoriCreated)=\"postFavori($event)\"\r\n                    (favoriDeleted)=\"deleteFavori($event)\"\r\n                    [favoris]=\"favoris\"></app-gestion-favori>\r\n"
 
 /***/ }),
 
@@ -1615,7 +1618,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n<div  class=\"col-sm-4\" *ngFor=\"let film of filmPopulaire; let i = index\">\n  <div *ngIf=\"i < 18\">\n    <div class=\"card mt-3 mb-3\">\n      <div class=\"card-header text-center\">\n        {{ film.release_date | date:'dd MMMM yyyy' }}\n      </div>\n      <div class=\"card-body\">\n        <img class=\"card-img-top img-fluid\" src=\"https://image.tmdb.org/t/p/w500/{{ film.poster_path }}\" alt=\"{{ film.original_title }}\" style=\"height: 400px\">\n        <p class=\"text-center\">{{ film.title }}</p>\n        <a routerLink=\"/detail-film/{{film.id}}\" class=\"btn btn-block btn-info\" (click)=\"getFilmApiId(film.id)\">Details</a>\n      </div>\n    </div>\n  </div>\n</div>\n</div>\n\n\n\n"
+module.exports = "<div class=\"row\">\r\n<div  class=\"col-sm-4\" *ngFor=\"let film of filmPopulaire; let i = index\">\r\n  <div *ngIf=\"i < 18\">\r\n    <div class=\"card mt-3 mb-3\">\r\n      <div class=\"card-header text-center\">\r\n        {{ film.release_date | date:'dd MMMM yyyy' }}\r\n      </div>\r\n      <div class=\"card-body\">\r\n        <img class=\"card-img-top img-fluid\" src=\"https://image.tmdb.org/t/p/w500/{{ film.poster_path }}\" alt=\"{{ film.original_title }}\" style=\"height: 400px\">\r\n        <p class=\"text-center\">{{ film.title }}</p>\r\n        <a routerLink=\"/detail-film/{{film.id}}\" class=\"btn btn-block btn-info\" (click)=\"getFilmApiId(film.id)\">Details</a>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n</div>\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -1866,7 +1869,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-detail-film (filmCreated)=\"postFilm($event)\"></app-detail-film>\n"
+module.exports = "<app-detail-film (filmCreated)=\"postFilm($event)\"></app-detail-film>\r\n"
 
 /***/ }),
 
@@ -1952,7 +1955,7 @@ var SmartManagerFilmComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".form-control-borderless {\n  border: none;\n}\n\n.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {\n  border: none;\n  outline: none;\n  box-shadow: none;\n}\n"
+module.exports = ".form-control-borderless {\r\n  border: none;\r\n}\r\n\r\n.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {\r\n  border: none;\r\n  outline: none;\r\n  box-shadow: none;\r\n}\r\n"
 
 /***/ }),
 
@@ -2085,7 +2088,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div  class=\"col-sm-4\" *ngFor=\"let recherche of recherche_result; let i = index\">\n    <div *ngIf=\"i < 20\">\n      <div *ngIf=\"recherche.media_type=='tv'\">\n        <div class=\"card mt-3 mb-3\">\n          <div class=\"card-header text-center\">\n            {{ recherche.first_air_date | date:'mediumDate' }}\n          </div>\n          <div class=\"card-body\">\n            <img class=\"card-img-top img-fluid\" src=\"https://image.tmdb.org/t/p/w500/{{ recherche.poster_path }}\" alt=\"{{ recherche.original_title }}\" style=\"height: 400px\">\n            <p class=\"text-center\">{{ recherche.name }}</p>\n            <a routerLink=\"/detail-serie/{{recherche.id}}\" class=\"btn btn-block btn-info\">Details</a>\n          </div>\n        </div>\n      </div>\n      <div *ngIf=\"recherche.media_type=='movie'\">\n        <div class=\"card mt-3 mb-3\">\n          <div class=\"card-header text-center\">\n            {{ recherche.release_date | date:'mediumDate' }}\n          </div>\n          <div class=\"card-body\">\n            <img class=\"card-img-top img-fluid\" src=\"https://image.tmdb.org/t/p/w500/{{ recherche.poster_path }}\" alt=\"{{ recherche.original_title }}\" style=\"height: 400px\">\n            <p class=\"text-center\">{{ recherche.title }}</p>\n            <a routerLink=\"/detail-film/{{recherche.id}}\" class=\"btn btn-block btn-info\">Details</a>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n"
+module.exports = "<div class=\"row\">\r\n  <div  class=\"col-sm-4\" *ngFor=\"let recherche of recherche_result; let i = index\">\r\n    <div *ngIf=\"i < 20\">\r\n      <div *ngIf=\"recherche.media_type=='tv'\">\r\n        <div class=\"card mt-3 mb-3\">\r\n          <div class=\"card-header text-center\">\r\n            {{ recherche.first_air_date | date:'mediumDate' }}\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <img class=\"card-img-top img-fluid\" src=\"https://image.tmdb.org/t/p/w500/{{ recherche.poster_path }}\" alt=\"{{ recherche.original_title }}\" style=\"height: 400px\">\r\n            <p class=\"text-center\">{{ recherche.name }}</p>\r\n            <a routerLink=\"/detail-serie/{{recherche.id}}\" class=\"btn btn-block btn-info\">Details</a>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div *ngIf=\"recherche.media_type=='movie'\">\r\n        <div class=\"card mt-3 mb-3\">\r\n          <div class=\"card-header text-center\">\r\n            {{ recherche.release_date | date:'mediumDate' }}\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <img class=\"card-img-top img-fluid\" src=\"https://image.tmdb.org/t/p/w500/{{ recherche.poster_path }}\" alt=\"{{ recherche.original_title }}\" style=\"height: 400px\">\r\n            <p class=\"text-center\">{{ recherche.title }}</p>\r\n            <a routerLink=\"/detail-film/{{recherche.id}}\" class=\"btn btn-block btn-info\">Details</a>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -2161,7 +2164,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n\n  <div class=\"col-sm-4\" *ngFor=\"let serie of seriePopulaire; let i = index\">\n\n      <div *ngIf=\"i<18\">\n\n          <div class=\"card mt-3 mb-3\">\n\n              <div class=\"card-header text-center\">\n\n                {{serie.first_air_date | date:\"dd MMMM yyyy\"}}\n\n              </div>\n\n              <div class=\"card-body\">\n\n                  <img class=\"card-img-top img-fluid\" src=\"https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{serie.poster_path}}\" style=\"height: 460px\">\n                  <p class=\"text-center\">{{ serie.name }}</p>\n                  <a routerLink=\"/detail-serie/{{serie.id}}\" class=\"btn btn-block btn-info\" (click)=\"getSerieApiId(serie.id)\">Details</a>\n              </div>\n\n          </div>\n\n      </div>\n\n  </div>\n\n</div>\n"
+module.exports = "<div class=\"row\">\r\n\r\n  <div class=\"col-sm-4\" *ngFor=\"let serie of seriePopulaire; let i = index\">\r\n\r\n      <div *ngIf=\"i<18\">\r\n\r\n          <div class=\"card mt-3 mb-3\">\r\n\r\n              <div class=\"card-header text-center\">\r\n\r\n                {{serie.first_air_date | date:\"dd MMMM yyyy\"}}\r\n\r\n              </div>\r\n\r\n              <div class=\"card-body\">\r\n\r\n                  <img class=\"card-img-top img-fluid\" src=\"https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{serie.poster_path}}\" style=\"height: 460px\">\r\n                  <p class=\"text-center\">{{ serie.name }}</p>\r\n                  <a routerLink=\"/detail-serie/{{serie.id}}\" class=\"btn btn-block btn-info\" (click)=\"getSerieApiId(serie.id)\">Details</a>\r\n              </div>\r\n\r\n          </div>\r\n\r\n      </div>\r\n\r\n  </div>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2413,6 +2416,7 @@ var Serie = /** @class */ (function () {
     Serie.prototype.toJson = function () {
         return {
             "id": this._id,
+            "idSerie": this._idSerie,
             "title": this._title,
             "overview": this._overwiew,
             "season": this._season,
@@ -2448,7 +2452,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-detail-serie (serieCreated)=\"postSerie($event)\"></app-detail-serie>\n"
+module.exports = "<app-detail-serie (serieCreated)=\"postSerie($event)\"></app-detail-serie>\r\n"
 
 /***/ }),
 
@@ -2534,7 +2538,7 @@ var SmartManagerSerieComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "ody {\n  background: #eee !important;\n}\n\n.wrapper {\n  margin-top: 80px;\n  margin-bottom: 80px;\n}\n\n.form-signin {\n  max-width: 380px;\n  padding: 15px 35px 45px;\n  margin: 0 auto;\n  background-color: #fff;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n}\n\n.form-signin-heading,\n.checkbox {\n  margin-bottom: 30px;\n}\n\n.checkbox {\n  font-weight: normal;\n}\n\n.form-control {\n  position: relative;\n  font-size: 16px;\n  height: auto;\n  padding: 10px;\n@include box-sizing(border-box);\n}\n\ninput[type=\"text\"] {\n  margin-bottom: -1px;\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\ninput[type=\"password\"] {\n  margin-bottom: 20px;\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n\n"
+module.exports = "ody {\r\n  background: #eee !important;\r\n}\r\n\r\n.wrapper {\r\n  margin-top: 80px;\r\n  margin-bottom: 80px;\r\n}\r\n\r\n.form-signin {\r\n  max-width: 380px;\r\n  padding: 15px 35px 45px;\r\n  margin: 0 auto;\r\n  background-color: #fff;\r\n  border: 1px solid rgba(0, 0, 0, 0.1);\r\n}\r\n\r\n.form-signin-heading,\r\n.checkbox {\r\n  margin-bottom: 30px;\r\n}\r\n\r\n.checkbox {\r\n  font-weight: normal;\r\n}\r\n\r\n.form-control {\r\n  position: relative;\r\n  font-size: 16px;\r\n  height: auto;\r\n  padding: 10px;\r\n@include box-sizing(border-box);\r\n}\r\n\r\ninput[type=\"text\"] {\r\n  margin-bottom: -1px;\r\n  border-bottom-left-radius: 0;\r\n  border-bottom-right-radius: 0;\r\n}\r\n\r\ninput[type=\"password\"] {\r\n  margin-bottom: 20px;\r\n  border-top-left-radius: 0;\r\n  border-top-right-radius: 0;\r\n}\r\n\r\n"
 
 /***/ }),
 
@@ -2545,7 +2549,7 @@ module.exports = "ody {\n  background: #eee !important;\n}\n\n.wrapper {\n  marg
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\n  <form class=\"form-signin\" (submit)=\"login()\">\n    <h2 class=\"form-signin-heading\">Connexion</h2>\n    <input type=\"text\" class=\"form-control\" name=\"username\" placeholder=\"Nom d'utilisateur\" required=\"\" autofocus=\"\" [(ngModel)]=\"utilisateurTmp.username\"/>\n    <input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Mot de passe\" required=\"\" [(ngModel)]=\"utilisateurTmp.password\"/>\n    <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Se connecter</button>\n  </form>\n</div>\n"
+module.exports = "<div class=\"wrapper\">\r\n  <form class=\"form-signin\" (submit)=\"login()\">\r\n    <h2 class=\"form-signin-heading\">Connexion</h2>\r\n    <input type=\"text\" class=\"form-control\" name=\"username\" placeholder=\"Nom d'utilisateur\" required=\"\" autofocus=\"\" [(ngModel)]=\"utilisateurTmp.username\"/>\r\n    <input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Mot de passe\" required=\"\" [(ngModel)]=\"utilisateurTmp.password\"/>\r\n    <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Se connecter</button>\r\n  </form>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2639,7 +2643,7 @@ var ConnexionComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".modal-content {\n  position: relative;\n  background-color: #ffffff;\n  border: 1px solid #999999;\n  border: 1px solid rgba(0, 0, 0, 0.2);\n  border-radius: 0;\n  outline: none;\n  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);\n  background-clip: padding-box;\n}\n.modal-header {\n  border-bottom: 1px solid #48a4ac;\n  background: #61bdc5;\n  min-height: 16.4286px;\n  padding: 10px 15px;\n}\n.close {\n  float: right;\n  font-size: 21px;\n  font-weight: 700;\n  line-height: 1;\n  color: #000;\n  text-shadow: 0 1px 0 #fff;\n  opacity: .2;\n  filter: alpha(opacity=20);\n}\n.modal-body {\n  position: relative;\n  padding: 20px;\n}\n.modal-footer {\n  padding: 19px 20px 20px;\n  margin-top: 0;\n  text-align: right;\n  border-top: 1px solid #e5e5e5;\n}\n"
+module.exports = ".modal-content {\r\n  position: relative;\r\n  background-color: #ffffff;\r\n  border: 1px solid #999999;\r\n  border: 1px solid rgba(0, 0, 0, 0.2);\r\n  border-radius: 0;\r\n  outline: none;\r\n  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);\r\n  background-clip: padding-box;\r\n}\r\n.modal-header {\r\n  border-bottom: 1px solid #48a4ac;\r\n  background: #61bdc5;\r\n  min-height: 16.4286px;\r\n  padding: 10px 15px;\r\n}\r\n.close {\r\n  float: right;\r\n  font-size: 21px;\r\n  font-weight: 700;\r\n  line-height: 1;\r\n  color: #000;\r\n  text-shadow: 0 1px 0 #fff;\r\n  opacity: .2;\r\n  filter: alpha(opacity=20);\r\n}\r\n.modal-body {\r\n  position: relative;\r\n  padding: 20px;\r\n}\r\n.modal-footer {\r\n  padding: 19px 20px 20px;\r\n  margin-top: 0;\r\n  text-align: right;\r\n  border-top: 1px solid #e5e5e5;\r\n}\r\n"
 
 /***/ }),
 
@@ -2650,7 +2654,7 @@ module.exports = ".modal-content {\n  position: relative;\n  background-color: #
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"modal-content\">\n\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\"><i class=\"fa fa-times\"></i></button>\n        <h4 class=\"modal-title\">Création d'un compte</h4>\n      </div>\n\n      <form action=\"\" #formUtilisateur=\"ngForm\" (submit)=\"createUtilisateur()\">\n        <div class=\"modal-body\">\n          <div class=\"form-group\">\n            <label>Nom d'utilisateur</label>\n            <input type=\"text\" class=\"form-control\" required=\"\" name=\"username\" value=\"\" [(ngModel)]=\"utilisateurTmp.username\">\n          </div>\n          <div class=\"row\">\n            <div class=\"col-md-6\">\n              <div class=\"form-group\">\n                <label>Mot de passe</label>\n                <input type=\"password\" class=\"form-control\" required=\"\" name=\"password\" value=\"\" [(ngModel)]=\"utilisateurTmp.password\">\n              </div>\n            </div>\n            <div class=\"col-md-6\">\n              <div class=\"form-group\">\n                <label>Réecrire le Mot de passe</label>\n                <input type=\"password\" class=\"form-control\" required=\"\" name=\"passwordr\" value=\"\" [(ngModel)]=\"utilisateurTmp.confirmPassword\">\n              </div>\n            </div>\n          </div>\n        </div>\n\n        <div class=\"modal-footer\">\n          <input type=\"hidden\" name=\"isEmpty\" value=\"\">\n          <button type=\"input\" name=\"submit\" value=\"newAccount\" class=\"btn btn-success btn-icon\" [disabled]=\"!formUtilisateur.form.valid\"><i class=\"fa fa-check\"></i>Créer le compte</button>\n        </div>\n      </form>\n\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"modal-content\">\r\n\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\"><i class=\"fa fa-times\"></i></button>\r\n        <h4 class=\"modal-title\">Création d'un compte</h4>\r\n      </div>\r\n\r\n      <form action=\"\" #formUtilisateur=\"ngForm\" (submit)=\"createUtilisateur()\">\r\n        <div class=\"modal-body\">\r\n          <div class=\"form-group\">\r\n            <label>Nom d'utilisateur</label>\r\n            <input type=\"text\" class=\"form-control\" required=\"\" name=\"username\" value=\"\" [(ngModel)]=\"utilisateurTmp.username\">\r\n          </div>\r\n          <div class=\"row\">\r\n            <div class=\"col-md-6\">\r\n              <div class=\"form-group\">\r\n                <label>Mot de passe</label>\r\n                <input type=\"password\" class=\"form-control\" required=\"\" name=\"password\" value=\"\" [(ngModel)]=\"utilisateurTmp.password\">\r\n              </div>\r\n            </div>\r\n            <div class=\"col-md-6\">\r\n              <div class=\"form-group\">\r\n                <label>Réecrire le Mot de passe</label>\r\n                <input type=\"password\" class=\"form-control\" required=\"\" name=\"passwordr\" value=\"\" [(ngModel)]=\"utilisateurTmp.confirmPassword\">\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"modal-footer\">\r\n          <input type=\"hidden\" name=\"isEmpty\" value=\"\">\r\n          <button type=\"input\" name=\"submit\" value=\"newAccount\" class=\"btn btn-success btn-icon\" [disabled]=\"!formUtilisateur.form.valid\"><i class=\"fa fa-check\"></i>Créer le compte</button>\r\n        </div>\r\n      </form>\r\n\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2743,7 +2747,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-inscription (utilisateurCreated)=\"postUtilisateur($event)\"></app-inscription>\n"
+module.exports = "<app-inscription (utilisateurCreated)=\"postUtilisateur($event)\"></app-inscription>\r\n"
 
 /***/ }),
 
@@ -3061,7 +3065,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Data\Documents\Cours 2018 - 2019\GIT WatchingTV\GitKraken\WatchingTV\WatchingTVAngular\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\NICO-PC\Desktop\Helha 2018 - 2019\GitKraken\WatchingTV\WatchingTVAngular\src\main.ts */"./src/main.ts");
 
 
 /***/ })

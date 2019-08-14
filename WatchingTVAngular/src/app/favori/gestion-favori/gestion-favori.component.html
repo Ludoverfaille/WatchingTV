@@ -29,8 +29,7 @@
         <div class="card-body">
           <img class="card-img-top img-fluid" src="{{serie.posterLink}}" style="height: 400px">
           <p class="text-center">{{ serie.title }}</p>
-          <a routerLink="/detail-serie/{{serie.idSerie}}" class="btn btn-block btn-info" (click)="getFilmApiId(serie.idSerie)">Details</a>
-           <!--A VERIFIER, serie.idSerie = 0 !!!!!-->
+          <a routerLink="/detail-serie/{{serie.idSerie}}" class="btn btn-block btn-info" (click)="getSerieApiId(serie.idSerie)">Details</a> <!--A VERIFIER, serie.idSerie = 0 !!!!!-->
           <button (click)="deleteFavori(serie.id,'serie')" class="btn btn-block btn-info" >Supprimer le favori</button>
         </div>
       </div>
