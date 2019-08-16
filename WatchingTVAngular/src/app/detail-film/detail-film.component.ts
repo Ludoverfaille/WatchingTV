@@ -28,6 +28,9 @@ export class DetailFilmComponent implements OnInit {
   private _favoriCreated:EventEmitter<Favori> = new EventEmitter();
 
   private _commentaireTmp: Commentaire = new Commentaire();
+  private _subQueryCommentaire: Subscription;
+  private _commentaires:Commentaire[] = [];
+  private _commentairesFilm:Commentaire[] = [];
   private _commentaireCreated:EventEmitter<Commentaire> = new EventEmitter();
 
   constructor(public router:ActivatedRoute,private filmService:FilmService,private favoriService:FavoriService,private commentaireService:CommentaireService, public authguard:AuthguardGuard, public route:Router) { }
@@ -40,6 +43,8 @@ export class DetailFilmComponent implements OnInit {
       })
     })
     this.getFavoris();
+    this.getCommentaires();
+    this.getCommentairesFilm();
   }
 
   get favoriTmp(): Favori{
@@ -79,6 +84,7 @@ export class DetailFilmComponent implements OnInit {
     this._favoriCreated.next(this.favoriTmp);
 
     this.reset();
+
     this.route.navigate(['accueil']);
   }
 
@@ -140,6 +146,7 @@ export class DetailFilmComponent implements OnInit {
     console.log(this.commentaireTmp.idFavori);
     this.commentaireService.post(this._commentaireTmp).subscribe();
     this._commentaireCreated.next(this._commentaireTmp);
+    this._commentairesFilm.push(this._commentaireTmp);
     this.reset();
   }
 
@@ -154,5 +161,30 @@ export class DetailFilmComponent implements OnInit {
   @Output()
   get commentaireCreated(): EventEmitter<Commentaire> {
     return this._commentaireCreated;
+  }
+
+  getCommentaires(){
+    this._subQueryCommentaire = this.commentaireService
+      .query()
+      .subscribe(commentaires=>
+        this._commentaires = commentaires.map(commentaire=>new Commentaire().fromJson(commentaire))
+      );
+  }
+
+  getCommentairesFilm(){
+    if(this._commentairesFilm.length == 0){
+      for(let commentaire of this._commentaires){
+        for(let favori of this._favoris){
+          if(commentaire.idFavori == favori.id && favori.idAPI == this.film.id){
+            this._commentairesFilm.push(commentaire);
+          }
+        }
+      }
+    }
+  }
+
+
+  get commentairesFilm(): Commentaire[] {
+    return this._commentairesFilm;
   }
 }

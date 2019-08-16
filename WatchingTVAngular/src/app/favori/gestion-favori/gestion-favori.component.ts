@@ -50,7 +50,6 @@ export class GestionFavoriComponent implements OnInit, AfterViewInit {
   }
 
   getFavFilms(){
-
     for(let favoriteFilm of this._favFilms){
       const indexToDelete=this
         .favoris
@@ -79,7 +78,6 @@ export class GestionFavoriComponent implements OnInit, AfterViewInit {
   }
 
   getFavSeries(){
-
     for(let favoriteSerie of this._favSeries){
       const indexToDelete=this
         .favoris

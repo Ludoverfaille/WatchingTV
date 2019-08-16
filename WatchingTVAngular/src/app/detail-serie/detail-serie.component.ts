@@ -7,6 +7,9 @@ import {Favori} from '../favori/favori';
 import {FavoriService} from '../favori/favori.service';
 import {BroadcastFavoriCreateService} from '../broadcast-favori-create.service';
 import {Subscription} from 'rxjs';
+import {CommentaireService} from '../commentaire/commentaire.service';
+import {Commentaire} from '../commentaire/commentaire';
+import {Utilisateur} from '../utilisateur/utilisateur';
 
 @Component({
   selector: 'app-detail-serie',
@@ -26,7 +29,13 @@ export class DetailSerieComponent implements OnInit {
   private _subQueryFavori: Subscription;
   private _favoriCreated:EventEmitter<Favori> = new EventEmitter();
 
-  constructor(public router:ActivatedRoute,private serieService:SerieService,private favoriService:FavoriService, public authguard:AuthguardGuard,  public route:Router) { }
+  private _commentaireTmp: Commentaire = new Commentaire();
+  private _subQueryCommentaire: Subscription;
+  private _commentaires:Commentaire[] = [];
+  private _commentairesSerie:Commentaire[] = [];
+  private _commentaireCreated:EventEmitter<Commentaire> = new EventEmitter();
+
+  constructor(public router:ActivatedRoute,private serieService:SerieService,private favoriService:FavoriService,private commentaireService:CommentaireService, public authguard:AuthguardGuard,  public route:Router) { }
 
   ngOnInit() {
     this.router.params.subscribe((params) => {
@@ -36,6 +45,8 @@ export class DetailSerieComponent implements OnInit {
       })
     })
     this.getFavoris();
+    this.getCommentaires();
+    this.getCommentairesSerie();
   }
 
   get favoriTmp(): Favori{
@@ -117,20 +128,67 @@ export class DetailSerieComponent implements OnInit {
   }
 
   getFavoris(){
-    console.log(this._subQueryFavori);
     this._subQueryFavori = this.favoriService
       .query()
       .subscribe(favoris=>
-        this._favoris = favoris.map(favoris=>new Favori().fromJson(favoris)));
+        this._favoris = favoris.map(favori=>new Favori().fromJson(favori))
+      );
   }
 
   isFavori():boolean{
     for(let favori of this._favoris){
       if(favori.utilisateur == this.authguard.getIdUtilisateur() && favori.idAPI == this.serie.id){
+        this._favoriTmp.id = favori.id;
         return true;
       }
     }
     return false;
   }
 
+  createCommentaire(){
+    this._commentaireTmp.idFavori = this._favoriTmp.id;
+    console.log(this._favoriTmp.id,this._commentaireTmp.idFavori);
+    this.commentaireService.post(this._commentaireTmp).subscribe();
+    this._commentaireCreated.next(this._commentaireTmp);
+    this._commentairesSerie.push(this._commentaireTmp);
+    this.reset();
+  }
+
+  get commentaireTmp(): Commentaire {
+    return this._commentaireTmp;
+  }
+
+  set commentaireTmp(value: Commentaire) {
+    this._commentaireTmp = value;
+  }
+
+  @Output()
+  get commentaireCreated(): EventEmitter<Commentaire> {
+    return this._commentaireCreated;
+  }
+
+  getCommentaires(){
+    this._subQueryCommentaire = this.commentaireService
+      .query()
+      .subscribe(commentaires=>
+        this._commentaires = commentaires.map(commentaire=>new Commentaire().fromJson(commentaire))
+      );
+  }
+
+  getCommentairesSerie(){
+    if(this._commentairesSerie.length == 0){
+      for(let commentaire of this._commentaires){
+        for(let favori of this._favoris){
+          if(commentaire.idFavori == favori.id && favori.idAPI == this.serie.id){
+            this._commentairesSerie.push(commentaire);
+          }
+        }
+      }
+    }
+  }
+
+
+  get commentairesSerie(): Commentaire[] {
+    return this._commentairesSerie;
+  }
 }

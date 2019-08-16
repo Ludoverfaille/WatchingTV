@@ -55,19 +55,35 @@
       </div>
     </div>
 
+
     <div *ngIf="isFavori()" id="wrap">
-      <div id="main">
-        <div class="row">
-          <div class="col-md-5">
-            <h3 class="heading">Commentaires</h3>
+      <form action="" #formCommentaire="ngForm" (submit)="createCommentaire()">
+        <div id="main">
+          <div class="row">
+            <div class="col-md-5">
+              <h3  class="heading">Commentaires</h3>
+            </div>
           </div>
         </div>
-      </div>
-      <div id="comment-message" class="form-row">
-        <textarea name = "comment" placeholder = "Message" id = "comment" ></textarea>
-      </div>
-      <input type="submit" name="dsubmit" id="commentSubmit" value="Commenter"/>
+        <div id="comment-message" class="form-row">
+          <input type="text" class="form-control" required="" name="commentaire" value="" [(ngModel)]="commentaireTmp.contenu">
+        </div>
+        <br/>
+        <button type="input" name="submit" value="newCommentaire" class="btn btn-success btn-icon" [disabled]="!formCommentaire.form.valid" (click)="getCommentairesSerie()">Poster le commentaire</button>
+      </form>
     </div>
+
+    <br/>
+    <br/>
+
+    <button (click)="getCommentairesSerie()" class="btn btn-block btn-info">Afficher les commentaires</button>
+    <ul class="list-group list-group-flush" *ngFor="let commentaire of commentairesSerie;">
+      <li class="list-group-item">{{commentaire.contenu}}</li>
+    </ul>
+
+    <br/>
+    <br/>
+    <br/>
 
   </div>
 

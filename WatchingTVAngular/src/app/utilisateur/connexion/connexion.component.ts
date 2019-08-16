@@ -21,10 +21,10 @@ s
   }
 
   ngOnInit() {
+    this.getUtilisateurs();
   }
 
   login(){
-    this.getUtilisateurs();
     for(let u of this._utilisateurs){
       if(u.username == this._utilisateurTmp.username){
         if(u.password == this._utilisateurTmp.password){

@@ -64,13 +64,24 @@
           </div>
         </div>
         <div id="comment-message" class="form-row">
-          <!--<textarea name = "comment" placeholder = "Message" id = "comment" [(ngModel)]="utilisateurTmp.confirmPassword">-->
-          <!--<input type="password" class="form-control" required="" name="passwordr" value="" [(ngModel)]="utilisateurTmp.confirmPassword">-->
           <input type="text" class="form-control" required="" name="commentaire" value="" [(ngModel)]="commentaireTmp.contenu">
         </div>
-        <button type="input" name="submit" value="newCommentaire" class="btn btn-success btn-icon" [disabled]="!formCommentaire.form.valid">Créer le commentaire</button>
+        <br/>
+        <button type="input" name="submit" value="newCommentaire" class="btn btn-success btn-icon" [disabled]="!formCommentaire.form.valid">Poster le commentaire</button>
       </form>
     </div>
+
+    <br/>
+    <br/>
+
+    <button (click)="getCommentairesFilm()" class="btn btn-block btn-info">Afficher les commentaires</button>
+    <ul class="list-group list-group-flush" *ngFor="let commentaire of commentairesFilm;">
+      <li class="list-group-item">{{commentaire.contenu}}</li>
+    </ul>
+
+    <br/>
+    <br/>
+    <br/>
 
   </div>
 
