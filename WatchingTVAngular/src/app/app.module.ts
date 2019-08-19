@@ -29,10 +29,15 @@ import { SmartManagerCommentaireComponent } from './commentaire/smart-manager-co
 
 const routes:Routes =[
   {
+    path: '',
+    redirectTo: 'accueil',
+    pathMatch: 'full',
+    canActivate: [AuthguardGuard]
+  },
+  {
     path: "accueil",
     component: AccueilComponent,
-    canActivate: [AuthguardGuard],
-    pathMatch: "full"
+    pathMatch: "full",
   },
   {
     path: "connexion",

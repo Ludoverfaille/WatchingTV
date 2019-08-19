@@ -148,6 +148,7 @@ export class DetailFilmComponent implements OnInit {
     this._commentaireCreated.next(this._commentaireTmp);
     this._commentairesFilm.push(this._commentaireTmp);
     this.reset();
+
   }
 
   get commentaireTmp(): Commentaire {
@@ -182,7 +183,6 @@ export class DetailFilmComponent implements OnInit {
       }
     }
   }
-
 
   get commentairesFilm(): Commentaire[] {
     return this._commentairesFilm;

@@ -45,8 +45,10 @@
                       {{ genre.name }}
                     </span>
                   </li>
-                  <button *ngIf="authguard.canActivate() == true" (click)="createFavori()" type="button" class="btn btn-block btn-info" value="Ajouter à mes favoris">Ajouter à mes favoris</button>
-                  <button *ngIf="!authguard.canActivate()" class="btn btn-block btn-info">Vous devez être connecté pour ajouter cette série dans vos favoris</button>
+                  <div *ngIf="!isFavori()">
+                    <button *ngIf="authguard.canActivate() == true && !isFavori()"  (click)="createFavori()" type="button" class="btn btn-block btn-info" value="Ajouter à mes favoris">Ajouter à mes favoris</button>
+                  </div>
+                  <button *ngIf="!authguard.canActivate()" class="btn btn-block btn-danger">Vous devez être connecté pour ajouter cette série dans vos favoris</button>
                 </ul>
               </div>
             </div>

@@ -42,11 +42,7 @@ export class GestionFavoriComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // this._subQuerySerie = new Subscription()
-    // this._subQueryFilm = new Subscription();
-    // this._subQueryFavori = new Subscription();
-    // this.getFavFilms();
-    // this.getFavSeries();
+
   }
 
   getFavFilms(){

@@ -1,5 +1,6 @@
-<button (click)="getFavFilms()">Charger les films</button>
-<button (click)="getFavSeries()">Charger les séries</button>
+<br/>
+<button (click)="getFavFilms()" class="btn btn-outline-success btn-lg btn-block">Charger les films</button>
+<button (click)="getFavSeries()" class="btn btn-outline-success btn-lg btn-block">Charger les séries</button>
 
 <div class="row">
   <div  class="col-sm-4" *ngFor="let film of favFilms; let i = index">
@@ -12,7 +13,6 @@
           <img class="card-img-top img-fluid" src="{{ film.posterLink }}" style="height: 400px">
           <p class="text-center">{{film.title}}</p>
           <a routerLink="/detail-film/{{film.idFilm}}" class="btn btn-block btn-info" (click)="getFilmApiId(film.idFilm)">Details</a>
-          <button (click)="deleteFavori(film.id,'film')" class="btn btn-block btn-info" >Supprimer le favori</button>
         </div>
       </div>
     </div>
@@ -29,8 +29,7 @@
         <div class="card-body">
           <img class="card-img-top img-fluid" src="{{serie.posterLink}}" style="height: 400px">
           <p class="text-center">{{ serie.title }}</p>
-          <a routerLink="/detail-serie/{{serie.idSerie}}" class="btn btn-block btn-info" (click)="getSerieApiId(serie.idSerie)">Details</a> <!--A VERIFIER, serie.idSerie = 0 !!!!!-->
-          <button (click)="deleteFavori(serie.id,'serie')" class="btn btn-block btn-info" >Supprimer le favori</button>
+          <a routerLink="/detail-serie/{{serie.idSerie}}" class="btn btn-block btn-info" (click)="getSerieApiId(serie.idSerie)">Details</a>
         </div>
       </div>
     </div>
