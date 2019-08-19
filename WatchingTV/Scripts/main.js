@@ -41,7 +41,7 @@ module.exports = ".form-control-borderless {\n  border: none;\n}\n\n.form-contro
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"jumbotron jumbotron-fluid\">\n  <div class=\"container\">\n    <h1 class=\"display-4\">WATCHING TV</h1>\n    <p class=\"lead\">Bonjour ! Ce site répertories une quantité innombrabre de films et séries. Il vous permet également d'en ajouter en favoris et de laisser un commentaire visible par tous le monde. Bonne visite !</p>\n  </div>\n</div>\n"
+module.exports = "<div class=\"jumbotron jumbotron-fluid\">\n  <div class=\"container\">\n    <h1 class=\"display-4\">WATCHING TV</h1>\n    <p class=\"lead\">Bonjour ! Ce site répertories une quantité innombrabre de films et séries. Il vous permet également d'en ajouter en favoris et de laisser un commentaire visible par tous le monde. Bonne visite !</p>\n  </div>\n</div>\n\n<div *ngIf=\"authGuard.canActivate() && authGuard.getIsAdminUtilisateur()\" class=\"jumbotron jumbotron-fluid\">\n  <div class=\"container\">\n    <h1 class=\"display-4\">Voici les statistiques du site avec le nombre d'éléments enregistrés dans la base de donnée.</h1>\n    <p>Films : {{films.length}}</p>\n    <p>Series : {{series.length}}</p>\n    <p>Utilisateurs : {{utilisateurs.length}}</p>\n    <p>Favoris : {{favoris.length}}</p>\n    <p>Commentaires : {{commentaires.length}}</p>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -58,6 +58,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _utilisateur_utilisateur_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utilisateur/utilisateur.service */ "./src/app/utilisateur/utilisateur.service.ts");
 /* harmony import */ var _authguard_guard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../authguard.guard */ "./src/app/authguard.guard.ts");
+/* harmony import */ var _film_film__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../film/film */ "./src/app/film/film.ts");
+/* harmony import */ var _serie_serie__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../serie/serie */ "./src/app/serie/serie.ts");
+/* harmony import */ var _utilisateur_utilisateur__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utilisateur/utilisateur */ "./src/app/utilisateur/utilisateur.ts");
+/* harmony import */ var _favori_favori__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../favori/favori */ "./src/app/favori/favori.ts");
+/* harmony import */ var _commentaire_commentaire__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../commentaire/commentaire */ "./src/app/commentaire/commentaire.ts");
+/* harmony import */ var _film_film_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../film/film.service */ "./src/app/film/film.service.ts");
+/* harmony import */ var _serie_serie_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../serie/serie.service */ "./src/app/serie/serie.service.ts");
+/* harmony import */ var _favori_favori_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../favori/favori.service */ "./src/app/favori/favori.service.ts");
+/* harmony import */ var _commentaire_commentaire_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../commentaire/commentaire.service */ "./src/app/commentaire/commentaire.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -70,20 +79,134 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
+
+
+
+
+
+
+
 var AccueilComponent = /** @class */ (function () {
-    function AccueilComponent(utilisateur, authGuard) {
+    function AccueilComponent(utilisateur, authGuard, filmService, serieService, utilisateurService, favoriService, commentaireService) {
         this.utilisateur = utilisateur;
         this.authGuard = authGuard;
+        this.filmService = filmService;
+        this.serieService = serieService;
+        this.utilisateurService = utilisateurService;
+        this.favoriService = favoriService;
+        this.commentaireService = commentaireService;
+        this._films = [];
+        this._series = [];
+        this._utilisateurs = [];
+        this._favoris = [];
+        this._commentaires = [];
     }
     AccueilComponent.prototype.ngOnInit = function () {
+        this.getFilms();
+        this.getSeries();
+        this.getUtilisateurs();
+        this.getFavoris();
+        this.getCommentaires();
     };
+    AccueilComponent.prototype.getFilms = function () {
+        var _this = this;
+        this._subQueryFilm = this.filmService
+            .query()
+            .subscribe(function (films) {
+            return _this._films = films.map(function (film) { return new _film_film__WEBPACK_IMPORTED_MODULE_3__["Film"]().fromJson(film); });
+        });
+    };
+    AccueilComponent.prototype.getSeries = function () {
+        var _this = this;
+        this._subQuerySerie = this.serieService
+            .query()
+            .subscribe(function (series) {
+            return _this._series = series.map(function (serie) { return new _serie_serie__WEBPACK_IMPORTED_MODULE_4__["Serie"]().fromJson(serie); });
+        });
+    };
+    AccueilComponent.prototype.getUtilisateurs = function () {
+        var _this = this;
+        this._subQueryUtilisateur = this.utilisateurService
+            .query()
+            .subscribe(function (utilisateurs) {
+            return _this._utilisateurs = utilisateurs.map(function (utilisateur) { return new _utilisateur_utilisateur__WEBPACK_IMPORTED_MODULE_5__["Utilisateur"]().fromJson(utilisateur); });
+        });
+    };
+    AccueilComponent.prototype.getFavoris = function () {
+        var _this = this;
+        this._subQueryFavori = this.favoriService
+            .query()
+            .subscribe(function (favoris) {
+            return _this._favoris = favoris.map(function (favori) { return new _favori_favori__WEBPACK_IMPORTED_MODULE_6__["Favori"]().fromJson(favori); });
+        });
+    };
+    AccueilComponent.prototype.getCommentaires = function () {
+        var _this = this;
+        this._subQueryCommentaire = this.commentaireService
+            .query()
+            .subscribe(function (commentaires) {
+            return _this._commentaires = commentaires.map(function (commentaire) { return new _commentaire_commentaire__WEBPACK_IMPORTED_MODULE_7__["Commentaire"]().fromJson(commentaire); });
+        });
+    };
+    Object.defineProperty(AccueilComponent.prototype, "films", {
+        get: function () {
+            return this._films;
+        },
+        set: function (value) {
+            this._films = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AccueilComponent.prototype, "series", {
+        get: function () {
+            return this._series;
+        },
+        set: function (value) {
+            this._series = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AccueilComponent.prototype, "utilisateurs", {
+        get: function () {
+            return this._utilisateurs;
+        },
+        set: function (value) {
+            this._utilisateurs = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AccueilComponent.prototype, "favoris", {
+        get: function () {
+            return this._favoris;
+        },
+        set: function (value) {
+            this._favoris = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AccueilComponent.prototype, "commentaires", {
+        get: function () {
+            return this._commentaires;
+        },
+        set: function (value) {
+            this._commentaires = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     AccueilComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-accueil',
             template: __webpack_require__(/*! ./accueil.component.html */ "./src/app/accueil/accueil.component.html"),
             styles: [__webpack_require__(/*! ./accueil.component.css */ "./src/app/accueil/accueil.component.css")]
         }),
-        __metadata("design:paramtypes", [_utilisateur_utilisateur_service__WEBPACK_IMPORTED_MODULE_1__["UtilisateurService"], _authguard_guard__WEBPACK_IMPORTED_MODULE_2__["AuthguardGuard"]])
+        __metadata("design:paramtypes", [_utilisateur_utilisateur_service__WEBPACK_IMPORTED_MODULE_1__["UtilisateurService"], _authguard_guard__WEBPACK_IMPORTED_MODULE_2__["AuthguardGuard"], _film_film_service__WEBPACK_IMPORTED_MODULE_8__["FilmService"], _serie_serie_service__WEBPACK_IMPORTED_MODULE_9__["SerieService"], _utilisateur_utilisateur_service__WEBPACK_IMPORTED_MODULE_1__["UtilisateurService"], _favori_favori_service__WEBPACK_IMPORTED_MODULE_10__["FavoriService"], _commentaire_commentaire_service__WEBPACK_IMPORTED_MODULE_11__["CommentaireService"]])
     ], AccueilComponent);
     return AccueilComponent;
 }());
@@ -193,6 +316,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _favori_favori_service__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./favori/favori.service */ "./src/app/favori/favori.service.ts");
 /* harmony import */ var _commentaire_commentaire_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./commentaire/commentaire.component */ "./src/app/commentaire/commentaire.component.ts");
 /* harmony import */ var _commentaire_smart_manager_commentaire_smart_manager_commentaire_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./commentaire/smart-manager-commentaire/smart-manager-commentaire.component */ "./src/app/commentaire/smart-manager-commentaire/smart-manager-commentaire.component.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_common_locales_fr__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/common/locales/fr */ "./node_modules/@angular/common/locales/fr.js");
+/* harmony import */ var _angular_common_locales_fr__WEBPACK_IMPORTED_MODULE_28___default = /*#__PURE__*/__webpack_require__.n(_angular_common_locales_fr__WEBPACK_IMPORTED_MODULE_28__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -226,6 +352,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
+Object(_angular_common__WEBPACK_IMPORTED_MODULE_27__["registerLocaleData"])(_angular_common_locales_fr__WEBPACK_IMPORTED_MODULE_28___default.a);
 var routes = [
     {
         path: '',
@@ -301,7 +430,7 @@ var AppModule = /** @class */ (function () {
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_12__["HttpClientModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forRoot(routes)
             ],
-            providers: [_film_film_service__WEBPACK_IMPORTED_MODULE_10__["FilmService"], _serie_serie_service__WEBPACK_IMPORTED_MODULE_13__["SerieService"], _utilisateur_utilisateur_service__WEBPACK_IMPORTED_MODULE_18__["UtilisateurService"], _favori_favori_service__WEBPACK_IMPORTED_MODULE_24__["FavoriService"], _authguard_guard__WEBPACK_IMPORTED_MODULE_19__["AuthguardGuard"]],
+            providers: [_film_film_service__WEBPACK_IMPORTED_MODULE_10__["FilmService"], _serie_serie_service__WEBPACK_IMPORTED_MODULE_13__["SerieService"], _utilisateur_utilisateur_service__WEBPACK_IMPORTED_MODULE_18__["UtilisateurService"], _favori_favori_service__WEBPACK_IMPORTED_MODULE_24__["FavoriService"], _authguard_guard__WEBPACK_IMPORTED_MODULE_19__["AuthguardGuard"], { provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__["LOCALE_ID"], useValue: 'fr-FR' }],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
         })
     ], AppModule);
@@ -351,6 +480,9 @@ var AuthguardGuard = /** @class */ (function () {
     };
     AuthguardGuard.prototype.getUtilisateurLogged = function () {
         return this.utilisateur.utilisateurLogged;
+    };
+    AuthguardGuard.prototype.getIsAdminUtilisateur = function () {
+        return this.utilisateur.isAdminLogged;
     };
     AuthguardGuard = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -2699,6 +2831,7 @@ var ConnexionComponent = /** @class */ (function () {
                 if (u.password == this._utilisateurTmp.password) {
                     this.utilisateurService.setLoggedIn(u);
                     this.utilisateurService.setIdUtilisateur(u);
+                    this.utilisateurService.setIsAdminUtilisateur(u);
                     localStorage.setItem('utilisateur', String(u.id));
                     this.router.navigate(['accueil']);
                 }
@@ -2982,6 +3115,9 @@ var UtilisateurService = /** @class */ (function () {
     UtilisateurService.prototype.setIdUtilisateur = function (utilisateur) {
         this._idUtilisateurLogged = utilisateur.id;
     };
+    UtilisateurService.prototype.setIsAdminUtilisateur = function (utilisateur) {
+        this._isAdminLogged = utilisateur.isAdmin;
+    };
     Object.defineProperty(UtilisateurService.prototype, "idUtilisateurLogged", {
         get: function () {
             return this._idUtilisateurLogged;
@@ -2993,8 +3129,12 @@ var UtilisateurService = /** @class */ (function () {
         get: function () {
             return this._utilisateurLogged;
         },
-        set: function (value) {
-            this._utilisateurLogged = value;
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(UtilisateurService.prototype, "isAdminLogged", {
+        get: function () {
+            return this._isAdminLogged;
         },
         enumerable: true,
         configurable: true

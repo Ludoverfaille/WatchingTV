@@ -15,6 +15,7 @@ export class UtilisateurService {
   private _isLoggedIn:boolean = false;
   private _idUtilisateurLogged:number;
   private _utilisateurLogged:Utilisateur;
+  private _isAdminLogged:boolean;
 
   public query():Observable<Utilisateur[]>{
     return this.http.get<Utilisateur[]>(UtilisateurService.URL_API_UTILISATEUR);
@@ -45,6 +46,9 @@ export class UtilisateurService {
     this._idUtilisateurLogged = utilisateur.id;
   }
 
+  setIsAdminUtilisateur(utilisateur: Utilisateur){
+    this._isAdminLogged = utilisateur.isAdmin;
+  }
 
   get idUtilisateurLogged(): number {
     return this._idUtilisateurLogged;
@@ -54,7 +58,8 @@ export class UtilisateurService {
     return this._utilisateurLogged;
   }
 
-  set utilisateurLogged(value: Utilisateur) {
-    this._utilisateurLogged = value;
+  get isAdminLogged(): boolean {
+    return this._isAdminLogged;
   }
+
 }

@@ -4,3 +4,14 @@
     <p class="lead">Bonjour ! Ce site répertories une quantité innombrabre de films et séries. Il vous permet également d'en ajouter en favoris et de laisser un commentaire visible par tous le monde. Bonne visite !</p>
   </div>
 </div>
+
+<div *ngIf="authGuard.canActivate() && authGuard.getIsAdminUtilisateur()" class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Voici les statistiques du site avec le nombre d'éléments enregistrés dans la base de donnée.</h1>
+    <p>Films : {{films.length}}</p>
+    <p>Series : {{series.length}}</p>
+    <p>Utilisateurs : {{utilisateurs.length}}</p>
+    <p>Favoris : {{favoris.length}}</p>
+    <p>Commentaires : {{commentaires.length}}</p>
+  </div>
+</div>

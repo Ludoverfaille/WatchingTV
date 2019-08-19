@@ -30,6 +30,7 @@ s
         if(u.password == this._utilisateurTmp.password){
           this.utilisateurService.setLoggedIn(u);
           this.utilisateurService.setIdUtilisateur(u);
+          this.utilisateurService.setIsAdminUtilisateur(u);
           localStorage.setItem('utilisateur', String(u.id));
           this.router.navigate(['accueil']);
         }
@@ -44,7 +45,6 @@ s
         this._utilisateurs = utilisateurs.map(utilisateur=>new Utilisateur().fromJson(utilisateur))
       );
   }
-
 
   get utilisateurTmp(): Utilisateur {
     return this._utilisateurTmp;

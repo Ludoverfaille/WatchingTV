@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AccueilComponent } from './accueil/accueil.component';
@@ -26,6 +26,11 @@ import { SmartManagerSerieComponent } from './serie/smart-manager-serie/smart-ma
 import {FavoriService} from './favori/favori.service';
 import { CommentaireComponent } from './commentaire/commentaire.component';
 import { SmartManagerCommentaireComponent } from './commentaire/smart-manager-commentaire/smart-manager-commentaire.component';
+import { registerLocaleData } from '@angular/common';
+
+import localeFr from '@angular/common/locales/fr';
+
+registerLocaleData(localeFr);
 
 const routes:Routes =[
   {
@@ -103,7 +108,7 @@ const routes:Routes =[
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [FilmService,SerieService,UtilisateurService,FavoriService, AuthguardGuard],
+  providers: [FilmService,SerieService,UtilisateurService,FavoriService, AuthguardGuard,{provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

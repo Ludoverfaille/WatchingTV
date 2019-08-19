@@ -32,5 +32,9 @@ export class AuthguardGuard implements CanActivate {
     return this.utilisateur.utilisateurLogged;
   }
 
+  getIsAdminUtilisateur(): boolean{
+    return this.utilisateur.isAdminLogged;
+  }
+
 }
 
